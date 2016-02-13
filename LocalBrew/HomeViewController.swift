@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -59,14 +59,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier("CellID")!
         let brewery = breweryObjects[indexPath.row]
+        if let cell = tableView.dequeueReusableCellWithIdentifier("BreweryCellID") as? BreweryCell {
+            cell.configureCell(brewery)
+            return cell
+
+        } else {
+            return BreweryCell()
+        }
         
-        cell.textLabel?.text = brewery.name
-        cell.detailTextLabel!.text = brewery.streetAddress
+
         
-        return cell
+        
     }
 
 }

@@ -9,6 +9,7 @@
 import UIKit
 
 
+
 class Brewery {
     
     var name: String
@@ -21,13 +22,16 @@ class Brewery {
     var latitute: Double
     var longitude: Double
     var breweryDescription: String
-    var isOrganic: String             // 'N' or 'Y'
+    var isOrganic: String           // 'N' or 'Y'
+//    var breweryImage: UIImage?
+    
     
     
     
     init(dataDictionary: NSDictionary ) {
         let breweryDictionary = dataDictionary["brewery"]
         let locationDictionary = dataDictionary["country"]
+//        let imageDictionary = dataDictionary["images"]
         
         name = breweryDictionary!["name"] as! String
         locality = dataDictionary["locality"] as! String
@@ -61,6 +65,9 @@ class Brewery {
         } else {
             self.breweryDescription = "Sorry. The brewery did not provide us with a description."
         }
+//        if let breweryImage = imageDictionary!["icon"] as? UIImage {
+//            self.breweryImage = breweryImage
+//        }
     }
 }
 
