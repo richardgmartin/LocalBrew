@@ -9,14 +9,65 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var breweries = [NSDictionary]()
+    var breweryObjects = [Brewery]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // MARK: logic to import breweryDB data
+        
+        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=chicago&region=illinois&countryIsoCode=US&key=6f75023f91495f22253de067b9136d1d")
+        
+        let session = NSURLSession.sharedSession()
+        
+        let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
+            do{
+                let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
+                
+                self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
+                
+                for dict: NSDictionary in self.breweries {
+                    let breweryObject: Brewery = Brewery(dataDictionary: dict)
+                    self.breweryObjects.append(breweryObject)
+                }
+                
+            }
+            catch let error as NSError{
+                print("JSON Error: \(error.localizedDescription)")
+            }
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+            })
+        }
+        task.resume()
+        
 
     
     }
+    
+    
+    // MARK: tableview cell display logic
 
     
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.breweries.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("CellID")!
+        let brewery = breweryObjects[indexPath.row]
+        
+        cell.textLabel?.text = brewery.name
+        cell.detailTextLabel!.text = brewery.streetAddress
+        
+        return cell
+    }
 
 }
 

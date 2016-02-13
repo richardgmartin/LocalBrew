@@ -13,6 +13,7 @@
 		A3025F2C1C6F7E7D004617DB /* LocalBrew.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3025F2A1C6F7E7D004617DB /* LocalBrew.xcdatamodeld */; };
 		A3025F2E1C6F7E7D004617DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3025F2D1C6F7E7D004617DB /* Assets.xcassets */; };
 		A3025F311C6F7E7D004617DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3025F2F1C6F7E7D004617DB /* LaunchScreen.storyboard */; };
+		A3025F3C1C6F87B3004617DB /* Brewery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3025F3B1C6F87B3004617DB /* Brewery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A3025F2D1C6F7E7D004617DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3025F301C6F7E7D004617DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3025F321C6F7E7D004617DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3025F3B1C6F87B3004617DB /* Brewery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brewery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,32 @@
 		A3025F221C6F7E7C004617DB /* LocalBrew */ = {
 			isa = PBXGroup;
 			children = (
+				A3025F3A1C6F8764004617DB /* View Controllers */,
+				A3025F391C6F872D004617DB /* Models */,
 				A3025F231C6F7E7D004617DB /* AppDelegate.swift */,
-				A3025F251C6F7E7D004617DB /* ViewController.swift */,
-				A3025F271C6F7E7D004617DB /* Main.storyboard */,
 				A3025F2D1C6F7E7D004617DB /* Assets.xcassets */,
+				A3025F271C6F7E7D004617DB /* Main.storyboard */,
 				A3025F2F1C6F7E7D004617DB /* LaunchScreen.storyboard */,
 				A3025F321C6F7E7D004617DB /* Info.plist */,
 				A3025F2A1C6F7E7D004617DB /* LocalBrew.xcdatamodeld */,
 			);
 			path = LocalBrew;
+			sourceTree = "<group>";
+		};
+		A3025F391C6F872D004617DB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A3025F3B1C6F87B3004617DB /* Brewery.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		A3025F3A1C6F8764004617DB /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A3025F251C6F7E7D004617DB /* ViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3025F3C1C6F87B3004617DB /* Brewery.swift in Sources */,
 				A3025F261C6F7E7D004617DB /* ViewController.swift in Sources */,
 				A3025F2C1C6F7E7D004617DB /* LocalBrew.xcdatamodeld in Sources */,
 				A3025F241C6F7E7D004617DB /* AppDelegate.swift in Sources */,
