@@ -1,0 +1,308 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A3025F241C6F7E7D004617DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3025F231C6F7E7D004617DB /* AppDelegate.swift */; };
+		A3025F261C6F7E7D004617DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3025F251C6F7E7D004617DB /* ViewController.swift */; };
+		A3025F291C6F7E7D004617DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3025F271C6F7E7D004617DB /* Main.storyboard */; };
+		A3025F2C1C6F7E7D004617DB /* LocalBrew.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3025F2A1C6F7E7D004617DB /* LocalBrew.xcdatamodeld */; };
+		A3025F2E1C6F7E7D004617DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3025F2D1C6F7E7D004617DB /* Assets.xcassets */; };
+		A3025F311C6F7E7D004617DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3025F2F1C6F7E7D004617DB /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A3025F201C6F7E7C004617DB /* LocalBrew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalBrew.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3025F231C6F7E7D004617DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A3025F251C6F7E7D004617DB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A3025F281C6F7E7D004617DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A3025F2B1C6F7E7D004617DB /* LocalBrew.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalBrew.xcdatamodel; sourceTree = "<group>"; };
+		A3025F2D1C6F7E7D004617DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A3025F301C6F7E7D004617DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A3025F321C6F7E7D004617DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A3025F1D1C6F7E7C004617DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A3025F171C6F7E7C004617DB = {
+			isa = PBXGroup;
+			children = (
+				A3025F221C6F7E7C004617DB /* LocalBrew */,
+				A3025F211C6F7E7C004617DB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A3025F211C6F7E7C004617DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A3025F201C6F7E7C004617DB /* LocalBrew.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A3025F221C6F7E7C004617DB /* LocalBrew */ = {
+			isa = PBXGroup;
+			children = (
+				A3025F231C6F7E7D004617DB /* AppDelegate.swift */,
+				A3025F251C6F7E7D004617DB /* ViewController.swift */,
+				A3025F271C6F7E7D004617DB /* Main.storyboard */,
+				A3025F2D1C6F7E7D004617DB /* Assets.xcassets */,
+				A3025F2F1C6F7E7D004617DB /* LaunchScreen.storyboard */,
+				A3025F321C6F7E7D004617DB /* Info.plist */,
+				A3025F2A1C6F7E7D004617DB /* LocalBrew.xcdatamodeld */,
+			);
+			path = LocalBrew;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A3025F1F1C6F7E7C004617DB /* LocalBrew */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3025F351C6F7E7D004617DB /* Build configuration list for PBXNativeTarget "LocalBrew" */;
+			buildPhases = (
+				A3025F1C1C6F7E7C004617DB /* Sources */,
+				A3025F1D1C6F7E7C004617DB /* Frameworks */,
+				A3025F1E1C6F7E7C004617DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LocalBrew;
+			productName = LocalBrew;
+			productReference = A3025F201C6F7E7C004617DB /* LocalBrew.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A3025F181C6F7E7C004617DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Richard Martin";
+				TargetAttributes = {
+					A3025F1F1C6F7E7C004617DB = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = A3025F1B1C6F7E7C004617DB /* Build configuration list for PBXProject "LocalBrew" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A3025F171C6F7E7C004617DB;
+			productRefGroup = A3025F211C6F7E7C004617DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A3025F1F1C6F7E7C004617DB /* LocalBrew */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A3025F1E1C6F7E7C004617DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3025F311C6F7E7D004617DB /* LaunchScreen.storyboard in Resources */,
+				A3025F2E1C6F7E7D004617DB /* Assets.xcassets in Resources */,
+				A3025F291C6F7E7D004617DB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A3025F1C1C6F7E7C004617DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3025F261C6F7E7D004617DB /* ViewController.swift in Sources */,
+				A3025F2C1C6F7E7D004617DB /* LocalBrew.xcdatamodeld in Sources */,
+				A3025F241C6F7E7D004617DB /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A3025F271C6F7E7D004617DB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A3025F281C6F7E7D004617DB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A3025F2F1C6F7E7D004617DB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A3025F301C6F7E7D004617DB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A3025F331C6F7E7D004617DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A3025F341C6F7E7D004617DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A3025F361C6F7E7D004617DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LocalBrew/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.richardgmartin.LocalBrew;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A3025F371C6F7E7D004617DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LocalBrew/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.richardgmartin.LocalBrew;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A3025F1B1C6F7E7C004617DB /* Build configuration list for PBXProject "LocalBrew" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3025F331C6F7E7D004617DB /* Debug */,
+				A3025F341C6F7E7D004617DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3025F351C6F7E7D004617DB /* Build configuration list for PBXNativeTarget "LocalBrew" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3025F361C6F7E7D004617DB /* Debug */,
+				A3025F371C6F7E7D004617DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A3025F2A1C6F7E7D004617DB /* LocalBrew.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A3025F2B1C6F7E7D004617DB /* LocalBrew.xcdatamodel */,
+			);
+			currentVersion = A3025F2B1C6F7E7D004617DB /* LocalBrew.xcdatamodel */;
+			path = LocalBrew.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = A3025F181C6F7E7C004617DB /* Project object */;
+}
