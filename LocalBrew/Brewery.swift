@@ -17,7 +17,7 @@ class Brewery {
     var locality: String              // city or town
     var region: String                // state or province
     var postalCode: String            // zip or postal code
-    var displayName: String           // country
+    var countryName: String           // country
     var website: String?
     var latitute: Double
     var longitude: Double
@@ -36,7 +36,7 @@ class Brewery {
         name = breweryDictionary!["name"] as! String
         locality = dataDictionary["locality"] as! String
         region = dataDictionary["region"] as! String
-        displayName = locationDictionary!["displayName"] as! String
+        countryName = locationDictionary!["displayName"] as! String
         latitute = dataDictionary["latitude"] as! Double
         longitude = dataDictionary["longitude"]as! Double
         isOrganic = breweryDictionary!["isOrganic"] as! String
