@@ -133,15 +133,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9om-Jg-btL">
-                                <rect key="frame" x="103" y="316" width="394" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="394" id="4Wd-I1-D7e"/>
-                                    <constraint firstAttribute="height" constant="30" id="ZcV-ya-qpE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0uP-0e-8SQ">
                                 <rect key="frame" x="103" y="252" width="394" height="30"/>
                                 <constraints>
@@ -151,15 +142,41 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9om-Jg-btL">
+                                <rect key="frame" x="103" y="316" width="394" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="394" id="4Wd-I1-D7e"/>
+                                    <constraint firstAttribute="height" constant="30" id="ZcV-ya-qpE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Sb-dB-uwr">
+                                <rect key="frame" x="281" y="378" width="38" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38" id="Qzo-QZ-8lk"/>
+                                    <constraint firstAttribute="height" constant="30" id="rRd-jO-GHi"/>
+                                </constraints>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="onLoginButtonTapped:" destination="Bhv-VO-MTT" eventType="touchUpInside" id="Oox-Nv-svm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0uP-0e-8SQ" firstAttribute="top" secondItem="wgc-He-x5s" secondAttribute="bottom" constant="232" id="7h7-AL-FDC"/>
+                            <constraint firstItem="8Sb-dB-uwr" firstAttribute="centerX" secondItem="bZF-Tt-dSX" secondAttribute="centerX" id="CbQ-7W-0ca"/>
+                            <constraint firstItem="8Sb-dB-uwr" firstAttribute="top" secondItem="9om-Jg-btL" secondAttribute="bottom" constant="32" id="XxK-52-oc8"/>
                             <constraint firstItem="9om-Jg-btL" firstAttribute="centerX" secondItem="bZF-Tt-dSX" secondAttribute="centerX" id="c6W-IN-f1C"/>
                             <constraint firstItem="0uP-0e-8SQ" firstAttribute="centerX" secondItem="bZF-Tt-dSX" secondAttribute="centerX" id="w63-m9-npZ"/>
                             <constraint firstItem="9om-Jg-btL" firstAttribute="top" secondItem="0uP-0e-8SQ" secondAttribute="bottom" constant="34" id="xon-j7-C2T"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginEmailTextField" destination="0uP-0e-8SQ" id="JUM-mn-DQj"/>
+                        <outlet property="loginPasswordTextField" destination="9om-Jg-btL" id="bTZ-wA-P0c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qUb-q5-Q7S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
