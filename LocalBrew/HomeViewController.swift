@@ -16,10 +16,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var breweryObjects = [Brewery]()
     
     // set chicago as the default localbrew location
+    // this will change when we activate location tracking and, provided the user approves, set the city based on location
     
-    var locality: String = "chicago"
-    var region: String = "illinois"
-    var countryName: String = "US"
+    var locality: String = "perth"
+    var region: String = "ontario"
+    var countryName: String = "ca"
     
     var changeCityController: ChangeCityViewController?
     
@@ -36,6 +37,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         accessBreweryDB()
         
     
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        self.tableView.reloadData()
+        
     }
     
     func accessBreweryDB() {
@@ -55,6 +62,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 for dict: NSDictionary in self.breweries {
                     let breweryObject: Brewery = Brewery(dataDictionary: dict)
                     self.breweryObjects.append(breweryObject)
+                
                 }
                 
             }
@@ -67,26 +75,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         task.resume()
         
+        self.tableView.reloadData() 
+        
     }
     
-    // MARK: Add Item View Controller Delegate Methods
+    // MARK: change user location delegate method
     
-    func changeLocation(controller: ChangeCityViewController, didChangeLocation: String) {
+    func changeLocation(controller: ChangeCityViewController, didChangeCity: String, didChangeRegion: String, didChangeCountry: String) {
         
         // Update Data Source
-        self.locality = didChangeLocation
+        self.locality = didChangeCity
+        self.region = didChangeRegion
+        self.countryName = didChangeCountry
         
         accessBreweryDB()
         
-        // Reload Table View
-        self.tableView.reloadData()
-        
-        // Dismiss Add Item View Controller
-        self.dismissViewControllerAnimated(true, completion: nil)
         
     }
-    
-
         
     // MARK: tableview cell display logic
 
@@ -97,6 +102,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let brewery = breweryObjects[indexPath.row]
+        
         if let cell = tableView.dequeueReusableCellWithIdentifier("BreweryCellID") as? BreweryCell {
             cell.configureCell(brewery)
             return cell

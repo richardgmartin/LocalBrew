@@ -12,7 +12,7 @@ import UIKit
 
 protocol ChangeCityViewControllerDelegate {
     
-    func changeLocation(controller: ChangeCityViewController, didChangeLocation: String)
+    func changeLocation(controller: ChangeCityViewController, didChangeCity: String, didChangeRegion: String, didChangeCountry: String)
     
 }
 
@@ -32,29 +32,21 @@ class ChangeCityViewController: UIViewController {
         super.viewDidLoad()
         
         
-        
     }
-    
-    
     
     @IBAction func saveLocation(sender: AnyObject) {
         
         let city = self.cityTextField.text
+        let region = self.regionTextField.text
+        let country = self.countryTextField.text
         
         // 3. implement method/action
         
         if let delegate = self.delegate {
-            delegate.changeLocation(self, didChangeLocation: city!)
+            delegate.changeLocation(self, didChangeCity: city!, didChangeRegion:region!, didChangeCountry: country!)
         }
         
-//        delegate?.changeLocation(self, didChangeLocation: city!)
-        
     }
-    
-    
-    
-    
-    
     
     
 }
