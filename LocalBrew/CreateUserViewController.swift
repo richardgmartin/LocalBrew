@@ -9,11 +9,13 @@
 import UIKit
 import Firebase
 
-class CreateUserViewController: UIViewController
+class CreateUserViewController: UIViewController, UITextFieldDelegate
 {
-     var rootRef:Firebase!
+    var rootRef:Firebase!
     @IBOutlet weak var createEmailTextField: UITextField!
     @IBOutlet weak var createPasswordTextField: UITextField!
+    @IBOutlet weak var createUsernameTextField: UITextField!
+    @IBOutlet weak var createNameTextField: UITextField!
 
     override func viewDidLoad()
     {
@@ -35,8 +37,15 @@ class CreateUserViewController: UIViewController
             {
                 self.rootRef.authUser(self.createEmailTextField.text, password: self.createPasswordTextField.text, withCompletionBlock: { (error, auth) -> Void in
                     
+                    let user = ["provider":auth.provider!, "email":self.createEmailTextField.text, "password":self.createPasswordTextField.text, "name":self.createNameTextField.text]
+                    FirebaseConnection.firebaseConnection.createNewAccount(auth.uid, user: user as! Dictionary<String, String>)
+                    
+                    
                 })
                 
+                
+                
+                 self.performSegueWithIdentifier("fromCreateUser", sender: nil)
             }
             else
             {
@@ -47,15 +56,23 @@ class CreateUserViewController: UIViewController
                 self.presentViewController(errorAlert, animated: true, completion: { () -> Void in
                     self.createEmailTextField.text = ""
                     self.createPasswordTextField.text = ""
+                    self.createUsernameTextField.text = ""
                     
                     
                 })
             }
             
-            self.performSegueWithIdentifier("fromCreateUser", sender: nil)
+            
+           
         }
         
         
+    }
+    
+    
+    //MARK: TextField Delegate Functions
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
     }
     
     

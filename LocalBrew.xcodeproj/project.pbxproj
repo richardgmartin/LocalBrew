@@ -15,6 +15,7 @@
 		A3025F311C6F7E7D004617DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3025F2F1C6F7E7D004617DB /* LaunchScreen.storyboard */; };
 		A3025F3C1C6F87B3004617DB /* Brewery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3025F3B1C6F87B3004617DB /* Brewery.swift */; };
 		B2117353290697217C4C112E /* Pods_LocalBrew.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D0EE5F2967359314A1FB406 /* Pods_LocalBrew.framework */; };
+		DB30EB891C717671006FB1A3 /* FirebaseConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB30EB881C717671006FB1A3 /* FirebaseConnection.swift */; };
 		DB9D2EA71C712F30007E7228 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D2EA61C712F30007E7228 /* LoginViewController.swift */; };
 		DB9D2EAB1C71533F007E7228 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D2EAA1C71533F007E7228 /* CreateUserViewController.swift */; };
 		E597B6211C6FDEFE007B8134 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E597B6201C6FDEFE007B8134 /* ProfileViewController.swift */; };
@@ -34,6 +35,7 @@
 		A3025F3B1C6F87B3004617DB /* Brewery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brewery.swift; sourceTree = "<group>"; };
 		D156A588F0662AE9F3E3CD9D /* Pods-LocalBrew.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalBrew.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocalBrew/Pods-LocalBrew.release.xcconfig"; sourceTree = "<group>"; };
 		D9EE20D9235388306130DE2B /* Pods-LocalBrew.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalBrew.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocalBrew/Pods-LocalBrew.debug.xcconfig"; sourceTree = "<group>"; };
+		DB30EB881C717671006FB1A3 /* FirebaseConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseConnection.swift; sourceTree = SOURCE_ROOT; };
 		DB9D2EA61C712F30007E7228 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DB9D2EAA1C71533F007E7228 /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
 		E597B6201C6FDEFE007B8134 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				A3025F3B1C6F87B3004617DB /* Brewery.swift */,
+				DB30EB881C717671006FB1A3 /* FirebaseConnection.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB30EB891C717671006FB1A3 /* FirebaseConnection.swift in Sources */,
 				DB9D2EA71C712F30007E7228 /* LoginViewController.swift in Sources */,
 				A3025F3C1C6F87B3004617DB /* Brewery.swift in Sources */,
 				A3025F261C6F7E7D004617DB /* HomeViewController.swift in Sources */,
