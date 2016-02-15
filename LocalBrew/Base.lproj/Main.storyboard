@@ -215,18 +215,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lcV-X8-2c4">
-                                <rect key="frame" x="20" y="220" width="275" height="30"/>
+                                <rect key="frame" x="20" y="220" width="349" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="275" id="cbZ-3z-acY"/>
+                                    <constraint firstAttribute="width" constant="349" id="cbZ-3z-acY"/>
                                     <constraint firstAttribute="height" constant="30" id="wzY-qB-IwN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Desired Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EWi-ae-e1g">
-                                <rect key="frame" x="20" y="276" width="275" height="30"/>
+                                <rect key="frame" x="20" y="276" width="349" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="275" id="NBo-Qb-peQ"/>
+                                    <constraint firstAttribute="width" constant="349" id="NBo-Qb-peQ"/>
                                     <constraint firstAttribute="height" constant="30" id="YDV-gn-52d"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -243,16 +243,35 @@
                                     <action selector="onCreateUserProfileButtonTapped:" destination="33Y-tf-jFd" eventType="touchUpInside" id="LlI-rL-eaZ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ba-y3-4ma">
+                                <rect key="frame" x="20" y="550" width="34" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="34" id="5bS-qa-aEZ"/>
+                                    <constraint firstAttribute="height" constant="30" id="8oK-UD-G4L"/>
+                                </constraints>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="Qbo-4y-VaA" kind="unwind" unwindAction="prepareForUnWind:" id="QjY-uo-2wP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="EWi-ae-e1g" firstAttribute="leading" secondItem="A9i-iN-Iti" secondAttribute="leadingMargin" id="4AR-CB-QUW"/>
+                            <constraint firstItem="2Ba-y3-4ma" firstAttribute="leading" secondItem="A9i-iN-Iti" secondAttribute="leadingMargin" id="6lp-Na-PBN"/>
+                            <constraint firstItem="2wI-Bt-xaU" firstAttribute="top" secondItem="2Ba-y3-4ma" secondAttribute="bottom" constant="20" id="PQR-Q1-j0K"/>
                             <constraint firstItem="lcV-X8-2c4" firstAttribute="leading" secondItem="A9i-iN-Iti" secondAttribute="leadingMargin" id="fA8-OU-moA"/>
+                            <constraint firstItem="2Ba-y3-4ma" firstAttribute="top" secondItem="EWi-ae-e1g" secondAttribute="bottom" constant="244" id="fVd-A9-DJg"/>
                             <constraint firstItem="SZe-b9-mr1" firstAttribute="leading" secondItem="A9i-iN-Iti" secondAttribute="leadingMargin" constant="61" id="kqF-EY-tQp"/>
                             <constraint firstItem="SZe-b9-mr1" firstAttribute="top" secondItem="EWi-ae-e1g" secondAttribute="bottom" constant="40" id="qcc-0B-LLh"/>
                             <constraint firstItem="lcV-X8-2c4" firstAttribute="top" secondItem="8T4-f9-C0w" secondAttribute="bottom" constant="200" id="qwU-fj-OAt"/>
                             <constraint firstItem="EWi-ae-e1g" firstAttribute="top" secondItem="lcV-X8-2c4" secondAttribute="bottom" constant="26" id="xif-Iv-K1l"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="fVd-A9-DJg"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="createEmailTextField" destination="lcV-X8-2c4" id="zJd-gC-elE"/>
@@ -261,6 +280,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vGi-ew-xQh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Qbo-4y-VaA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="141" y="-129"/>
         </scene>
