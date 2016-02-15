@@ -26,6 +26,8 @@ class BreweryCell: UITableViewCell {
         self.breweryAddressLabel.text = brewery.streetAddress
         self.breweryDistanceLabel.text = "0.4 miles"
         self.breweryFavoritesLabel.text = "10"
+        
+        
 //        self.breweryImageView.image = brewery.breweryImage
         
     }
