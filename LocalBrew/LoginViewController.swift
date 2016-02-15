@@ -7,15 +7,22 @@
 //
 
 import UIKit
+import Firebase
+
 
 class LoginViewController: UIViewController
 {
     @IBOutlet weak var loginEmailTextField: UITextField!
     @IBOutlet weak var loginPasswordTextField: UITextField!
+    
+    var rootRef:Firebase!
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.rootRef = Firebase(url: "https://localbrew.firebaseio.com")
+        //let userRef = rootRef.childByAppendingPath("users")
+        
 
         // Do any additional setup after loading the view.
     }
@@ -28,6 +35,9 @@ class LoginViewController: UIViewController
     
     @IBAction func onLoginButtonTapped(sender: UIButton)
     {
+        rootRef.authUser(loginEmailTextField.text, password: loginPasswordTextField.text) { (error, auth) -> Void in
+            self.performSegueWithIdentifier("fromLogin", sender: nil)
+        }
     }
     
 
