@@ -7,15 +7,19 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
     var breweries = [NSDictionary]()
     var breweryObjects = [Brewery]()
+    let locationManager = CLLocationManager()
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         // MARK: logic to import breweryDB data
@@ -45,32 +49,54 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         task.resume()
         
-
-    
+        self.locationManager.delegate = self
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
     }
     
     
     // MARK: tableview cell display logic
 
-    
-
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.breweries.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
         let brewery = breweryObjects[indexPath.row]
-        if let cell = tableView.dequeueReusableCellWithIdentifier("BreweryCellID") as? BreweryCell {
+        if let cell = tableView.dequeueReusableCellWithIdentifier("BreweryCellID") as? BreweryCell
+        {
             cell.configureCell(brewery)
             return cell
 
-        } else {
+        }
+        else
+        {
             return BreweryCell()
         }
         
-
+    }
+    
+    // MARK: CLLocationManagerDelegate Methods
+    
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        let location = locations.first
         
-        
+        if location?.verticalAccuracy < 1000 && location?.horizontalAccuracy < 1000
+        {
+            locationManager.stopUpdatingLocation()
+            reverseGeocode(location!)
+        }
+    }
+    
+    func reverseGeocode(location:CLLocation)
+    {
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { (placemarks:[CLPlacemark]?, error:NSError?) -> Void in
+            //let placemark = placemarks?.first
+        }
     }
 
 }

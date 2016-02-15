@@ -37,7 +37,7 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate
             {
                 self.rootRef.authUser(self.createEmailTextField.text, password: self.createPasswordTextField.text, withCompletionBlock: { (error, auth) -> Void in
                     
-                    let user = ["provider":auth.provider!, "email":self.createEmailTextField.text!, "password":self.createPasswordTextField.text!, "name":self.createNameTextField.text!]
+                    let user = ["provider":auth.provider!, "email":self.createEmailTextField.text!, "name":self.createNameTextField.text!]
                     FirebaseConnection.firebaseConnection.createNewAccount(auth.uid, user: user)
                 })
                 self.performSegueWithIdentifier("fromCreateUser", sender: nil)
@@ -52,8 +52,7 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate
                     self.createEmailTextField.text = ""
                     self.createPasswordTextField.text = ""
                     self.createUsernameTextField.text = ""
-                    
-                    
+            
                 })
             }
             
