@@ -22,9 +22,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // set chicago as the default localbrew location
     // this will change when we activate location tracking and, provided the user approves, set the city based on location
     
-    var locality: String?
-    var region: String?
-    var countryName: String?
+    var locality: String = "Chicago"
+    var region: String = "Illinois"
+    var countryName: String = "US"
     
     var changeCityController: ChangeCityViewController?
     
@@ -104,6 +104,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
         
+        
+        
         // set banner name to be city name
         
         self.title = self.locality
@@ -113,17 +115,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         changeCityController?.delegate = self
         
         // call breweryDB api to build list of micro breweries in a specific city
-        
        
-        
+ 
     
     }
     
-    override func viewWillAppear(animated: Bool) {
-        
-        self.tableView.reloadData()
-    }
-    
+   
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first
@@ -141,6 +138,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         geoCoder.reverseGeocodeLocation(location) { (placemarks:[CLPlacemark]?, error:NSError?) -> Void in
             let placemark = placemarks?.first
             let address = "\(placemark!.locality!) \(placemark!.administrativeArea!) \(placemark!.country!)"
+
             
             self.locality = String(UTF8String: (placemark?.locality)!)!
             let placemarkRegion = String(UTF8String: placemark!.administrativeArea!)!
@@ -162,9 +160,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     }
                 }
         }
-         accessBreweryDB()
+      
+            self.accessBreweryDB()
     }
-    
+
+
     func accessBreweryDB() {
         
         // MARK: logic to import breweryDB data
@@ -173,12 +173,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let session = NSURLSession.sharedSession()
         
+        
         let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
             do{
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
+                print(localBrew)
                 
                 self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
-                print(self.breweries)
                 for dict: NSDictionary in self.breweries {
                     let breweryObject: Brewery = Brewery(dataDictionary: dict)
                     self.breweryObjects.append(breweryObject)
@@ -194,8 +195,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             })
         }
         task.resume()
-        
-        self.tableView.reloadData()
         
     }
     
