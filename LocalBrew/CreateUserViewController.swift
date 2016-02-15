@@ -39,13 +39,8 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate
                     
                     let user = ["provider":auth.provider!, "email":self.createEmailTextField.text!, "password":self.createPasswordTextField.text!, "name":self.createNameTextField.text!]
                     FirebaseConnection.firebaseConnection.createNewAccount(auth.uid, user: user)
-                    
-                    
                 })
-                
-                
-                
-                 self.performSegueWithIdentifier("fromCreateUser", sender: nil)
+                self.performSegueWithIdentifier("fromCreateUser", sender: nil)
             }
             else
             {
