@@ -12,6 +12,7 @@ import CoreLocation
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, ChangeCityViewControllerDelegate {
     
+    
     @IBOutlet weak var tableView: UITableView!
     
     var breweries = [NSDictionary]()
@@ -21,15 +22,79 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // set chicago as the default localbrew location
     // this will change when we activate location tracking and, provided the user approves, set the city based on location
     
-    var locality: String = "ottawa"
-    var region: String = "ontario"
-    var countryName: String = "ca"
+    var locality: String?
+    var region: String?
+    var countryName: String?
     
     var changeCityController: ChangeCityViewController?
+    
+    let nameAbbreviations: [String:String] = [
+        "AL":"alabama",
+        "AK":"alaska",
+        "AZ":"arizona",
+        "AR":"arkansas",
+        "CA":"california",
+        "CO":"colorado",
+        "CT":"connecticut",
+        "DE":"delaware",
+        "DC":"district+of+columbia",
+        "FL":"florida",
+        "GA":"georgia",
+        "HI":"hawaii",
+        "ID":"idaho",
+        "IL":"illinois",
+        "IN":"indiana",
+        "IA":"iowa",
+        "KS":"kansas",
+        "KY":"kentucky",
+        "LA":"louisiana",
+        "ME":"maine",
+        "MD":"maryland",
+        "MA":"massachusetts",
+        "MI":"michigan",
+        "MN":"minnesota",
+        "MS":"mississippi",
+        "MO":"missouri",
+        "MT":"montana",
+        "NE":"nebraska",
+        "NV":"nevada",
+        "NH":"new+hampshire",
+        "NJ":"new+jersey",
+        "NM":"new+mexico",
+        "NY":"new+york",
+        "NC":"north+carolina",
+        "ND":"north+dakota",
+        "OH":"ohio",
+        "OK":"oklahoma",
+        "OR":"oregon",
+        "PA":"pennsylvania",
+        "RI":"rhode+island",
+        "SC":"south+carolina",
+        "SD":"south+dakota",
+        "TN":"tennessee",
+        "TX":"texas",
+        "UT":"utah",
+        "VT":"vermont",
+        "VA":"virginia",
+        "WA":"washington",
+        "WV":"west+virginia",
+        "WI":"wisconsin",
+        "WY":"wyoming",
+        "NL":"newfoundland+labrador",
+        "NS":"nova+scotia",
+        "NB":"new+brunswick",
+        "AB":"alberta",
+        "PE":"prince+edward+island",
+        "BC":"british+columbia",
+        "SK":"saskatchewan",
+        "MB":"manitoba",
+        "QC":"quebec",
+        "ON":"ontario"]
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         
        
         locationManager.delegate = self
@@ -49,7 +114,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // call breweryDB api to build list of micro breweries in a specific city
         
-        accessBreweryDB()
+       
         
     
     }
@@ -63,6 +128,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first
         if location?.verticalAccuracy < 1000 && location?.horizontalAccuracy < 1000 {
+            reversGeocode(location!)
             locationManager.stopUpdatingLocation()
         }
     }
@@ -70,6 +136,34 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print(error)
     }
     
+    func reversGeocode(location: CLLocation) {
+        let geoCoder = CLGeocoder()
+        geoCoder.reverseGeocodeLocation(location) { (placemarks:[CLPlacemark]?, error:NSError?) -> Void in
+            let placemark = placemarks?.first
+            let address = "\(placemark!.locality!) \(placemark!.administrativeArea!) \(placemark!.country!)"
+            
+            self.locality = String(UTF8String: (placemark?.locality)!)!
+            let placemarkRegion = String(UTF8String: placemark!.administrativeArea!)!
+            let placemarkCountry = String(UTF8String: (placemark?.country)!)
+            
+            if placemarkCountry == "United States" {
+                self.countryName = "us"
+            } else {
+                self.countryName = "ca"
+            }
+            
+            print(placemarkRegion)
+            
+//              var key = placemark?.administrativeArea
+                for (key,value) in self.nameAbbreviations {
+                    if key == placemarkRegion {
+                        self.region = value
+                        print(value)
+                    }
+                }
+        }
+         accessBreweryDB()
+    }
     
     func accessBreweryDB() {
         
@@ -84,7 +178,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
                 
                 self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
-                
+                print(self.breweries)
                 for dict: NSDictionary in self.breweries {
                     let breweryObject: Brewery = Brewery(dataDictionary: dict)
                     self.breweryObjects.append(breweryObject)
@@ -101,7 +195,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         task.resume()
         
-        self.tableView.reloadData() 
+        self.tableView.reloadData()
         
     }
     
