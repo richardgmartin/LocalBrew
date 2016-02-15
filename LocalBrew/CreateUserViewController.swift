@@ -37,8 +37,8 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate
             {
                 self.rootRef.authUser(self.createEmailTextField.text, password: self.createPasswordTextField.text, withCompletionBlock: { (error, auth) -> Void in
                     
-                    let user = ["provider":auth.provider!, "email":self.createEmailTextField.text, "password":self.createPasswordTextField.text, "name":self.createNameTextField.text]
-                    FirebaseConnection.firebaseConnection.createNewAccount(auth.uid, user: user as! Dictionary<String, String>)
+                    let user = ["provider":auth.provider!, "email":self.createEmailTextField.text!, "password":self.createPasswordTextField.text!, "name":self.createNameTextField.text!]
+                    FirebaseConnection.firebaseConnection.createNewAccount(auth.uid, user: user)
                     
                     
                 })
@@ -69,6 +69,7 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate
         
     }
     
+
     
     //MARK: TextField Delegate Functions
     func textFieldShouldReturn(textField: UITextField) -> Bool {

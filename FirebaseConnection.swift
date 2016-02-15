@@ -27,7 +27,7 @@ class FirebaseConnection: NSObject
         return _USER_REF
     }
     
-    func createNewAccount(uid: String, user: Dictionary<String, String>) {
+    func createNewAccount(uid: String, user: Dictionary<String,String>) {
         
         USER_REF.childByAppendingPath(uid).setValue(user)
     }
@@ -37,6 +37,7 @@ class FirebaseConnection: NSObject
         let currentUser = Firebase(url: "\(BASE_REF)").childByAppendingPath("users").childByAppendingPath(userID)
         return currentUser!
     }
+    
     
     
     

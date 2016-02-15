@@ -264,7 +264,7 @@
                                     <constraint firstAttribute="width" constant="349" id="Ibx-SG-n2r"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="33Y-tf-jFd" id="uGz-4P-4cS"/>
                                 </connections>
@@ -276,7 +276,7 @@
                                     <constraint firstAttribute="width" constant="349" id="jQI-eD-hGH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="33Y-tf-jFd" id="2d9-Tf-ofs"/>
                                 </connections>
