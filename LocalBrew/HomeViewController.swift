@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import CoreLocation
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ChangeCityViewControllerDelegate {
+
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, ChangeCityViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
     var breweries = [NSDictionary]()
     var breweryObjects = [Brewery]()
+    var locationManager = CLLocationManager()
     
     // set chicago as the default localbrew location
     // this will change when we activate location tracking and, provided the user approves, set the city based on location
@@ -27,6 +30,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        
+        
         
         // set banner name to be city name
         
@@ -46,8 +57,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillAppear(animated: Bool) {
         
         self.tableView.reloadData()
-        
     }
+    
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.first
+        if location?.verticalAccuracy < 1000 && location?.horizontalAccuracy < 1000 {
+            locationManager.stopUpdatingLocation()
+        }
+    }
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error)
+    }
+    
     
     func accessBreweryDB() {
         
@@ -87,6 +109,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func changeLocation(controller: ChangeCityViewController, didChangeCity: String, didChangeRegion: String, didChangeCountry: String) {
         
+        // flush out old city array data
+        
+        self.breweries = []
+        self.breweryObjects = []
+
+        
         // Update Data Source
         self.locality = didChangeCity
         self.region = didChangeRegion
@@ -94,10 +122,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.title = self.locality
         
-        // flush out old city array data
-        
-        self.breweries = []
-        self.breweryObjects = []
         
         // call breweryDB api to build new city detail
         

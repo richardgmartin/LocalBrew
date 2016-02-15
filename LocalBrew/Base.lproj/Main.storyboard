@@ -64,6 +64,7 @@
                                             <outlet property="breweryFavoritesLabel" destination="l33-46-DSz" id="cD1-fg-BZa"/>
                                             <outlet property="breweryImageView" destination="kgk-jz-Ii9" id="7mJ-r5-sXS"/>
                                             <outlet property="breweryNameLabel" destination="A4o-Rw-XT5" id="aY8-4L-6uU"/>
+                                            <segue destination="sbK-Lj-PUP" kind="show" id="ml9-JA-fMt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -94,6 +95,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1497" y="337"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="kWl-GI-ckI">
+            <objects>
+                <viewController id="sbK-Lj-PUP" customClass="DetailViewController" customModule="LocalBrew" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="faF-ZI-2Ih"/>
+                        <viewControllerLayoutGuide type="bottom" id="oCJ-wf-aoc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wx6-uf-oEA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Bx-AJ-Kot" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2197" y="337"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="ava-94-a6s">
@@ -420,7 +439,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hCD-tf-7zt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2219" y="332"/>
+            <point key="canvasLocation" x="1497" y="1128"/>
         </scene>
         <!--Profile-->
         <scene sceneID="NvL-ux-fgt">
