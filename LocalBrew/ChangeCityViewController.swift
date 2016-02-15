@@ -2,29 +2,25 @@
 //  ChangeCityViewController.swift
 //  LocalBrew
 //
-//  Created by Richard Martin on 2016-02-14.
+//  Created by Michael Sandoval on 2/15/16.
 //  Copyright © 2016 Richard Martin. All rights reserved.
 //
 
+import Foundation
 import UIKit
-
 // 1. declare delegate protocol
-
 protocol ChangeCityViewControllerDelegate {
     
     func changeLocation(controller: ChangeCityViewController, didChangeCity: String, didChangeRegion: String, didChangeCountry: String)
     
 }
-
-
 class ChangeCityViewController: UIViewController {
-
     
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var regionTextField: UITextField!
     @IBOutlet weak var countryTextField: UITextField!
     
-// 2. declare delegate property
+    // 2. declare delegate property
     
     var delegate: ChangeCityViewControllerDelegate?
     

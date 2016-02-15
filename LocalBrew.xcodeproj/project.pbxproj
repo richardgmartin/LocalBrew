@@ -20,6 +20,7 @@
 		DB9D2EAB1C71533F007E7228 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D2EAA1C71533F007E7228 /* CreateUserViewController.swift */; };
 		E597B6211C6FDEFE007B8134 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E597B6201C6FDEFE007B8134 /* ProfileViewController.swift */; };
 		E597B6231C6FDFFA007B8134 /* BreweryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E597B6221C6FDFFA007B8134 /* BreweryCell.swift */; };
+		E5ACAB3D1C7232D70013468E /* ChangeCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ACAB3C1C7232D70013468E /* ChangeCityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		DB9D2EAA1C71533F007E7228 /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
 		E597B6201C6FDEFE007B8134 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E597B6221C6FDFFA007B8134 /* BreweryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreweryCell.swift; sourceTree = "<group>"; };
+		E5ACAB3C1C7232D70013468E /* ChangeCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeCityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				A3025F251C6F7E7D004617DB /* HomeViewController.swift */,
+				E5ACAB3C1C7232D70013468E /* ChangeCityViewController.swift */,
 				E597B6201C6FDEFE007B8134 /* ProfileViewController.swift */,
 				DB9D2EAA1C71533F007E7228 /* CreateUserViewController.swift */,
 				DB9D2EA61C712F30007E7228 /* LoginViewController.swift */,
@@ -168,7 +171,7 @@
 				TargetAttributes = {
 					A3025F1F1C6F7E7C004617DB = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 767ELXNDQ9;
+						DevelopmentTeam = U2E38G82JZ;
 					};
 				};
 			};
@@ -259,10 +262,10 @@
 				DB30EB891C717671006FB1A3 /* FirebaseConnection.swift in Sources */,
 				DB9D2EA71C712F30007E7228 /* LoginViewController.swift in Sources */,
 				A3025F3C1C6F87B3004617DB /* Brewery.swift in Sources */,
+				E5ACAB3D1C7232D70013468E /* ChangeCityViewController.swift in Sources */,
 				A3025F261C6F7E7D004617DB /* HomeViewController.swift in Sources */,
 				DB9D2EAB1C71533F007E7228 /* CreateUserViewController.swift in Sources */,
 				E597B6211C6FDEFE007B8134 /* ProfileViewController.swift in Sources */,
-				A3115B6B1C70D41300CBDF7E /* ChangeCityViewController.swift in Sources */,
 				A3025F2C1C6F7E7D004617DB /* LocalBrew.xcdatamodeld in Sources */,
 				E597B6231C6FDFFA007B8134 /* BreweryCell.swift in Sources */,
 				A3025F241C6F7E7D004617DB /* AppDelegate.swift in Sources */,
@@ -381,7 +384,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = LocalBrew/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.richardgmartin.LocalBrew;
+				PRODUCT_BUNDLE_IDENTIFIER = Michael.LocalBrew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -396,7 +399,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = LocalBrew/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.richardgmartin.LocalBrew;
+				PRODUCT_BUNDLE_IDENTIFIER = Michael.LocalBrew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
