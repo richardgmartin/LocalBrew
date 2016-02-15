@@ -18,7 +18,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // set chicago as the default localbrew location
     // this will change when we activate location tracking and, provided the user approves, set the city based on location
     
-    var locality: String = "perth"
+    var locality: String = "ottawa"
     var region: String = "ontario"
     var countryName: String = "ca"
     
@@ -27,6 +27,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set banner name to be city name
+        
+        self.title = self.locality
         
         // set delegate relationship with ChangeCityViewController
         
@@ -87,6 +91,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.locality = didChangeCity
         self.region = didChangeRegion
         self.countryName = didChangeCountry
+        
+        self.title = self.locality
+        
+        // flush out old city array data
+        
+        self.breweries = []
+        self.breweryObjects = []
+        
+        // call breweryDB api to build new city detail
         
         accessBreweryDB()
         
