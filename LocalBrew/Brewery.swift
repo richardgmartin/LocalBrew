@@ -24,7 +24,8 @@ class Brewery {
     var breweryDescription: String
     var isOrganic: String           // 'N' or 'Y'
     var breweryImageIcon: UIImage?
-    
+    var breweryImageSquareMedium: UIImage?
+    var breweryImageLarge: UIImage?
     
     
     
@@ -32,7 +33,7 @@ class Brewery {
         
         let breweryDictionary = dataDictionary["brewery"]
         let locationDictionary = dataDictionary["country"]
-        let imageDictionary = breweryDictionary!["images"]
+        //let imageDictionary = breweryDictionary!["images"]
         
         name = breweryDictionary!["name"] as! String
         locality = dataDictionary["locality"] as! String
@@ -68,6 +69,7 @@ class Brewery {
         }
         if let imageDictionary = breweryDictionary!["images"] as? NSDictionary
         {
+            // Icon Image
             if let iconImageString = imageDictionary["icon"] as? String
             {
                 if let url = NSURL(string: iconImageString)
@@ -78,6 +80,32 @@ class Brewery {
                     }
                 }
             }
+            
+            // square medium image
+            if let squareMediumImageString = imageDictionary["squareMedium"] as? String
+            {
+                if let url = NSURL(string: squareMediumImageString)
+                {
+                    if let data = NSData(contentsOfURL: url)
+                    {
+                        self.breweryImageSquareMedium = UIImage(data: data)
+                    }
+                }
+                
+            }
+            
+            // large image
+            if let largeImageString = imageDictionary["large"] as? String
+            {
+                if let url = NSURL(string: largeImageString)
+                {
+                    if let data = NSData(contentsOfURL: url)
+                    {
+                        self.breweryImageLarge = UIImage(data: data)
+                    }
+                }
+            }
+            
         }
         else
         {
