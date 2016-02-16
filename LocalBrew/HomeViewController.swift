@@ -22,9 +22,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // set chicago as the default localbrew location
     // this will change when we activate location tracking and, provided the user approves, set the city based on location
     
-    var locality: String = "Chicago"
-    var region: String = "Illinois"
-    var countryName: String = "US"
+    var locality: String?
+    var region: String?
+    var countryName: String?
     
     var changeCityController: ChangeCityViewController?
     
@@ -135,7 +135,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func reversGeocode(location: CLLocation) {
         let geoCoder = CLGeocoder()
-        geoCoder.reverseGeocodeLocation(location) { (placemarks:[CLPlacemark]?, error:NSError?) -> Void in
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks:[CLPlacemark]?, error:NSError?) -> Void in
+        
             let placemark = placemarks?.first
             let address = "\(placemark!.locality!) \(placemark!.administrativeArea!) \(placemark!.country!)"
 
@@ -159,17 +160,20 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         print(value)
                     }
                 }
-        }
+
+             self.accessBreweryDB()
+        })
       
-            self.accessBreweryDB()
+        
     }
+    
 
 
     func accessBreweryDB() {
         
         // MARK: logic to import breweryDB data
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality)&region=\(self.region)&countryIsoCode=\(self.countryName)&key=6f75023f91495f22253de067b9136d1d")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=6f75023f91495f22253de067b9136d1d")
         
         let session = NSURLSession.sharedSession()
         
