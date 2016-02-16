@@ -132,7 +132,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print(error)
     }
     
-    func reversGeocode(location: CLLocation) {
+    func reversGeocode(location: CLLocation)
+    {
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks:[CLPlacemark]?, error:NSError?) -> Void in
         
@@ -153,14 +154,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
            // print(placemarkRegion)
             
 //              var key = placemark?.administrativeArea
-                for (key,value) in self.nameAbbreviations {
-                    if key == placemarkRegion {
+                for (key,value) in self.nameAbbreviations
+                {
+                    if key == placemarkRegion
+                    {
                         self.region = value
                         //print(value)
                     }
                 }
-
-             self.accessBreweryDB()
+            
+            self.accessBreweryDB()
         })
       
         
@@ -170,33 +173,39 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         // MARK: logic to import breweryDB data
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=6f75023f91495f22253de067b9136d1d")
-        
-        let session = NSURLSession.sharedSession()
-        
-        
-        let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
-            do{
-                let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
-                print(localBrew)
-                
-                self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
-                for dict: NSDictionary in self.breweries {
-                    let breweryObject: Brewery = Brewery(dataDictionary: dict)
-                    self.breweryObjects.append(breweryObject)
-                
-                }
-                
-            }
-            catch let error as NSError{
-                print("JSON Error: \(error.localizedDescription)")
-            }
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.tableView.reloadData()
-            })
+        if let _ = FirebaseConnection.firebaseConnection.BREWERY_REF.authData
+        {
+            print("There's data on Firebase for this.")
         }
-        task.resume()
-        
+        else
+        {
+            let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=6f75023f91495f22253de067b9136d1d")
+            
+            let session = NSURLSession.sharedSession()
+            
+            
+            let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
+                do{
+                    let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
+                    print(localBrew)
+                    
+                    self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
+                    for dict: NSDictionary in self.breweries {
+                        let breweryObject: Brewery = Brewery(dataDictionary: dict)
+                        self.breweryObjects.append(breweryObject)
+                        
+                    }
+                    
+                }
+                catch let error as NSError{
+                    print("JSON Error: \(error.localizedDescription)")
+                }
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.tableView.reloadData()
+                })
+            }
+            task.resume()
+        }
     }
     
     func setCurrentUser()

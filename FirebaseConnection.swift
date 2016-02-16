@@ -11,7 +11,7 @@ import Firebase
 
 let BASE_URL = "https://localbrew.firebaseio.com/"
 let _USER_REF = Firebase(url: "\(BASE_URL)/users")
-
+let _BREWERY_REF = Firebase(url: "\(BASE_URL)/breweries")
 
 class FirebaseConnection: NSObject
 {
@@ -29,9 +29,20 @@ class FirebaseConnection: NSObject
         return _USER_REF
     }
     
+    var BREWERY_REF:Firebase
+    {
+        return _BREWERY_REF
+    }
+    
     func createNewAccount(uid: String, user: Dictionary<String,String>) {
         
         USER_REF.childByAppendingPath(uid).setValue(user)
+    }
+    
+    func createNewBrewery(brewery:Dictionary<String, AnyObject>)
+    {
+        BREWERY_REF.childByAutoId().setValue(brewery)
+        
     }
     
     var CURRENT_USER_REF: Firebase

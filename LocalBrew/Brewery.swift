@@ -111,6 +111,12 @@ class Brewery {
         {
             self.breweryImageIcon = UIImage(named: "Beer")
         }
+        
+        let newBrewery = ["name":name, "locality":locality, "region":region, "latitude":latitute, "longitude":longitude, "isOrganic":isOrganic]
+        FirebaseConnection.firebaseConnection.createNewBrewery(newBrewery as! Dictionary<String, AnyObject>)
+        
+        
+        
     }
 }
 
