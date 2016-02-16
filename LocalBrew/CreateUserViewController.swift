@@ -12,6 +12,8 @@ import Firebase
 class CreateUserViewController: UIViewController, UITextFieldDelegate
 {
     var rootRef:Firebase!
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    
     @IBOutlet weak var createEmailTextField: UITextField!
     @IBOutlet weak var createPasswordTextField: UITextField!
     @IBOutlet weak var createUsernameTextField: UITextField!
@@ -37,7 +39,7 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate
             {
                 self.rootRef.authUser(self.createEmailTextField.text, password: self.createPasswordTextField.text, withCompletionBlock: { (error, auth) -> Void in
                     
-                    let user = ["provider":auth.provider!, "email":self.createEmailTextField.text!, "password":self.createPasswordTextField.text!, "name":self.createNameTextField.text!]
+                    let user = ["provider":auth.provider!, "email":self.createEmailTextField.text!, "username":self.createUsernameTextField.text!, "name":self.createNameTextField.text!, "uid":auth.uid!]
                     FirebaseConnection.firebaseConnection.createNewAccount(auth.uid, user: user)
                 })
                 self.performSegueWithIdentifier("fromCreateUser", sender: nil)
@@ -65,10 +67,19 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate
     }
     
 
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
-    //MARK: TextField Delegate Functions
+    
+    //MARK: UITextField Delegate Functions
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         return textField.resignFirstResponder()
+    }
+
+    func textFieldDidEndEditing(textField: UITextField)
+    {
+        textField.resignFirstResponder()
     }
     
     

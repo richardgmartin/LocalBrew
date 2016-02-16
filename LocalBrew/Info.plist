@@ -31,6 +31,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationUsageDescription</key>
+	<string>LocalBrew would like to access your location to find Breweries in your area</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>LocalBrew would like to access your location to find Breweries in your area</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -45,9 +49,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationUsageDescription</key>
-	<string>LocalBrew would like to access your location to find Breweries in your area</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>LocalBrew would like to access your location to find Breweries in your area</string>
 </dict>
 </plist>

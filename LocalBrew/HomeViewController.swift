@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import Firebase
 
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, ChangeCityViewControllerDelegate {
@@ -18,6 +19,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var breweries = [NSDictionary]()
     var breweryObjects = [Brewery]()
     var locationManager = CLLocationManager()
+    var currentUser = Dictionary<String, AnyObject>()
     
     // set chicago as the default localbrew location
     // this will change when we activate location tracking and, provided the user approves, set the city based on location
@@ -92,18 +94,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         "ON":"ontario"]
     
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
        
         
-       
+        self.setCurrentUser()
+        
+        
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        
-        
-        
-        
         
         
         // set banner name to be city name
@@ -167,10 +168,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-
-
-    func accessBreweryDB() {
-        
+    func accessBreweryDB()
+    {
         // MARK: logic to import breweryDB data
         
         let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=6f75023f91495f22253de067b9136d1d")
@@ -200,6 +199,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         task.resume()
         
+    }
+    
+    func setCurrentUser()
+    {
+        FirebaseConnection.firebaseConnection.CURRENT_USER_REF.observeSingleEventOfType( FEventType.Value) { (snapshot : FDataSnapshot!) -> Void in
+            
+            //print(snapshot.value)
+            self.currentUser = snapshot.value as! Dictionary<String, AnyObject>
+        }
     }
     
     // MARK: change user location delegate method
@@ -247,12 +255,25 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if(segue.identifier == "changeCity")
+        {
+            let dvc = segue.destinationViewController as? ChangeCityViewController
+            dvc!.delegate = self
+        }
         
-        let dvc = segue.destinationViewController as? ChangeCityViewController
-        dvc!.delegate = self
+    }
+    
+    @IBAction func onLogoutButtonPressed(sender: UIBarButtonItem)
+    {
+        FirebaseConnection.firebaseConnection.BASE_REF.unauth()
         
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("login")
+        self.presentViewController(vc!, animated: true, completion: nil)
+        
+        // Return to login screen
+                
     }
 
 }
-
