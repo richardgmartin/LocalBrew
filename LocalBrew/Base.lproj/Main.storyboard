@@ -19,14 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tUW-LN-0xc">
-                                <rect key="frame" x="20" y="72" width="560" height="528"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BreweryCellID" rowHeight="86" id="MoN-eO-1hx" customClass="BreweryCell" customModule="LocalBrew" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="560" height="86"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MoN-eO-1hx" id="Sil-sa-ODg">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="85"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Beer" translatesAutoresizingMaskIntoConstraints="NO" id="kgk-jz-Ii9">
@@ -51,7 +51,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yM-pK-sBZ">
-                                                    <rect key="frame" x="301" y="53" width="67" height="21"/>
+                                                    <rect key="frame" x="341" y="53" width="67" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -77,13 +77,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Local Brew" id="b23-sV-1A3">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="dAb-Kp-ffJ">
+                            <connections>
+                                <action selector="onLogoutButtonPressed:" destination="BYZ-38-t0r" id="fHk-Hh-1AD"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="b8T-8g-FFu">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="757-re-mea">
                                 <rect key="frame" x="447" y="7" width="133" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Change City"/>
                                 <connections>
-                                    <segue destination="8Eq-oV-2za" kind="show" id="7Dg-kD-ve9"/>
+                                    <segue destination="8Eq-oV-2za" kind="show" identifier="changeCity" id="7Dg-kD-ve9"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -155,7 +160,7 @@
         <!--Login View Controller-->
         <scene sceneID="OiD-VO-izT">
             <objects>
-                <viewController id="Bhv-VO-MTT" customClass="LoginViewController" customModule="LocalBrew" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" id="Bhv-VO-MTT" customClass="LoginViewController" customModule="LocalBrew" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wgc-He-x5s"/>
                         <viewControllerLayoutGuide type="bottom" id="yIA-8O-Jfv"/>
@@ -350,7 +355,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="H2D-TG-E7P">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="yrr-PM-mMY" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tab" automaticallyAdjustsScrollViewInsets="NO" id="yrr-PM-mMY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="rgL-3U-bFe">
                         <autoresizingMask key="autoresizingMask"/>
@@ -404,26 +409,38 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nai-W3-Uek">
-                                <rect key="frame" x="94" y="251" width="86" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nai-W3-Uek">
+                                <rect key="frame" x="257" y="251" width="86" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="86" id="79L-AN-BM8"/>
+                                    <constraint firstAttribute="height" constant="32" id="gQj-qr-p4Y"/>
+                                </constraints>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveLocation:" destination="8Eq-oV-2za" eventType="touchUpInside" id="q2T-cf-dUS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPO-fP-eyc">
-                                <rect key="frame" x="113" y="308" width="48" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPO-fP-eyc">
+                                <rect key="frame" x="276" y="308" width="48" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="kvt-yH-O9q"/>
+                                    <constraint firstAttribute="height" constant="30" id="olW-EA-qqA"/>
+                                </constraints>
                                 <state key="normal" title="Cancel"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="myG-ml-Llw" secondAttribute="trailing" constant="74" id="28j-kk-fZg"/>
+                            <constraint firstItem="Nai-W3-Uek" firstAttribute="top" secondItem="4mR-kq-oHA" secondAttribute="bottom" constant="30" id="6cb-1f-1pz"/>
+                            <constraint firstItem="Nai-W3-Uek" firstAttribute="centerX" secondItem="PdL-dV-lVv" secondAttribute="centerX" id="7Xq-2y-LDB"/>
                             <constraint firstItem="myG-ml-Llw" firstAttribute="top" secondItem="xOg-yY-jH8" secondAttribute="bottom" constant="8" id="8H4-o0-R0B"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Y26-r3-Ijc" secondAttribute="trailing" constant="74" id="E8w-2h-hmw"/>
                             <constraint firstItem="4mR-kq-oHA" firstAttribute="leading" secondItem="PdL-dV-lVv" secondAttribute="leadingMargin" constant="74" id="G5Y-SY-UqZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4mR-kq-oHA" secondAttribute="trailing" constant="74" id="LUU-yN-5Qr"/>
                             <constraint firstItem="4mR-kq-oHA" firstAttribute="top" secondItem="Y26-r3-Ijc" secondAttribute="bottom" constant="31" id="b9d-el-YRi"/>
+                            <constraint firstItem="HPO-fP-eyc" firstAttribute="top" secondItem="Nai-W3-Uek" secondAttribute="bottom" constant="25" id="dob-Q9-tZu"/>
+                            <constraint firstItem="HPO-fP-eyc" firstAttribute="centerX" secondItem="PdL-dV-lVv" secondAttribute="centerX" id="kaK-5l-MTZ"/>
                             <constraint firstItem="myG-ml-Llw" firstAttribute="leading" secondItem="PdL-dV-lVv" secondAttribute="leadingMargin" constant="74" id="lX6-cg-Cxt"/>
                             <constraint firstItem="Y26-r3-Ijc" firstAttribute="leading" secondItem="PdL-dV-lVv" secondAttribute="leadingMargin" constant="74" id="lsd-73-hLS"/>
                             <constraint firstItem="Y26-r3-Ijc" firstAttribute="top" secondItem="myG-ml-Llw" secondAttribute="bottom" constant="28" id="m7v-zw-uTh"/>
