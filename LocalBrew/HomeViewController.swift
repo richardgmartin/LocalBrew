@@ -20,13 +20,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var breweryObjects = [Brewery]()
     var locationManager = CLLocationManager()
     var currentUser = Dictionary<String, AnyObject>()
-    
-    // set chicago as the default localbrew location
-    // this will change when we activate location tracking and, provided the user approves, set the city based on location
-    
+        
     var locality: String?
     var region: String?
     var countryName: String?
+    
+    var givenCity: String?
+    var givenState: String?
+    var givenCountry: String?
     
     var changeCityController: ChangeCityViewController?
     
@@ -82,7 +83,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         "WV":"west+virginia",
         "WI":"wisconsin",
         "WY":"wyoming",
-        "NL":"newfoundland+labrador",
+        "NL":"newfoundland",
         "NS":"nova+scotia",
         "NB":"new+brunswick",
         "AB":"alberta",
@@ -98,24 +99,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         super.viewDidLoad()
        
-        
         //self.setCurrentUser()
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-    
-        // set banner name to be city name
-        
-        self.title = self.locality
         
         // set delegate relationship with ChangeCityViewController
         
         changeCityController?.delegate = self
         
-        // call breweryDB api to build list of micro breweries in a specific city
-       
- 
     
     }
     
@@ -160,7 +153,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     }
                 }
 
-             self.accessBreweryDB()
+            self.title = self.locality?.capitalizedString
+            self.accessBreweryDB()
         })
       
         
@@ -216,20 +210,51 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.breweries = []
         self.breweryObjects = []
+        
+        // clean incoming city string
+        
+        self.givenCity = didChangeCity
+        let removeBlanksCity = self.givenCity!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let cleanCity = removeBlanksCity.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        self.locality = cleanCity
 
         
-        // Update Data Source
-        self.locality = didChangeCity
-        self.region = didChangeRegion
-        self.countryName = didChangeCountry
+        // clean incoming region/state/province string
+
+        self.givenState = didChangeRegion
+        let removeBlanksState = self.givenState!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let cleanState = removeBlanksState.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
-        self.title = self.locality
+        self.region = cleanState
+
         
+        // clean incoming country string
+        
+        self.givenCountry = didChangeCountry
+        let countryLowercase = self.givenCountry!.lowercaseString
+        let removeBlanksCountry = countryLowercase.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+
+        
+        if (removeBlanksCountry == "united states" || removeBlanksCountry == "usa" || removeBlanksCountry == "us" || removeBlanksCountry == "america" || removeBlanksCountry == "united states of america") {
+            self.countryName = "us"
+        }
+        else if (removeBlanksCountry == "canada" || removeBlanksCountry == "can" || removeBlanksCountry == "ca")
+        {
+            self.countryName = "ca"
+        }
+        
+        // update self.title with nice looking city name
+        
+        let cityWithPlus = cleanCity.stringByReplacingOccurrencesOfString("+", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        let cityWithCapitals = cityWithPlus.capitalizedString
+        
+        self.title = cityWithCapitals
         
         // call breweryDB api to build new city detail
         
         accessBreweryDB()
-        
         
     }
         
