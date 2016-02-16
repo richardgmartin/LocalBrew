@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let _ = FirebaseConnection.firebaseConnection.USER_REF.authData {
+        if let _ = FirebaseConnection.firebaseConnection.USER_REF.authData.uid {
             //print(auth)
             let tabBarController = storyboard.instantiateViewControllerWithIdentifier("tab")
             window!.rootViewController = tabBarController
