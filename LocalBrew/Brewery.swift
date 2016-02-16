@@ -23,15 +23,16 @@ class Brewery {
     var longitude: Double
     var breweryDescription: String
     var isOrganic: String           // 'N' or 'Y'
-//    var breweryImage: UIImage?
+    var breweryImageIcon: UIImage?
     
     
     
     
     init(dataDictionary: NSDictionary ) {
+        
         let breweryDictionary = dataDictionary["brewery"]
         let locationDictionary = dataDictionary["country"]
-//        let imageDictionary = dataDictionary["images"]
+        let imageDictionary = breweryDictionary!["images"]
         
         name = breweryDictionary!["name"] as! String
         locality = dataDictionary["locality"] as! String
@@ -65,9 +66,23 @@ class Brewery {
         } else {
             self.breweryDescription = "Sorry. The brewery did not provide us with a description."
         }
-//        if let breweryImage = imageDictionary!["icon"] as? UIImage {
-//            self.breweryImage = breweryImage
-//        }
+        if let imageDictionary = breweryDictionary!["images"] as? NSDictionary
+        {
+            if let iconImageString = imageDictionary["icon"] as? String
+            {
+                if let url = NSURL(string: iconImageString)
+                {
+                    if let data = NSData(contentsOfURL: url)
+                    {
+                        self.breweryImageIcon = UIImage(data: data)
+                    }
+                }
+            }
+        }
+        else
+        {
+            self.breweryImageIcon = UIImage(named: "Beer")
+        }
     }
 }
 
