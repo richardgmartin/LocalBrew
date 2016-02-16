@@ -17,6 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        self.window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let auth = FirebaseConnection.firebaseConnection.USER_REF.authData {
+            print(auth)
+            let tabBarController = storyboard.instantiateViewControllerWithIdentifier("tab")
+            window!.rootViewController = tabBarController
+            window?.makeKeyAndVisible()
+        } else {
+            let viewController = storyboard.instantiateViewControllerWithIdentifier("login") as UIViewController
+            window!.rootViewController = viewController
+            window?.makeKeyAndVisible()
+        }
+
         return true
     }
 

@@ -10,13 +10,15 @@ import UIKit
 import Firebase
 
 let BASE_URL = "https://localbrew.firebaseio.com/"
+let _USER_REF = Firebase(url: "\(BASE_URL)/users")
+
 
 class FirebaseConnection: NSObject
 {
     static let firebaseConnection = FirebaseConnection()
     
     private var _BASE_REF = Firebase(url: "\(BASE_URL)")
-    private var _USER_REF = Firebase(url: "\(BASE_URL)/users")
+    //private var
 
     var BASE_REF:Firebase {
         return _BASE_REF
@@ -32,9 +34,11 @@ class FirebaseConnection: NSObject
         USER_REF.childByAppendingPath(uid).setValue(user)
     }
     
-    var CURRENT_USER_REF: Firebase {
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_REF)").childByAppendingPath("users").childByAppendingPath(userID)
+    var CURRENT_USER_REF: Firebase
+    {
+
+        let userID = self.USER_REF.authData.uid
+        let currentUser = Firebase(url: "\(USER_REF)").childByAppendingPath(userID)
         return currentUser!
     }
     

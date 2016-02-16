@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 
-class LoginViewController: UIViewController
+class LoginViewController: UIViewController, UITextFieldDelegate
 {
     @IBOutlet weak var loginEmailTextField: UITextField!
     @IBOutlet weak var loginPasswordTextField: UITextField!
@@ -33,19 +33,72 @@ class LoginViewController: UIViewController
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func loginErrorAlert(tittle: String, message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func onLoginButtonTapped(sender: UIButton)
     {
-        rootRef.authUser(loginEmailTextField.text, password: loginPasswordTextField.text) { (error, auth) -> Void in
-            self.performSegueWithIdentifier("fromLogin", sender: nil)
+        
+        if loginEmailTextField.text?.characters.count > 0 && loginPasswordTextField.text?.characters.count > 0
+        {
+            rootRef.authUser(loginEmailTextField.text, password: loginPasswordTextField.text)
+                { (error, auth) -> Void in
+                    if error != nil
+                    {
+                        print(error.description)
+                        self.loginErrorAlert("Error", message: "Check your username and password combination")
+                    }
+                    else
+                    {
+                        FirebaseConnection.firebaseConnection.CURRENT_USER_REF.observeEventType(FEventType.Value, withBlock: { snapshot in
+                            let currentUsername = snapshot.value.objectForKey("username") as? String
+                            print(currentUsername)
+                            let currentName = snapshot.value.objectForKey("name") as? String
+                            print(currentName)
+                            let currentUser = ["provider":auth.provider, "username":currentUsername, "name":currentName]
+                            self.rootRef.childByAppendingPath("users").childByAppendingPath(auth.uid).setValue(currentUser)
+                            
+                            self.performSegueWithIdentifier("fromLogin", sender: nil)
+                            }, withCancelBlock: { error in
+                                print(error.description)
+                        })
+                        
+                    }
+            }
+        }
+        else
+        {
+            loginErrorAlert("Error", message: "Please enter a username and password.")
         }
     }
+    
+    
     
     @IBAction func prepareForUnWind(segue : UIStoryboardSegue)
     {
         
     }
     
-
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    
+    // MARK: - UITextField Delegates
+    func textFieldDidEndEditing(textField: UITextField)
+    {
+        textField.resignFirstResponder()
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 

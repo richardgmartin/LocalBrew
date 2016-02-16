@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Bhv-VO-MTT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -19,14 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tUW-LN-0xc">
-                                <rect key="frame" x="20" y="72" width="560" height="528"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="528"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BreweryCellID" rowHeight="86" id="MoN-eO-1hx" customClass="BreweryCell" customModule="LocalBrew" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="560" height="86"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MoN-eO-1hx" id="Sil-sa-ODg">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="85.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Beer" translatesAutoresizingMaskIntoConstraints="NO" id="kgk-jz-Ii9">
@@ -77,19 +77,25 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Local Brew" id="b23-sV-1A3">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="eEu-uq-u3w">
+                            <connections>
+                                <action selector="onLogoutButtonPressed:" destination="BYZ-38-t0r" id="QvT-gp-JsH"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="b8T-8g-FFu">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="757-re-mea">
                                 <rect key="frame" x="447" y="7" width="133" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Change City"/>
                                 <connections>
-                                    <segue destination="8Eq-oV-2za" kind="show" id="7Dg-kD-ve9"/>
+                                    <segue destination="8Eq-oV-2za" kind="show" identifier="changeCity" id="7Dg-kD-ve9"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="tUW-LN-0xc" id="Fcy-uN-3hI"/>
+                        <segue destination="Bhv-VO-MTT" kind="show" identifier="fromLogoutButton" id="jzw-e0-rJW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -155,7 +161,7 @@
         <!--Login View Controller-->
         <scene sceneID="OiD-VO-izT">
             <objects>
-                <viewController id="Bhv-VO-MTT" customClass="LoginViewController" customModule="LocalBrew" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" id="Bhv-VO-MTT" customClass="LoginViewController" customModule="LocalBrew" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wgc-He-x5s"/>
                         <viewControllerLayoutGuide type="bottom" id="yIA-8O-Jfv"/>
@@ -184,6 +190,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Bhv-VO-MTT" id="45g-Wp-rJY"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9om-Jg-btL">
                                 <rect key="frame" x="20" y="299" width="349" height="30"/>
@@ -193,6 +202,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Bhv-VO-MTT" id="yxN-rN-lhf"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Sb-dB-uwr">
                                 <rect key="frame" x="175" y="347" width="38" height="30"/>
@@ -350,7 +362,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="H2D-TG-E7P">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="yrr-PM-mMY" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tab" automaticallyAdjustsScrollViewInsets="NO" id="yrr-PM-mMY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="rgL-3U-bFe">
                         <autoresizingMask key="autoresizingMask"/>
