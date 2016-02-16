@@ -20,6 +20,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var breweryObjects = [Brewery]()
     var locationManager = CLLocationManager()
     var currentUser = Dictionary<String, AnyObject>()
+    var favoriteBeerCell: FavoriteBeerCell!
+    
     
     // set chicago as the default localbrew location
     // this will change when we activate location tracking and, provided the user approves, set the city based on location
@@ -259,6 +261,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         {
             let dvc = segue.destinationViewController as? ChangeCityViewController
             dvc!.delegate = self
+        }
+        if(segue.identifier == "detailViewController") {
+            let dvc = segue.destinationViewController as? DetailViewController
+            let index = self.tableView.indexPathForSelectedRow
+            dvc?.breweryDetail = self.breweryObjects[(index?.row)!]
+
+
+            
         }
         
     }
