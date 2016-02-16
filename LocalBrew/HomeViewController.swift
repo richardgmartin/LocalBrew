@@ -101,12 +101,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.setCurrentUser()
         
-        
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        
-        
+    
         // set banner name to be city name
         
         self.title = self.locality
@@ -122,7 +120,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
    
-    
+    // MARK : - Location manager delogates
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first
         if location?.verticalAccuracy < 1000 && location?.horizontalAccuracy < 1000 {
@@ -152,13 +150,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.countryName = "ca"
             }
             
-            print(placemarkRegion)
+           // print(placemarkRegion)
             
 //              var key = placemark?.administrativeArea
                 for (key,value) in self.nameAbbreviations {
                     if key == placemarkRegion {
                         self.region = value
-                        print(value)
+                        //print(value)
                     }
                 }
 
