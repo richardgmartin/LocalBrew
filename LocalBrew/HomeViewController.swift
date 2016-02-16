@@ -165,13 +165,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func accessBreweryDB()
     {
         // MARK: logic to import breweryDB data
-        
-        if let _ = FirebaseConnection.firebaseConnection.BREWERY_REF.authData
-        {
-            print("There's data on Firebase for this.")
-        }
-        else
-        {
             let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=6f75023f91495f22253de067b9136d1d")
             
             let session = NSURLSession.sharedSession()
@@ -186,7 +179,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     for dict: NSDictionary in self.breweries {
                         let breweryObject: Brewery = Brewery(dataDictionary: dict)
                         self.breweryObjects.append(breweryObject)
-                        
                     }
                     
                 }
@@ -198,7 +190,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 })
             }
             task.resume()
-        }
     }
     
     func setCurrentUser()
