@@ -177,11 +177,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         FirebaseConnection.firebaseConnection.BASE_REF.unauth()
         
+         // Return to login screen
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("login")
         self.presentViewController(vc!, animated: true, completion: nil)
-        
-        // Return to login screen
-                
     }
 
 }
