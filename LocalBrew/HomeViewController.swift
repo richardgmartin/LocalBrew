@@ -20,7 +20,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var breweryObjects = [Brewery]()
     var locationManager = CLLocationManager()
     var currentUser = Dictionary<String, AnyObject>()
-        
+    var favoriteBeerCell: FavoriteBeerCell!
     var locality: String?
     var region: String?
     var countryName: String?
@@ -284,6 +284,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         {
             let dvc = segue.destinationViewController as? ChangeCityViewController
             dvc!.delegate = self
+        }
+        if(segue.identifier == "detailViewController") {
+            let dvc = segue.destinationViewController as? DetailViewController
+            let index = self.tableView.indexPathForSelectedRow
+            dvc?.breweryDetail = self.breweryObjects[(index?.row)!]
+
+
+            
         }
         
     }
