@@ -164,63 +164,61 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func accessBreweryDB()
     {
         // MARK: logic to import breweryDB data
-        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=6f75023f91495f22253de067b9136d1d")
+        
+        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=3613cdc782cfe937d78e52b40d98510e")
         
         let session = NSURLSession.sharedSession()
         
         let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
             do{
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
-                //print(localBrew)
+               // print(localBrew["data"])
+                
                 
                 self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
-                for dict: NSDictionary in self.breweries {
+                for dict: NSDictionary in self.breweries
+                {
                     let breweryObject: Brewery = Brewery(dataDictionary: dict)
                     self.breweryObjects.append(breweryObject)
-                    
                 }
-                catch let error as NSError{
-                    print("JSON Error: \(error.localizedDescription)")
-                }
-//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                    self.tableView.reloadData()
-//                })
+                
             }
-            task.resume()
-        }
-        
-        var iteration = 0
-        for brew in self.breweryObjects
-        {
-            print("At index \(iteration) in brewery objects array. Brewery name: \(brew.name)")
-            // Check if Firebase has specific brewery
-            FirebaseConnection.firebaseConnection.BREWERY_REF.observeEventType(.Value, withBlock: { snapshots in
-                for snapshot in snapshots.children.allObjects as![FDataSnapshot]
-                {
-                    if snapshot.value!["name"] as? String == brew.name
-                    {
-                        print("-----> \(snapshot.value!["name"] as! String))")
-                    } else {
-                        print(snapshot.value!["name"] as! String)
-                    }
-                }
-                iteration = iteration+1
+            catch let error as NSError{
+                print("JSON Error: \(error.localizedDescription)")
+            }
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+                self.checkFirebase()
             })
-            
-            //Add brewery
-            //                        let newBrewery = ["name":brew.name, "locality":brew.locality, "region":brew.region, "latitude":brew.latitude, "longitude":brew.longitude, "isOrganic":brew.isOrganic]
-            //                        FirebaseConnection.firebaseConnection.createNewBrewery(newBrewery as! Dictionary<String, AnyObject>)
-            
-            
         }
-        
-        
-        
-        
         
     }
->>>>>>> Moved adding breweries to firebase out of for loop.
     
+    
+    
+    func checkFirebase()
+    {
+    var iteration = 0
+        FirebaseConnection.firebaseConnection.BREWERY_REF.observeEventType(.Value, withBlock: { snapshots in
+             let snapshotsArray = snapshots;
+            print(snapshotsArray.value)
+            })
+
+        
+        
+
+        for brew in self.breweryObjects
+        {
+            //;print("At index \(iteration) in brewery objects array. Brewery name: \(brew.name)")
+            // Check if Firebase has specific brewery
+            
+//                //Add brewery
+//                let newBrewery = ["name":brew.name, "locality":brew.locality, "region":brew.region, "latitude":brew.latitude, "longitude":brew.longitude, "isOrganic":brew.isOrganic]
+//                FirebaseConnection.firebaseConnection.createNewBrewery(newBrewery as! Dictionary<String, AnyObject>)
+        }
+
+    }
+
     func setCurrentUser()
     {
         FirebaseConnection.firebaseConnection.CURRENT_USER_REF.observeSingleEventOfType( FEventType.Value) { (snapshot : FDataSnapshot!) -> Void in
