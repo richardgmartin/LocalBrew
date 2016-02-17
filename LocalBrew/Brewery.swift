@@ -13,6 +13,7 @@ import UIKit
 class Brewery {
     
     var name: String
+    var breweryID: String
     var streetAddress: String?
     var locality: String              // city or town
     var region: String                // state or province
@@ -28,14 +29,13 @@ class Brewery {
     var breweryImageLarge: UIImage?
     
     
-    
     init(dataDictionary: NSDictionary ) {
         
         let breweryDictionary = dataDictionary["brewery"]
         let locationDictionary = dataDictionary["country"]
         //let imageDictionary = breweryDictionary!["images"]
-        
         name = breweryDictionary!["name"] as! String
+        breweryID = breweryDictionary!["id"] as! String
         locality = dataDictionary["locality"] as! String
         region = dataDictionary["region"] as! String
         countryName = locationDictionary!["displayName"] as! String

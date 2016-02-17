@@ -20,6 +20,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     var breweryDetail: Brewery!
     var breweryDestination = MKMapItem()
     let breweryAnnotation = MKPointAnnotation()
+    var beerList = [NSDictionary]()
+    var beerObjects = [Beer]()
 
     
     override func viewDidLoad() {
@@ -27,6 +29,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
 
         self.breweryIconImageView.image = self.breweryDetail.breweryImageIcon
         self.title = self.breweryDetail.name
+        
+        print(self.breweryDetail.breweryID)
         
         // 1. set brewery region
         
@@ -45,11 +49,41 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         breweryAnnotation.title = self.breweryDetail.name
         mapView.addAnnotation(breweryAnnotation)
         
-    
+     accessDBBeerList()
+        
     }
 
     
-    
+    func accessDBBeerList()
+    {
+        // MARK: logic to import breweryDB data
+        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(self.breweryDetail.breweryID)/beers?key=6f75023f91495f22253de067b9136d1d")
+        
+        let session = NSURLSession.sharedSession()
+        
+        
+        let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
+            do{
+                let brewList = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
+                print(brewList)
+                
+                self.beerList = brewList.objectForKey("data") as! [NSDictionary]
+                for dict: NSDictionary in self.beerList {
+                    let beerObject: Beer = Beer(beerDataDictionary: dict)
+                    self.beerObjects.append(beerObject)
+                    print(self.beerObjects)
+                }
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.tableView.reloadData()
+                })
+            }
+            catch let error as NSError{
+                print("JSON Error: \(error.localizedDescription)")
+            }
+            
+        }
+        task.resume()
+    }
     
 
 func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -99,22 +133,31 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return favoriteBeerObjects.count
+        return beerObjects.count
         
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let favoriteBeer = favoriteBeerObjects[indexPath.row]
-
+        let beer = beerObjects[indexPath.row]
         
-        if let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteBeerCellID") as? FavoriteBeerCell{
-            cell.configureCell(favoriteBeer)
-            return cell
-            
-        } else {
-            return FavoriteBeerCell()
-        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteBeerCellID")
+        
+        cell?.textLabel!.text = beer.beerName
+        
+        return cell!
+        
+        
+//        let favoriteBeer = favoriteBeerObjects[indexPath.row]
+//
+//        
+//        if let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteBeerCellID") as? FavoriteBeerCell{
+//            cell.configureCell(favoriteBeer)
+//            return cell
+//            
+//        } else {
+//            return FavoriteBeerCell()
+//        }
     
     }
 
