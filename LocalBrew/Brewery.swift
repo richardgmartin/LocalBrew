@@ -19,7 +19,7 @@ class Brewery {
     var postalCode: String            // zip or postal code
     var countryName: String           // country
     var website: String?
-    var latitute: Double
+    var latitude: Double
     var longitude: Double
     var breweryDescription: String
     var isOrganic: String           // 'N' or 'Y'
@@ -39,7 +39,7 @@ class Brewery {
         locality = dataDictionary["locality"] as! String
         region = dataDictionary["region"] as! String
         countryName = locationDictionary!["displayName"] as! String
-        latitute = dataDictionary["latitude"] as! Double
+        latitude = dataDictionary["latitude"] as! Double
         longitude = dataDictionary["longitude"]as! Double
         isOrganic = breweryDictionary!["isOrganic"] as! String
         
@@ -112,8 +112,7 @@ class Brewery {
             self.breweryImageIcon = UIImage(named: "Beer")
         }
         
-        let newBrewery = ["name":name, "locality":locality, "region":region, "latitude":latitute, "longitude":longitude, "isOrganic":isOrganic]
-        FirebaseConnection.firebaseConnection.createNewBrewery(newBrewery as! Dictionary<String, AnyObject>)
+        
         
         
         
