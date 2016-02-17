@@ -12,10 +12,10 @@ import UIKit
 class BeerCell: UITableViewCell {
     
     @IBOutlet weak var beerCellImageView: UIImageView!
-    @IBOutlet weak var beerCellOrganic: UILabel!
     @IBOutlet weak var beerCellFavorites: UILabel!
     @IBOutlet weak var beerCellStyle: UILabel!
     @IBOutlet weak var beerCellName: UILabel!
+
 
     var beer: Beer!
     
@@ -24,10 +24,10 @@ class BeerCell: UITableViewCell {
     func configureCell(beer: Beer) {
         self.beer = beer
         self.beerCellFavorites.text = "Favorites 0"
-        self.beerCellImageView.image = UIImage(named: "Beer")
+        self.beerCellImageView.image = beer.beerImageIcon
         self.beerCellName.text = beer.beerName
-        self.beerCellOrganic.text = "Organic Yes"
-        self.beerCellStyle.text = "British Origin Ale"
+        self.beerCellStyle.text = beer.style
+
         
     }
 }
