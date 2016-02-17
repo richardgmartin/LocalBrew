@@ -16,4 +16,5 @@ class Beer {
     init(beerDataDictionary: NSDictionary) {
         beerName = beerDataDictionary["name"] as! String
     }
+    
 }

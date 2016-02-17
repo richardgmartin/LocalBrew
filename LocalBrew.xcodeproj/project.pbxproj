@@ -20,8 +20,8 @@
 		DB30EB891C717671006FB1A3 /* FirebaseConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB30EB881C717671006FB1A3 /* FirebaseConnection.swift */; };
 		DB9D2EA71C712F30007E7228 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D2EA61C712F30007E7228 /* LoginViewController.swift */; };
 		DB9D2EAB1C71533F007E7228 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D2EAA1C71533F007E7228 /* CreateUserViewController.swift */; };
-		E5218ECD1C739CF2008DF84F /* FavoriteBeerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5218ECC1C739CF2008DF84F /* FavoriteBeerCell.swift */; };
 		E5218ED11C73B7BF008DF84F /* FavoriteBeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5218ED01C73B7BF008DF84F /* FavoriteBeer.swift */; };
+		E5218ED31C750DD8008DF84F /* BeerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5218ED21C750DD8008DF84F /* BeerCell.swift */; };
 		E597B6211C6FDEFE007B8134 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E597B6201C6FDEFE007B8134 /* ProfileViewController.swift */; };
 		E597B6231C6FDFFA007B8134 /* BreweryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E597B6221C6FDFFA007B8134 /* BreweryCell.swift */; };
 		E5ACAB3D1C7232D70013468E /* ChangeCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ACAB3C1C7232D70013468E /* ChangeCityViewController.swift */; };
@@ -47,8 +47,8 @@
 		DB30EB881C717671006FB1A3 /* FirebaseConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseConnection.swift; sourceTree = SOURCE_ROOT; };
 		DB9D2EA61C712F30007E7228 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DB9D2EAA1C71533F007E7228 /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
-		E5218ECC1C739CF2008DF84F /* FavoriteBeerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteBeerCell.swift; sourceTree = "<group>"; };
 		E5218ED01C73B7BF008DF84F /* FavoriteBeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteBeer.swift; sourceTree = "<group>"; };
+		E5218ED21C750DD8008DF84F /* BeerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerCell.swift; sourceTree = "<group>"; };
 		E597B6201C6FDEFE007B8134 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E597B6221C6FDFFA007B8134 /* BreweryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreweryCell.swift; sourceTree = "<group>"; };
 		E5ACAB3C1C7232D70013468E /* ChangeCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeCityViewController.swift; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				E597B6221C6FDFFA007B8134 /* BreweryCell.swift */,
-				E5218ECC1C739CF2008DF84F /* FavoriteBeerCell.swift */,
+				E5218ED21C750DD8008DF84F /* BeerCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -191,7 +191,7 @@
 				TargetAttributes = {
 					A3025F1F1C6F7E7C004617DB = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = Q4N89QR649;
+						DevelopmentTeam = U2E38G82JZ;
 					};
 				};
 			};
@@ -279,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5218ED31C750DD8008DF84F /* BeerCell.swift in Sources */,
 				E5ACAB3F1C7241540013468E /* DetailViewController.swift in Sources */,
 				DB30EB891C717671006FB1A3 /* FirebaseConnection.swift in Sources */,
 				DB9D2EA71C712F30007E7228 /* LoginViewController.swift in Sources */,
@@ -287,7 +288,6 @@
 				A37600C61C7507C90045A169 /* Beer.swift in Sources */,
 				A3025F261C6F7E7D004617DB /* HomeViewController.swift in Sources */,
 				DB9D2EAB1C71533F007E7228 /* CreateUserViewController.swift in Sources */,
-				E5218ECD1C739CF2008DF84F /* FavoriteBeerCell.swift in Sources */,
 				E597B6211C6FDEFE007B8134 /* ProfileViewController.swift in Sources */,
 				A3025F2C1C6F7E7D004617DB /* LocalBrew.xcdatamodeld in Sources */,
 				E597B6231C6FDFFA007B8134 /* BreweryCell.swift in Sources */,
@@ -408,7 +408,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = LocalBrew/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = .com.YemiAjibola.LocalBrew;
+				PRODUCT_BUNDLE_IDENTIFIER = Michael.LocalBrew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -423,7 +423,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = LocalBrew/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = .com.YemiAjibola.LocalBrew;
+				PRODUCT_BUNDLE_IDENTIFIER = Michael.LocalBrew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

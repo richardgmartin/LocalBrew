@@ -16,7 +16,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var addressLabelField: UILabel!
-    var favoriteBeerObjects = [FavoriteBeer]()
+    
     var breweryDetail: Brewery!
     var breweryDestination = MKMapItem()
     let breweryAnnotation = MKPointAnnotation()
@@ -97,67 +97,66 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
 }
 
 
-    @IBAction func addBeerOnButtonTapped(sender: AnyObject) {
-        
-        addFavoriteBeer()
-        
-    }
-
-
-    func addFavoriteBeer() {
-        let addBeer = UIAlertController(title: "Add your favorite Beer!", message: nil, preferredStyle: .Alert)
-        addBeer.addTextFieldWithConfigurationHandler(nil)
-        
-        let submitAction = UIAlertAction(title: "Submit", style: .Default) { [unowned self, addBeer](action: UIAlertAction!) in
-            let answer = addBeer.textFields![0].text
-            let favoriteBeer = FavoriteBeer(name: answer!, favorite: 0)
-            self.favoriteBeerObjects.append(favoriteBeer)
-             self.tableView.reloadData()
-        }
-        addBeer.addAction(submitAction)
-        
-        presentViewController(addBeer, animated: true, completion: nil)
-        
-       
-        
-    }
+//    @IBAction func addBeerOnButtonTapped(sender: AnyObject) {
+//        
+//        addFavoriteBeer()
+//        
+//    }
+//
+//
+//    func addFavoriteBeer() {
+//        let addBeer = UIAlertController(title: "Add your favorite Beer!", message: nil, preferredStyle: .Alert)
+//        addBeer.addTextFieldWithConfigurationHandler(nil)
+//        
+//        let submitAction = UIAlertAction(title: "Submit", style: .Default) { [unowned self, addBeer](action: UIAlertAction!) in
+//            let answer = addBeer.textFields![0].text
+//            let favoriteBeer = FavoriteBeer(name: answer!, favorite: 0)
+//            self.favoriteBeerObjects.append(favoriteBeer)
+//             self.tableView.reloadData()
+//        }
+//        addBeer.addAction(submitAction)
+//        
+//        presentViewController(addBeer, animated: true, completion: nil)
+//        
+//       
+//        
+//    }
     
     
     @IBAction func onWebsiteButtonPressed(sender: UIButton) {
+        
     }
+    
     
     @IBAction func onDirectionsButtonPressed(sender: UIButton) {
+    
     }
     
+    
     @IBAction func onCallButtonPressed(sender: UIButton) {
+    
+    
     }
+   
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return beerObjects.count
         
     }
+        func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let beer = beerObjects[indexPath.row]
+
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteBeerCellID")
-        
-        cell?.textLabel!.text = beer.beerName
-        
-        return cell!
-        
-        
-//        let favoriteBeer = favoriteBeerObjects[indexPath.row]
-//
-//        
-//        if let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteBeerCellID") as? FavoriteBeerCell{
-//            cell.configureCell(favoriteBeer)
-//            return cell
-//            
-//        } else {
-//            return FavoriteBeerCell()
-//        }
+        if let cell = tableView.dequeueReusableCellWithIdentifier("BeerCellID") as? BeerCell{
+            cell.configureCell(beer)
+            return cell
+            
+        } else {
+            return BeerCell()
+        }
     
     }
 
