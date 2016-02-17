@@ -164,20 +164,42 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func accessBreweryDB()
     {
         // MARK: logic to import breweryDB data
-            let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=324f8ff71fe7f84fab3655aeab07f01c")
-            
-            let session = NSURLSession.sharedSession()
-            
-            
-            let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
-                do{
-                    let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
-                    print(localBrew)
+        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=6f75023f91495f22253de067b9136d1d")
+        
+        let session = NSURLSession.sharedSession()
+        
+        let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
+            do{
+                let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
+                //print(localBrew)
+                
+                self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
+                for dict: NSDictionary in self.breweries {
+                    let breweryObject: Brewery = Brewery(dataDictionary: dict)
+                    self.breweryObjects.append(breweryObject)
                     
-                    self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
-                    for dict: NSDictionary in self.breweries {
-                        let breweryObject: Brewery = Brewery(dataDictionary: dict)
-                        self.breweryObjects.append(breweryObject)
+                    var iteration = 0
+                    for brew in self.breweryObjects
+                    {
+                        print("At index \(iteration) in brewery objects array. Brewery name: \(brew.name)")
+                        // Check if Firebase has specific brewery
+                        FirebaseConnection.firebaseConnection.BREWERY_REF.observeEventType(.Value, withBlock: { snapshots in
+                            for snapshot in snapshots.children.allObjects as![FDataSnapshot]
+                            {
+                                print(snapshot.value!["name"] as! String)
+                                
+                                if snapshot.value!["name"] as? String == brew.name
+                                {
+                                    print("Brewery is already in firebase.")
+                                }
+                            }
+                             iteration = iteration+1
+                        })
+                        
+                         //Add brewery
+//                        let newBrewery = ["name":brew.name, "locality":brew.locality, "region":brew.region, "latitude":brew.latitude, "longitude":brew.longitude, "isOrganic":brew.isOrganic]
+//                        FirebaseConnection.firebaseConnection.createNewBrewery(newBrewery as! Dictionary<String, AnyObject>)
+                   
                     }
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.tableView.reloadData()
@@ -191,7 +213,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //                })
             }
             task.resume()
-    }
+        }
     
     func setCurrentUser()
     {
@@ -298,7 +320,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func onLogoutButtonPressed(sender: UIBarButtonItem)
     {
-        FirebaseConnection.firebaseConnection.BASE_REF.unauth()
+        FirebaseConnection.firebaseConnection.CURRENT_USER_REF.unauth()
         
          // Return to login screen
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("login")

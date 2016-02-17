@@ -42,7 +42,6 @@ class FirebaseConnection: NSObject
     func createNewBrewery(brewery:Dictionary<String, AnyObject>)
     {
         BREWERY_REF.childByAutoId().setValue(brewery)
-        
     }
     
     var CURRENT_USER_REF: Firebase
