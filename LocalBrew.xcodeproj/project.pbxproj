@@ -14,6 +14,7 @@
 		A3025F2E1C6F7E7D004617DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3025F2D1C6F7E7D004617DB /* Assets.xcassets */; };
 		A3025F311C6F7E7D004617DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3025F2F1C6F7E7D004617DB /* LaunchScreen.storyboard */; };
 		A3025F3C1C6F87B3004617DB /* Brewery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3025F3B1C6F87B3004617DB /* Brewery.swift */; };
+		A37600C41C74E7080045A169 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37600C31C74E7080045A169 /* MapKit.framework */; };
 		B2117353290697217C4C112E /* Pods_LocalBrew.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D0EE5F2967359314A1FB406 /* Pods_LocalBrew.framework */; };
 		DB30EB891C717671006FB1A3 /* FirebaseConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB30EB881C717671006FB1A3 /* FirebaseConnection.swift */; };
 		DB9D2EA71C712F30007E7228 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D2EA61C712F30007E7228 /* LoginViewController.swift */; };
@@ -38,6 +39,7 @@
 		A3025F301C6F7E7D004617DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3025F321C6F7E7D004617DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3025F3B1C6F87B3004617DB /* Brewery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brewery.swift; sourceTree = "<group>"; };
+		A37600C31C74E7080045A169 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D156A588F0662AE9F3E3CD9D /* Pods-LocalBrew.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalBrew.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocalBrew/Pods-LocalBrew.release.xcconfig"; sourceTree = "<group>"; };
 		D9EE20D9235388306130DE2B /* Pods-LocalBrew.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalBrew.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocalBrew/Pods-LocalBrew.debug.xcconfig"; sourceTree = "<group>"; };
 		DB30EB881C717671006FB1A3 /* FirebaseConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseConnection.swift; sourceTree = SOURCE_ROOT; };
@@ -57,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A37600C41C74E7080045A169 /* MapKit.framework in Frameworks */,
 				E5ACAB411C72426E0013468E /* CoreLocation.framework in Frameworks */,
 				B2117353290697217C4C112E /* Pods_LocalBrew.framework in Frameworks */,
 			);
@@ -77,6 +80,7 @@
 		8E085C428772823871E42707 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A37600C31C74E7080045A169 /* MapKit.framework */,
 				E5ACAB401C72426E0013468E /* CoreLocation.framework */,
 				4D0EE5F2967359314A1FB406 /* Pods_LocalBrew.framework */,
 			);
@@ -184,7 +188,7 @@
 				TargetAttributes = {
 					A3025F1F1C6F7E7C004617DB = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 767ELXNDQ9;
+						DevelopmentTeam = Q4N89QR649;
 					};
 				};
 			};

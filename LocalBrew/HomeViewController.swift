@@ -180,14 +180,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         let breweryObject: Brewery = Brewery(dataDictionary: dict)
                         self.breweryObjects.append(breweryObject)
                     }
-                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.tableView.reloadData()
+                    })
                 }
                 catch let error as NSError{
                     print("JSON Error: \(error.localizedDescription)")
                 }
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.tableView.reloadData()
-                })
+//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                    self.tableView.reloadData()
+//                })
             }
             task.resume()
     }
