@@ -178,32 +178,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     let breweryObject: Brewery = Brewery(dataDictionary: dict)
                     self.breweryObjects.append(breweryObject)
                     
-                    var iteration = 0
-                    for brew in self.breweryObjects
-                    {
-                        print("At index \(iteration) in brewery objects array. Brewery name: \(brew.name)")
-                        // Check if Firebase has specific brewery
-                        FirebaseConnection.firebaseConnection.BREWERY_REF.observeEventType(.Value, withBlock: { snapshots in
-                            for snapshot in snapshots.children.allObjects as![FDataSnapshot]
-                            {
-                                print(snapshot.value!["name"] as! String)
-                                
-                                if snapshot.value!["name"] as? String == brew.name
-                                {
-                                    print("Brewery is already in firebase.")
-                                }
-                            }
-                             iteration = iteration+1
-                        })
-                        
-                         //Add brewery
-//                        let newBrewery = ["name":brew.name, "locality":brew.locality, "region":brew.region, "latitude":brew.latitude, "longitude":brew.longitude, "isOrganic":brew.isOrganic]
-//                        FirebaseConnection.firebaseConnection.createNewBrewery(newBrewery as! Dictionary<String, AnyObject>)
-                   
-                    }
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.tableView.reloadData()
-                    })
                 }
                 catch let error as NSError{
                     print("JSON Error: \(error.localizedDescription)")
@@ -214,6 +188,38 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             task.resume()
         }
+        
+        var iteration = 0
+        for brew in self.breweryObjects
+        {
+            print("At index \(iteration) in brewery objects array. Brewery name: \(brew.name)")
+            // Check if Firebase has specific brewery
+            FirebaseConnection.firebaseConnection.BREWERY_REF.observeEventType(.Value, withBlock: { snapshots in
+                for snapshot in snapshots.children.allObjects as![FDataSnapshot]
+                {
+                    if snapshot.value!["name"] as? String == brew.name
+                    {
+                        print("-----> \(snapshot.value!["name"] as! String))")
+                    } else {
+                        print(snapshot.value!["name"] as! String)
+                    }
+                }
+                iteration = iteration+1
+            })
+            
+            //Add brewery
+            //                        let newBrewery = ["name":brew.name, "locality":brew.locality, "region":brew.region, "latitude":brew.latitude, "longitude":brew.longitude, "isOrganic":brew.isOrganic]
+            //                        FirebaseConnection.firebaseConnection.createNewBrewery(newBrewery as! Dictionary<String, AnyObject>)
+            
+            
+        }
+        
+        
+        
+        
+        
+    }
+>>>>>>> Moved adding breweries to firebase out of for loop.
     
     func setCurrentUser()
     {
