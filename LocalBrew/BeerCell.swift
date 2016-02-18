@@ -16,6 +16,7 @@ class BeerCell: UITableViewCell {
     @IBOutlet weak var beerCellStyle: UILabel!
     @IBOutlet weak var beerCellName: UILabel!
 
+    @IBOutlet weak var beerCellLikeImageView: UIImageView!
 
     var beer: Beer!
     
@@ -23,10 +24,10 @@ class BeerCell: UITableViewCell {
     
     func configureCell(beer: Beer) {
         self.beer = beer
-        self.beerCellFavorites.text = "Favorites 0"
         self.beerCellImageView.image = beer.beerImageIcon
         self.beerCellName.text = beer.beerName
         self.beerCellStyle.text = beer.style
+
 
         
     }

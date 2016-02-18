@@ -13,11 +13,14 @@ class BreweryCell: UITableViewCell {
     
     var brewery: Brewery!
     
+    @IBOutlet weak var breweryLIkeImageView: UIImageView!
+    @IBOutlet weak var breweryLikeLabel: UILabel!
     @IBOutlet weak var breweryImageView: UIImageView!
     @IBOutlet weak var breweryNameLabel: UILabel!
     @IBOutlet weak var breweryAddressLabel: UILabel!
     @IBOutlet weak var breweryDistanceLabel: UILabel!
-    @IBOutlet weak var breweryFavoritesLabel: UILabel!
+    
+
     
     
     func configureCell(brewery: Brewery) {
@@ -25,8 +28,8 @@ class BreweryCell: UITableViewCell {
         self.breweryNameLabel!.text = brewery.name
         self.breweryAddressLabel.text = brewery.streetAddress
         self.breweryDistanceLabel.text = "0.4 miles"
-        self.breweryFavoritesLabel.text = "10"
         self.breweryImageView.image = brewery.breweryImageIcon
+
         
     }
 }

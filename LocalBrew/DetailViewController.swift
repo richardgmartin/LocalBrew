@@ -24,6 +24,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     var beerList = [NSDictionary]()
     var beerObjects = [Beer]()
 
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,11 +53,16 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         breweryAnnotation.title = self.breweryDetail.name
         mapView.addAnnotation(breweryAnnotation)
         
+        
+    
+   
+
      accessDBBeerList()
         
     }
 
-    
+
+
     func accessDBBeerList()
     {
         // MARK: logic to import breweryDB data
@@ -170,6 +176,10 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
         
     }
     
+    @IBAction func onBreweryButtonTapped(sender: AnyObject) {
+        
+        
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 

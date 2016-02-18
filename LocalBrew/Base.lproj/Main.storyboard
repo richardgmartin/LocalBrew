@@ -37,31 +37,52 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="109" y="8" width="150" height="25"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8iU-cs-UE5">
                                                     <rect key="frame" x="109" y="53" width="124" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l33-46-DSz">
-                                                    <rect key="frame" x="232" y="53" width="61" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="109" y="35" width="150" height="21"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yM-pK-sBZ">
                                                     <rect key="frame" x="341" y="53" width="67" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="109" y="53" width="93" height="21"/>
+                                                    </variation>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3x-92-tXT">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="275" y="57" width="40" height="21"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="q3x-92-tXT"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="q3x-92-tXT"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="breweryAddressLabel" destination="8iU-cs-UE5" id="xGo-GP-V7z"/>
                                             <outlet property="breweryDistanceLabel" destination="7yM-pK-sBZ" id="3zX-EI-DJg"/>
-                                            <outlet property="breweryFavoritesLabel" destination="l33-46-DSz" id="cD1-fg-BZa"/>
                                             <outlet property="breweryImageView" destination="kgk-jz-Ii9" id="7mJ-r5-sXS"/>
                                             <outlet property="breweryNameLabel" destination="A4o-Rw-XT5" id="aY8-4L-6uU"/>
                                             <segue destination="sbK-Lj-PUP" kind="show" identifier="detailViewController" id="ml9-JA-fMt"/>
@@ -144,23 +165,22 @@
                                     <action selector="onDirectionsButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="JDh-hw-355"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnf-j6-vde">
+                                <rect key="frame" x="399" y="99" width="46" height="30"/>
+                                <state key="normal" title="559-641-0000"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="115" y="134" width="143" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="onCallButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="U69-sb-kCl"/>
+                                </connections>
+                            </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="daV-Ax-20k">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="172" width="400" height="183"/>
                                 </variation>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-GJ-DBr">
-                                <rect key="frame" x="399" y="99" width="46" height="30"/>
-                                <state key="normal" title="Website"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="282" y="134" width="75" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="onWebsiteButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="c8v-gt-n6J"/>
-                                    <segue destination="FbL-aH-l2a" kind="show" id="Kzy-la-UTe"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hX9-8W-Qo4">
                                 <rect key="frame" x="0.0" y="172" width="600" height="234"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -178,15 +198,6 @@
                                                         <rect key="frame" x="8" y="1" width="100" height="100"/>
                                                     </variation>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dik-qB-kXf">
-                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="282" y="81" width="75" height="20"/>
-                                                    </variation>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Style" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94p-sT-heC">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -209,7 +220,6 @@
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="AJ5-T7-Bqm"/>
-                                                    <exclude reference="Dik-qB-kXf"/>
                                                     <exclude reference="94p-sT-heC"/>
                                                     <exclude reference="HRG-pq-EQl"/>
                                                 </mask>
@@ -217,14 +227,12 @@
                                             <variation key="widthClass=compact">
                                                 <mask key="subviews">
                                                     <include reference="AJ5-T7-Bqm"/>
-                                                    <include reference="Dik-qB-kXf"/>
                                                     <include reference="94p-sT-heC"/>
                                                     <include reference="HRG-pq-EQl"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="beerCellFavorites" destination="Dik-qB-kXf" id="y6D-Xd-z9Y"/>
                                             <outlet property="beerCellImageView" destination="AJ5-T7-Bqm" id="Srz-OR-aFK"/>
                                             <outlet property="beerCellName" destination="HRG-pq-EQl" id="Eee-Bn-hYY"/>
                                             <outlet property="beerCellStyle" destination="94p-sT-heC" id="TK3-lJ-dfs"/>
@@ -239,14 +247,15 @@
                                     <outlet property="delegate" destination="sbK-Lj-PUP" id="BhV-2O-QpU"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnf-j6-vde">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-GJ-DBr">
                                 <rect key="frame" x="399" y="99" width="46" height="30"/>
-                                <state key="normal" title="559-641-0000"/>
+                                <state key="normal" title="Website"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="115" y="134" width="143" height="30"/>
+                                    <rect key="frame" x="282" y="134" width="75" height="30"/>
                                 </variation>
                                 <connections>
-                                    <action selector="onCallButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="U69-sb-kCl"/>
+                                    <action selector="onWebsiteButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="c8v-gt-n6J"/>
+                                    <segue destination="FbL-aH-l2a" kind="show" id="Kzy-la-UTe"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -254,20 +263,31 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="moJ-Wp-YtC"/>
-                                <exclude reference="daV-Ax-20k"/>
                                 <exclude reference="tnf-j6-vde"/>
+                                <exclude reference="daV-Ax-20k"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="moJ-Wp-YtC"/>
-                                <include reference="daV-Ax-20k"/>
                                 <include reference="tnf-j6-vde"/>
+                                <include reference="daV-Ax-20k"/>
                             </mask>
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Brewery Name" id="67b-6m-mbG"/>
+                    <navigationItem key="navigationItem" title="Brewery Name" id="67b-6m-mbG">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Ljk-TU-c9c">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KFn-z1-Uda">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="beerEmpty"/>
+                                <connections>
+                                    <action selector="onBreweryButtonTapped:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="yIH-Vk-NIi"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addressLabelField" destination="g0g-Dh-NfU" id="eDe-K4-XgT"/>
@@ -685,6 +705,7 @@
     </scenes>
     <resources>
         <image name="Profile" width="50" height="50"/>
+        <image name="beerEmpty" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="YuJ-4B-xS7"/>

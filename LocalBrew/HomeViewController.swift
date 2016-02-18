@@ -107,10 +107,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // set delegate relationship with ChangeCityViewController
         
         changeCityController?.delegate = self
+    
         
-    
     }
-    
    
     // MARK : - Location manager delogates
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
