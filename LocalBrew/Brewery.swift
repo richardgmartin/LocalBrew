@@ -27,6 +27,7 @@ class Brewery {
     var breweryImageIcon: UIImage?
     var breweryImageSquareMedium: UIImage?
     var breweryImageLarge: UIImage?
+    var phoneNumber: String
     
     
     init(dataDictionary: NSDictionary ) {
@@ -48,6 +49,11 @@ class Brewery {
             self.streetAddress = streetAddress
         } else {
             self.streetAddress = "Sorry. The brewery did not provide us a street address."
+        }
+        if let phoneNumber = dataDictionary["phone"] as? String {
+            self.phoneNumber = phoneNumber
+        } else {
+            self.phoneNumber = "unavailable number"
         }
         
         if let postalCode = dataDictionary["postalCode"] as? String {

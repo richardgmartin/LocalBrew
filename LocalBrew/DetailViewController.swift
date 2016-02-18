@@ -11,8 +11,8 @@ import MapKit
 
 class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var addBeerButton: UIBarButtonItem!
     @IBOutlet weak var breweryIconImageView: UIImageView!
+    @IBOutlet weak var breweryPhoneNumberButton: UIButton!
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var addressLabelField: UILabel!
@@ -29,8 +29,12 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
 
         self.breweryIconImageView.image = self.breweryDetail.breweryImageIcon
         self.title = self.breweryDetail.name
+        self.addressLabelField.text = self.breweryDetail.streetAddress
+        self.breweryPhoneNumberButton.setTitle(self.breweryDetail.phoneNumber, forState: .Normal)
+        print(self.breweryDetail.phoneNumber)
         
-        print(self.breweryDetail.breweryID)
+        
+//        print(self.breweryDetail.breweryID)
         
         // 1. set brewery region
         
@@ -65,13 +69,13 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
             do{
                 let brewList = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
-                print(brewList)
+//                print(brewList)
                 
-                self.beerList = brewList.objectForKey("data") as! [NSDictionary]
+                self.beerList = (brewList.objectForKey("data") as? [NSDictionary])!
                 for dict: NSDictionary in self.beerList {
                     let beerObject: Beer = Beer(beerDataDictionary: dict)
                     self.beerObjects.append(beerObject)
-                    print(self.beerObjects)
+//                    print(self.beerObjects)
                 }
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.reloadData()
