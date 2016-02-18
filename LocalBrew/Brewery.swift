@@ -112,8 +112,6 @@ class Brewery {
             self.breweryImageIcon = UIImage(named: "Beer")
         }
         
-        
-        
     }
 }
 

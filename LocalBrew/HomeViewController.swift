@@ -173,7 +173,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
             do{
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
-                //print(localBrew["data"])
+               // print(localBrew["data"])
                 
                 
                 self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
@@ -182,24 +182,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     let breweryObject: Brewery = Brewery(dataDictionary: dict)
                     self.breweryObjects.append(breweryObject)
                 }
-                
             }
             catch let error as NSError{
                 print("JSON Error: \(error.localizedDescription)")
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
-//                FirebaseConnection.firebaseConnection.BREWERY_REF.childByAutoId().setValue(["breweryID":"201", "name":"dummy"])
-                
-                //self.checkFirebaseForBrewery(self.breweryObjects[1])
+                self.checkFirebaseForBrewery(self.breweryObjects[0])
             })
         }
         task.resume()
         
     }
-    
 
-    
     
     func checkFirebaseForBrewery(brewery:Brewery)
     {
@@ -227,20 +222,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             
         })
-
-
-//        FirebaseConnection.firebaseConnection.BREWERY_REF.observeEventType(.Value, withBlock: { snapshot in
-//            
-//            if snapshot.value as! String == breweryID
-//            {
-//                // add like
-//            }
-//            else
-//            {
-//                // add to firebase
-//            }
-//        })
-        
     }
 
     func setCurrentUser()
