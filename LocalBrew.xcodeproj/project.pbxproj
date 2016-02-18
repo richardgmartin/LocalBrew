@@ -21,6 +21,7 @@
 		DB9D2EA71C712F30007E7228 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D2EA61C712F30007E7228 /* LoginViewController.swift */; };
 		DB9D2EAB1C71533F007E7228 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D2EAA1C71533F007E7228 /* CreateUserViewController.swift */; };
 		E5218ED31C750DD8008DF84F /* BeerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5218ED21C750DD8008DF84F /* BeerCell.swift */; };
+		E5218EF51C7629B7008DF84F /* WebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5218EF41C7629B7008DF84F /* WebsiteViewController.swift */; };
 		E597B6211C6FDEFE007B8134 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E597B6201C6FDEFE007B8134 /* ProfileViewController.swift */; };
 		E597B6231C6FDFFA007B8134 /* BreweryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E597B6221C6FDFFA007B8134 /* BreweryCell.swift */; };
 		E5ACAB3D1C7232D70013468E /* ChangeCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ACAB3C1C7232D70013468E /* ChangeCityViewController.swift */; };
@@ -47,6 +48,7 @@
 		DB9D2EA61C712F30007E7228 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DB9D2EAA1C71533F007E7228 /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
 		E5218ED21C750DD8008DF84F /* BeerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerCell.swift; sourceTree = "<group>"; };
+		E5218EF41C7629B7008DF84F /* WebsiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebsiteViewController.swift; sourceTree = "<group>"; };
 		E597B6201C6FDEFE007B8134 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E597B6221C6FDFFA007B8134 /* BreweryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreweryCell.swift; sourceTree = "<group>"; };
 		E5ACAB3C1C7232D70013468E /* ChangeCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeCityViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				E5ACAB3C1C7232D70013468E /* ChangeCityViewController.swift */,
 				E597B6201C6FDEFE007B8134 /* ProfileViewController.swift */,
 				E5ACAB3E1C7241540013468E /* DetailViewController.swift */,
+				E5218EF41C7629B7008DF84F /* WebsiteViewController.swift */,
 				DB9D2EA61C712F30007E7228 /* LoginViewController.swift */,
 				DB9D2EAA1C71533F007E7228 /* CreateUserViewController.swift */,
 			);
@@ -288,6 +291,7 @@
 				E597B6211C6FDEFE007B8134 /* ProfileViewController.swift in Sources */,
 				A3025F2C1C6F7E7D004617DB /* LocalBrew.xcdatamodeld in Sources */,
 				E597B6231C6FDFFA007B8134 /* BreweryCell.swift in Sources */,
+				E5218EF51C7629B7008DF84F /* WebsiteViewController.swift in Sources */,
 				A3025F241C6F7E7D004617DB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

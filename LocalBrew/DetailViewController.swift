@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import AddressBook
 
 class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate {
     @IBOutlet weak var tableView: UITableView!
@@ -31,10 +32,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         self.title = self.breweryDetail.name
         self.addressLabelField.text = self.breweryDetail.streetAddress
         self.breweryPhoneNumberButton.setTitle(self.breweryDetail.phoneNumber, forState: .Normal)
-        print(self.breweryDetail.phoneNumber)
         
         
-//        print(self.breweryDetail.breweryID)
         
         // 1. set brewery region
         
@@ -69,13 +68,13 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
             do{
                 let brewList = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
-//                print(brewList)
+
                 
                 self.beerList = (brewList.objectForKey("data") as? [NSDictionary])!
                 for dict: NSDictionary in self.beerList {
                     let beerObject: Beer = Beer(beerDataDictionary: dict)
                     self.beerObjects.append(beerObject)
-//                    print(self.beerObjects)
+
                 }
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.reloadData()
@@ -128,20 +127,48 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
     
     
     @IBAction func onWebsiteButtonPressed(sender: UIButton) {
+                
         
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        
+        let dvc = segue.destinationViewController as? WebsiteViewController
+        print(self.breweryDetail)
+        dvc?.breweryDetail = self.breweryDetail
+        dvc?.title = self.breweryDetail.name
+    }
+    
+    @IBAction func onCallButtonPressed(sender: AnyObject) {
+        
+        let phoneNumber = self.breweryDetail.phoneNumber
+        
+            let aURL = NSURL(string: "telprompt://\(phoneNumber)")
+            if UIApplication.sharedApplication().canOpenURL(aURL!) {
+                UIApplication.sharedApplication().openURL(aURL!)
+            } else {
+                print("error")
+            }
+    }
+    
+    
     
     @IBAction func onDirectionsButtonPressed(sender: UIButton) {
-    
+        
+        openMapForPlace()
     }
     
-    
-    @IBAction func onCallButtonPressed(sender: UIButton) {
-    
-    
+    func openMapForPlace() {
+        let options = [
+            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving
+        ]
+        let placemark = MKPlacemark(coordinate: breweryAnnotation.coordinate, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "\(self.breweryDetail.name)"
+        mapItem.openInMapsWithLaunchOptions(options)
+        
     }
-   
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
