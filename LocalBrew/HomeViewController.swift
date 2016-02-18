@@ -27,6 +27,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var givenCity: String?
     var givenState: String?
     var givenCountry: String?
+    var snapshotsArray:NSArray!
     
     var changeCityController: ChangeCityViewController?
     
@@ -172,7 +173,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
             do{
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
-               // print(localBrew["data"])
+                //print(localBrew["data"])
                 
                 
                 self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
@@ -188,35 +189,58 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
-                self.checkFirebase()
+//                FirebaseConnection.firebaseConnection.BREWERY_REF.childByAutoId().setValue(["breweryID":"201", "name":"dummy"])
+                
+                //self.checkFirebaseForBrewery(self.breweryObjects[1])
             })
         }
+        task.resume()
         
     }
     
+
     
     
-    func checkFirebase()
+    func checkFirebaseForBrewery(brewery:Brewery)
     {
-    var iteration = 0
-        FirebaseConnection.firebaseConnection.BREWERY_REF.observeEventType(.Value, withBlock: { snapshots in
-             let snapshotsArray = snapshots;
-            print(snapshotsArray.value)
-            })
-
         
-        
-
-        for brew in self.breweryObjects
-        {
-            //;print("At index \(iteration) in brewery objects array. Brewery name: \(brew.name)")
-            // Check if Firebase has specific brewery
+        let ref = FirebaseConnection.firebaseConnection.BREWERY_REF
+        ref.queryOrderedByChild("breweryID").queryEqualToValue(brewery.breweryID).observeSingleEventOfType(.Value, withBlock: {snapshots in
+            print(snapshots)
             
-//                //Add brewery
-//                let newBrewery = ["name":brew.name, "locality":brew.locality, "region":brew.region, "latitude":brew.latitude, "longitude":brew.longitude, "isOrganic":brew.isOrganic]
-//                FirebaseConnection.firebaseConnection.createNewBrewery(newBrewery as! Dictionary<String, AnyObject>)
-        }
+            if(snapshots.value is NSNull)
+            {
+                FirebaseConnection.firebaseConnection.createNewBrewery(["breweryID":brewery.breweryID, "name":brewery.name, "numberOfLikes":0])
+            }
+            else
+            {
+                for snapshot in snapshots.value.allObjects
+                {
+                    if snapshot["breweryID"] as! String == brewery.breweryID
+                    {
+                        print("Value is already in database")
+                        return
+                    }
+                    
+                }
+                FirebaseConnection.firebaseConnection.createNewBrewery(["breweryID":brewery.breweryID, "name":brewery.name, "numberOfLikes":0])
+            }
+            
+        })
 
+
+//        FirebaseConnection.firebaseConnection.BREWERY_REF.observeEventType(.Value, withBlock: { snapshot in
+//            
+//            if snapshot.value as! String == breweryID
+//            {
+//                // add like
+//            }
+//            else
+//            {
+//                // add to firebase
+//            }
+//        })
+        
     }
 
     func setCurrentUser()
