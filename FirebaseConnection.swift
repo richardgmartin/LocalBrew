@@ -34,20 +34,24 @@ class FirebaseConnection: NSObject
         return _BREWERY_REF
     }
     
-    func createNewAccount(uid: String, user: Dictionary<String,String>) {
+    func createNewAccount(uid: String, user: Dictionary<String, AnyObject>) {
         
         USER_REF.childByAppendingPath(uid).setValue(user)
     }
     
-    func createNewBrewery(brewery:Dictionary<String, AnyObject>)
+    func createNewBrewery(brewery:Brewery)
     {
-        BREWERY_REF.childByAutoId().setValue(brewery)
+       let dict = ["breweryID":brewery.breweryID, "name":brewery.name, "numberOfLikes":0]
+        
+       let firebaseID = BREWERY_REF.childByAutoId()
+        firebaseID.setValue(dict)
+        brewery.firebaseID = firebaseID.key
     }
     
     var CURRENT_USER_REF: Firebase
     {
 
-        let userID = self.USER_REF.authData.uid
+        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
         let currentUser = Firebase(url: "\(USER_REF)").childByAppendingPath(userID)
         return currentUser!
     }

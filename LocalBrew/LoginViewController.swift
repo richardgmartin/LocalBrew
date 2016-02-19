@@ -16,6 +16,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var loginPasswordTextField: UITextField!
     
     var rootRef:Firebase!
+    let userDefaults = NSUserDefaults.standardUserDefaults()
 
     override func viewDidLoad()
     {
@@ -48,7 +49,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         
         if loginEmailTextField.text?.characters.count > 0 && loginPasswordTextField.text?.characters.count > 0
         {
-            rootRef.authUser(loginEmailTextField.text, password: loginPasswordTextField.text)
+            FirebaseConnection.firebaseConnection.BASE_REF.authUser(loginEmailTextField.text, password: loginPasswordTextField.text)
                 { (error, auth) -> Void in
                     if error != nil
                     {
@@ -57,6 +58,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                     }
                     else
                     {
+                        self.userDefaults.setValue(auth.uid, forKey: "uid")
                         FirebaseConnection.firebaseConnection.CURRENT_USER_REF.observeEventType(FEventType.Value, withBlock: { snapshot in
                             let currentUsername = snapshot.value.objectForKey("username") as? String
                             print(currentUsername)
@@ -64,7 +66,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                             print(currentName)
                             let currentUser = ["provider":auth.provider, "username":currentUsername, "name":currentName]
                             self.rootRef.childByAppendingPath("users").childByAppendingPath(auth.uid).setValue(currentUser)
-                            
+                            self.userDefaults.setValue(auth.uid, forKey: "uid")
                             self.performSegueWithIdentifier("fromLogin", sender: nil)
                             }, withCancelBlock: { error in
                                 print(error.description)

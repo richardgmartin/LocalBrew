@@ -14,6 +14,7 @@ class Brewery {
     
     var name: String
     var breweryID: String
+    var firebaseID: String!
     var streetAddress: String?
     var locality: String              // city or town
     var region: String                // state or province
@@ -121,6 +122,19 @@ class Brewery {
         {
             self.breweryImageIcon = UIImage(named: "Beer")
         }
+        
+        
+        FirebaseConnection.firebaseConnection.BREWERY_REF.queryOrderedByChild("breweryID").queryEqualToValue(self.breweryID).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+//
+            
+            if !snapshot.children.allObjects.isEmpty
+            {
+                let firebaseKey = snapshot.children.allObjects[0].key as String!
+                self.firebaseID = firebaseKey
+            }
+            
+        })
    
         
     }

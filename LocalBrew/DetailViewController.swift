@@ -9,11 +9,13 @@
 import UIKit
 import MapKit
 import AddressBook
+import Firebase
 
 class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var breweryIconImageView: UIImageView!
     @IBOutlet weak var breweryPhoneNumberButton: UIButton!
+    @IBOutlet weak var breweryLikeButton: UIButton!
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var addressLabelField: UILabel!
@@ -55,10 +57,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         breweryAnnotation.title = self.breweryDetail.name
         mapView.addAnnotation(breweryAnnotation)
         
-        
-    
-   
-
      accessDBBeerList()
         
         self.view.addSubview(progressHUD)        
@@ -135,6 +133,72 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
 //    }
     
     
+    
+    func checkFirebaseForBrewery()
+    {
+        // Check if brewery is in firebase.
+        let breweryRef = FirebaseConnection.firebaseConnection.BREWERY_REF
+        //let userRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF
+        
+        breweryRef.queryOrderedByChild("breweryID").queryEqualToValue(self.breweryDetail.breweryID).observeSingleEventOfType(.Value, withBlock: {snapshots in
+            print(snapshots)
+            
+            // if breweries entity is empty
+            if(snapshots.value is NSNull)
+            {
+                FirebaseConnection.firebaseConnection.createNewBrewery(self.breweryDetail)
+                self.likeBrewery()
+            }
+            else
+            {
+                for snapshot in snapshots.value.allObjects
+                {
+                    // if brewery exists in firebase
+                    if snapshot["breweryID"] as! String == self.breweryDetail.breweryID
+                    {
+                        //print(snapshot.key as! String)
+                        self.likeBrewery()
+                        return
+                    }
+                    
+                }
+                //if brewery doesn't exist in firebase
+                FirebaseConnection.firebaseConnection.createNewBrewery(self.breweryDetail)
+                self.likeBrewery()
+            }
+            
+        })
+    }
+    
+    func likeBrewery()
+    {
+        
+        let likedBreweryRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").childByAppendingPath(breweryDetail.firebaseID)
+        likedBreweryRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+            if snapshot.exists()
+            {
+                likedBreweryRef.removeValue()
+                self.breweryLikeButton.imageView?.image = UIImage(named: "beerEmpty")
+            }
+            else
+            {
+                likedBreweryRef.setValue(["breweryName":self.breweryDetail.name])
+                self.breweryLikeButton.imageView?.image = UIImage(named: "beerFull")
+                
+            }
+        })
+        
+    
+        
+    }
+        
+        
+        
+    
+    
+    
+    
     @IBAction func onWebsiteButtonPressed(sender: UIButton) {
                 
         
@@ -179,10 +243,19 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
         
     }
     
-    @IBAction func onBreweryButtonTapped(sender: AnyObject) {
+    @IBAction func onBreweryButtonTapped(sender: UIButton)
+    {
+        // Check if brewery is in firebase if not add it
+        checkFirebaseForBrewery()
         
+        //check if user has liked brewery
+        //FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").queryOrderedByChild("breweryID").queryOrderedByValue().observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+           // print(snapshot.value)
+       // })
         
     }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
