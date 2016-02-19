@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import AddressBook
+import Firebase
 
 class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate {
     @IBOutlet weak var tableView: UITableView!
@@ -55,8 +56,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
         
     
-   
-
      accessDBBeerList()
         
     }
@@ -132,6 +131,74 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
 //    }
     
     
+    
+    func checkFirebaseForBrewery()
+    {
+        // Check if brewery is in firebase.
+        let breweryRef = FirebaseConnection.firebaseConnection.BREWERY_REF
+        //let userRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF
+        
+        breweryRef.queryOrderedByChild("breweryID").queryEqualToValue(self.breweryDetail.breweryID).observeSingleEventOfType(.Value, withBlock: {snapshots in
+            //print(snapshots)
+            
+            // if breweries entity is empty
+            if(snapshots.value is NSNull)
+            {
+                FirebaseConnection.firebaseConnection.createNewBrewery(self.breweryDetail)
+                self.likeBrewery()
+            }
+            else
+            {
+                for snapshot in snapshots.value.allObjects
+                {
+                    // if brewery exists in firebase
+                    if snapshot["breweryID"] as! String == self.breweryDetail.breweryID
+                    {
+                        //print(snapshot.key as! String)
+                        self.likeBrewery()
+                        return
+                    }
+                    
+                }
+                //if brewery doesn't exist in firebase
+                self.likeBrewery()
+                FirebaseConnection.firebaseConnection.createNewBrewery(self.breweryDetail)
+            }
+            
+        })
+    }
+    
+    func likeBrewery()
+    {
+        // Check if user has liked brewery
+        FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").queryOrderedByChild("likedBreweries").observeSingleEventOfType(.Value, withBlock: {snapshot in
+            print(snapshot)
+            // if likes is empty or not in there add beer
+            if snapshot.value is NSNull
+            {
+                FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").childByAppendingPath(self.breweryDetail.firebaseID).setValue(["breweryID":self.breweryDetail.breweryID, "breweryName":self.breweryDetail.name])
+            }
+        })
+    }
+    
+        
+//        //Check if user has liked breweries aka user has brewery
+//        userRef.childByAppendingPath("likedbreweries").queryOrderedByChild("breweryID").queryEqualToValue(brewery.breweryID).observeSingleEventOfType(.Value, withBlock: { snapshot in
+//            
+//            print(snapshot)
+//            
+//            if snapshot.value is NSNull
+//            {
+//                userRef.childByAppendingPath("favoritebreweries").setValue(["breweryID":self.breweryDetail.breweryID])
+//            }
+//        })
+        
+        
+        
+    
+    
+    
+    
     @IBAction func onWebsiteButtonPressed(sender: UIButton) {
                 
         
@@ -176,10 +243,19 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
         
     }
     
-    @IBAction func onBreweryButtonTapped(sender: AnyObject) {
+    @IBAction func onBreweryButtonTapped(sender: UIButton)
+    {
+        // Check if brewery is in firebase if not add it
+        checkFirebaseForBrewery()
         
+        //check if user has liked brewery
+        //FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").queryOrderedByChild("breweryID").queryOrderedByValue().observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+           // print(snapshot.value)
+       // })
         
     }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 

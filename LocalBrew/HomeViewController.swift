@@ -30,6 +30,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var snapshotsArray:NSArray!
     
     var changeCityController: ChangeCityViewController?
+    let userDefaults = NSUserDefaults.standardUserDefaults()
     
     let nameAbbreviations: [String:String] = [
         "AL":"alabama",
@@ -187,7 +188,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
-                self.checkFirebaseForBrewery(self.breweryObjects[0])
+                
             })
         }
         task.resume()
@@ -195,33 +196,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     
-    func checkFirebaseForBrewery(brewery:Brewery)
-    {
-        
-        let ref = FirebaseConnection.firebaseConnection.BREWERY_REF
-        ref.queryOrderedByChild("breweryID").queryEqualToValue(brewery.breweryID).observeSingleEventOfType(.Value, withBlock: {snapshots in
-            print(snapshots)
-            
-            if(snapshots.value is NSNull)
-            {
-                FirebaseConnection.firebaseConnection.createNewBrewery(["breweryID":brewery.breweryID, "name":brewery.name, "numberOfLikes":0])
-            }
-            else
-            {
-                for snapshot in snapshots.value.allObjects
-                {
-                    if snapshot["breweryID"] as! String == brewery.breweryID
-                    {
-                        print("Value is already in database")
-                        return
-                    }
-                    
-                }
-                FirebaseConnection.firebaseConnection.createNewBrewery(["breweryID":brewery.breweryID, "name":brewery.name, "numberOfLikes":0])
-            }
-            
-        })
-    }
+    
 
     func setCurrentUser()
     {
@@ -329,7 +304,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func onLogoutButtonPressed(sender: UIBarButtonItem)
     {
         FirebaseConnection.firebaseConnection.CURRENT_USER_REF.unauth()
-        
+        self.userDefaults.setValue(nil, forKey: "uid")
          // Return to login screen
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("login")
         self.presentViewController(vc!, animated: true, completion: nil)

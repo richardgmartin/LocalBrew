@@ -14,6 +14,7 @@ class Brewery {
     
     var name: String
     var breweryID: String
+    var firebaseID: String!
     var streetAddress: String?
     var locality: String              // city or town
     var region: String                // state or province
