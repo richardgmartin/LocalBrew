@@ -11,10 +11,13 @@ import UIKit
 // 1. declare delegate protocol
 protocol ChangeCityViewControllerDelegate {
     
+    
+    
     func changeLocation(controller: ChangeCityViewController, didChangeCity: String, didChangeRegion: String, didChangeCountry: String)
     
 }
 class ChangeCityViewController: UIViewController {
+
     
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var regionTextField: UITextField!
@@ -37,6 +40,7 @@ class ChangeCityViewController: UIViewController {
         let country = self.countryTextField.text
         
         // 3. implement method/action
+
         
         if let delegate = self.delegate {
             delegate.changeLocation(self, didChangeCity: city!, didChangeRegion:region!, didChangeCountry: country!)

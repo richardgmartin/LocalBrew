@@ -12,6 +12,8 @@ import Firebase
 
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, ChangeCityViewControllerDelegate {
+    @IBOutlet weak var changeCityButton: UIButton!
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -28,7 +30,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var givenState: String?
     var givenCountry: String?
     var snapshotsArray:NSArray!
-    
+    let progressHUD = ProgressHUD(text: "Brewing")
     var changeCityController: ChangeCityViewController?
     
     let nameAbbreviations: [String:String] = [
@@ -99,6 +101,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         super.viewDidLoad()
        
+        
+        self.changeCityButton.setTitleColor(UIColor.fromHexString("#41EAD4", alpha: 1.0), forState: .Normal)
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor = UIColor.fromHexString("#040f0f", alpha: 1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.fromHexString("#FAFAFA", alpha: 1.0)]
+
+        
         //self.setCurrentUser()
         
         locationManager.delegate = self
@@ -108,6 +117,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // set delegate relationship with ChangeCityViewController
         
         changeCityController?.delegate = self
+        
+       //add activity spinner and label
+        self.view.addSubview(progressHUD)
+
+
+        // All done!
+        
+        self.view.backgroundColor = UIColor.blackColor()
     
         
     }
@@ -235,7 +252,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func unwindToHomeViewController(segue: UIStoryboardSegue)
     {
-        
+        self.view.addSubview(progressHUD)
     }
     
     
@@ -319,6 +336,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if let cell = tableView.dequeueReusableCellWithIdentifier("BreweryCellID") as? BreweryCell {
             cell.configureCell(brewery)
+            self.progressHUD.removeFromSuperview()  //remove activity spinner and label
+
+            
             return cell
 
         } else {

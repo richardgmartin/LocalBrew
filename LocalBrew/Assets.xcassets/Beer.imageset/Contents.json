@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Beer.jpeg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "LocalBrewIcon_Icon167.png",
       "scale" : "2x"
     },
     {

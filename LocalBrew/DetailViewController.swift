@@ -23,6 +23,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     let breweryAnnotation = MKPointAnnotation()
     var beerList = [NSDictionary]()
     var beerObjects = [Beer]()
+    let progressHUD = ProgressHUD(text: "Brewing")
+
 
 
     
@@ -59,6 +61,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
 
      accessDBBeerList()
         
+        self.view.addSubview(progressHUD)        
     }
 
 
@@ -193,6 +196,7 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
         
         if let cell = tableView.dequeueReusableCellWithIdentifier("BeerCellID") as? BeerCell{
             cell.configureCell(beer)
+            self.progressHUD.removeFromSuperview()
             return cell
             
         } else {
