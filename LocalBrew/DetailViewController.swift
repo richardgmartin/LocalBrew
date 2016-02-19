@@ -171,7 +171,6 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
     {
         
         let likedBreweryRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").childByAppendingPath(breweryDetail.firebaseID)
-       
         likedBreweryRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             
             if snapshot.exists()
