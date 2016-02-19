@@ -54,8 +54,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         breweryAnnotation.title = self.breweryDetail.name
         mapView.addAnnotation(breweryAnnotation)
         
-        
-    
      accessDBBeerList()
         
     }
@@ -161,8 +159,8 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
                     
                 }
                 //if brewery doesn't exist in firebase
-                self.likeBrewery()
                 FirebaseConnection.firebaseConnection.createNewBrewery(self.breweryDetail)
+                self.likeBrewery()
             }
             
         })
@@ -170,26 +168,29 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
     
     func likeBrewery()
     {
-        let userRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries/\(breweryDetail.firebaseID)")
         
-        userRef.observeSingleEventOfType(.Value, withBlock: {snapshot in
-            print(snapshot)
+    
+            //FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries/\(breweryDetail.firebaseID)").removeValue()
+            //FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").childByAppendingPath(breweryDetail.firebaseID).setValue(["breweryName":self.breweryDetail.name])
+       
+                //FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").childByAppendingPath(breweryDetail.firebaseID).setValue(["breweryName":self.breweryDetail.name])
+         let likedBreweryRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").childByAppendingPath(breweryDetail.firebaseID)
+       
+        likedBreweryRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+            if snapshot.exists()
+            {
+                likedBreweryRef.removeValue()
+            }
+            else
+            {
+                likedBreweryRef.setValue(["breweryName":self.breweryDetail.name])
+            }
         })
         
+    
         
     }
-    
-    
-//        //Check if user has liked breweries aka user has brewery
-//        userRef.childByAppendingPath("likedbreweries").queryOrderedByChild("breweryID").queryEqualToValue(brewery.breweryID).observeSingleEventOfType(.Value, withBlock: { snapshot in
-//            
-//            print(snapshot)
-//            
-//            if snapshot.value is NSNull
-//            {
-//                userRef.childByAppendingPath("favoritebreweries").setValue(["breweryID":self.breweryDetail.breweryID])
-//            }
-//        })
         
         
         

@@ -51,7 +51,7 @@ class FirebaseConnection: NSObject
     var CURRENT_USER_REF: Firebase
     {
 
-        let userID = self.USER_REF.authData.uid
+        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
         let currentUser = Firebase(url: "\(USER_REF)").childByAppendingPath(userID)
         return currentUser!
     }
