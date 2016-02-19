@@ -16,6 +16,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var loginPasswordTextField: UITextField!
     
     var rootRef:Firebase!
+    let userDefaults = NSUserDefaults.standardUserDefaults()
 
     override func viewDidLoad()
     {
@@ -64,7 +65,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                             print(currentName)
                             let currentUser = ["provider":auth.provider, "username":currentUsername, "name":currentName]
                             self.rootRef.childByAppendingPath("users").childByAppendingPath(auth.uid).setValue(currentUser)
-                            
+                            self.userDefaults.setValue(auth.uid, forKey: "uid")
                             self.performSegueWithIdentifier("fromLogin", sender: nil)
                             }, withCancelBlock: { error in
                                 print(error.description)

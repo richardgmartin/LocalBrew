@@ -13,6 +13,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let userDefaults = NSUserDefaults.standardUserDefaults()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -20,9 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let auth = FirebaseConnection.firebaseConnection.USER_REF.authData
+        if userDefaults.valueForKey("uid") != nil
         {
-            print(auth)
             let tabBarController = storyboard.instantiateViewControllerWithIdentifier("tab")
             window!.rootViewController = tabBarController
             window?.makeKeyAndVisible()
