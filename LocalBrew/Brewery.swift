@@ -79,7 +79,7 @@ class Brewery {
         }
         if let imageDictionary = breweryDictionary!["images"] as? NSDictionary
         {
-            // Icon Image
+//             Icon Image
             if let iconImageString = imageDictionary["icon"] as? String
             {
                 if let url = NSURL(string: iconImageString)
@@ -90,31 +90,31 @@ class Brewery {
                     }
                 }
             }
-            
+
             // square medium image
-            if let squareMediumImageString = imageDictionary["squareMedium"] as? String
-            {
-                if let url = NSURL(string: squareMediumImageString)
-                {
-                    if let data = NSData(contentsOfURL: url)
-                    {
-                        self.breweryImageSquareMedium = UIImage(data: data)
-                    }
-                }
-                
-            }
+//            if let squareMediumImageString = imageDictionary["squareMedium"] as? String
+//            {
+//                if let url = NSURL(string: squareMediumImageString)
+//                {
+//                    if let data = NSData(contentsOfURL: url)
+//                    {
+//                        self.breweryImageSquareMedium = UIImage(data: data)
+//                    }
+//                }
+//                
+//            }
             
             // large image
-            if let largeImageString = imageDictionary["large"] as? String
-            {
-                if let url = NSURL(string: largeImageString)
-                {
-                    if let data = NSData(contentsOfURL: url)
-                    {
-                        self.breweryImageLarge = UIImage(data: data)
-                    }
-                }
-            }
+//            if let largeImageString = imageDictionary["large"] as? String
+//            {
+//                if let url = NSURL(string: largeImageString)
+//                {
+//                    if let data = NSData(contentsOfURL: url)
+//                    {
+//                        self.breweryImageLarge = UIImage(data: data)
+//                    }
+//                }
+//            }
             
         }
         else
