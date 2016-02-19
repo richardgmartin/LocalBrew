@@ -13,7 +13,7 @@ class BreweryCell: UITableViewCell {
     
     var brewery: Brewery!
     
-    @IBOutlet weak var breweryLIkeImageView: UIImageView!
+
     @IBOutlet weak var breweryLikeLabel: UILabel!
     @IBOutlet weak var breweryImageView: UIImageView!
     @IBOutlet weak var breweryNameLabel: UILabel!
@@ -28,6 +28,7 @@ class BreweryCell: UITableViewCell {
         self.breweryNameLabel!.text = brewery.name
         self.breweryAddressLabel.text = brewery.streetAddress
         self.breweryDistanceLabel.text = "0.4 miles"
+        self.breweryLikeLabel.text = "15 Likes"
         self.breweryImageView.image = brewery.breweryImageIcon
 
         

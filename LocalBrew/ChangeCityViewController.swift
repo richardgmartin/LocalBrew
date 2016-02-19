@@ -41,7 +41,7 @@ class ChangeCityViewController: UIViewController {
         if let delegate = self.delegate {
             delegate.changeLocation(self, didChangeCity: city!, didChangeRegion:region!, didChangeCountry: country!)
         }
-        
+
     }
     
     

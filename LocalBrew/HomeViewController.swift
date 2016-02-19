@@ -232,59 +232,78 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    
+    @IBAction func unwindToHomeViewController(segue: UIStoryboardSegue)
+    {
+        
+    }
+    
+    
+
     // MARK: change user location delegate method
     
     func changeLocation(controller: ChangeCityViewController, didChangeCity: String, didChangeRegion: String, didChangeCountry: String) {
         
-        // flush out old city array data
-        
-        self.breweries = []
-        self.breweryObjects = []
-        
-        // clean incoming city string
-        
-        self.givenCity = didChangeCity
-        let removeBlanksCity = self.givenCity!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        let cleanCity = removeBlanksCity.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        
-        self.locality = cleanCity
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+            
+            
+            // clean incoming city string
+            
+            self.givenCity = didChangeCity
+            let removeBlanksCity = self.givenCity!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            let cleanCity = removeBlanksCity.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
+            self.locality = cleanCity
+            
+            
+            // clean incoming region/state/province string
+            
+            self.givenState = didChangeRegion
+            let removeBlanksState = self.givenState!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            let cleanState = removeBlanksState.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
+            self.region = cleanState
+            
+            
+            // clean incoming country string
+            
+            self.givenCountry = didChangeCountry
+            let countryLowercase = self.givenCountry!.lowercaseString
+            let removeBlanksCountry = countryLowercase.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            
+            
+            if (removeBlanksCountry == "united states" || removeBlanksCountry == "usa" || removeBlanksCountry == "us" || removeBlanksCountry == "america" || removeBlanksCountry == "united states of america") {
+                self.countryName = "us"
+            }
+            else if (removeBlanksCountry == "canada" || removeBlanksCountry == "can" || removeBlanksCountry == "ca")
+            {
+                self.countryName = "ca"
+            }
+            
+            // update self.title with nice looking city name
+            
+            let cityWithPlus = cleanCity.stringByReplacingOccurrencesOfString("+", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
+            let cityWithCapitals = cityWithPlus.capitalizedString
+            
+            self.title = cityWithCapitals
+            
+            // call breweryDB api to build new city detail
+            
+            self.accessBreweryDB()
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                // flush out old city array data
+                self.breweries = []
+                self.breweryObjects = []
+                
+                self.tableView.reloadData()
 
-        
-        // clean incoming region/state/province string
-
-        self.givenState = didChangeRegion
-        let removeBlanksState = self.givenState!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        let cleanState = removeBlanksState.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        
-        self.region = cleanState
-
-        
-        // clean incoming country string
-        
-        self.givenCountry = didChangeCountry
-        let countryLowercase = self.givenCountry!.lowercaseString
-        let removeBlanksCountry = countryLowercase.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-
-        
-        if (removeBlanksCountry == "united states" || removeBlanksCountry == "usa" || removeBlanksCountry == "us" || removeBlanksCountry == "america" || removeBlanksCountry == "united states of america") {
-            self.countryName = "us"
+            })
+            
         }
-        else if (removeBlanksCountry == "canada" || removeBlanksCountry == "can" || removeBlanksCountry == "ca")
-        {
-            self.countryName = "ca"
-        }
         
-        // update self.title with nice looking city name
         
-        let cityWithPlus = cleanCity.stringByReplacingOccurrencesOfString("+", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        
-        let cityWithCapitals = cityWithPlus.capitalizedString
-        
-        self.title = cityWithCapitals
-        
-        // call breweryDB api to build new city detail
-        
-        accessBreweryDB()
         
     }
         
@@ -334,5 +353,5 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("login")
         self.presentViewController(vc!, animated: true, completion: nil)
     }
-
-}
+    
+   }

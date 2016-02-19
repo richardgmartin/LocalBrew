@@ -18,6 +18,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="RMG-Lu-22b">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                <color key="color" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="282" width="400" height="37"/>
+                                </variation>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRT-4X-bRW">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="267" width="400" height="55"/>
+                                </variation>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tUW-LN-0xc">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -84,6 +100,7 @@
                                             <outlet property="breweryAddressLabel" destination="8iU-cs-UE5" id="xGo-GP-V7z"/>
                                             <outlet property="breweryDistanceLabel" destination="7yM-pK-sBZ" id="3zX-EI-DJg"/>
                                             <outlet property="breweryImageView" destination="kgk-jz-Ii9" id="7mJ-r5-sXS"/>
+                                            <outlet property="breweryLikeLabel" destination="q3x-92-tXT" id="OG0-ZV-WFd"/>
                                             <outlet property="breweryNameLabel" destination="A4o-Rw-XT5" id="aY8-4L-6uU"/>
                                             <segue destination="sbK-Lj-PUP" kind="show" identifier="detailViewController" id="ml9-JA-fMt"/>
                                         </connections>
@@ -102,6 +119,18 @@
                             <constraint firstAttribute="bottom" secondItem="tUW-LN-0xc" secondAttribute="bottom" id="j9B-XJ-8vp"/>
                             <constraint firstItem="tUW-LN-0xc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="vKs-ik-zzg"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="RMG-Lu-22b"/>
+                                <exclude reference="vRT-4X-bRW"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="RMG-Lu-22b"/>
+                                <include reference="vRT-4X-bRW"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Local Brew" id="b23-sV-1A3">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="dTp-UI-Xm0">
@@ -279,7 +308,7 @@
                     <navigationItem key="navigationItem" title="Brewery Name" id="67b-6m-mbG">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Ljk-TU-c9c">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KFn-z1-Uda">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <rect key="frame" x="534" y="7" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="beerEmpty"/>
                                 <connections>
@@ -629,9 +658,10 @@
                                     <constraint firstAttribute="height" constant="32" id="D3c-RP-EL1"/>
                                     <constraint firstAttribute="width" constant="86" id="kdl-WK-mfn"/>
                                 </constraints>
-                                <state key="normal" title="Save"/>
+                                <state key="normal" title="Update"/>
                                 <connections>
                                     <action selector="saveLocation:" destination="8Eq-oV-2za" eventType="touchUpInside" id="q2T-cf-dUS"/>
+                                    <segue destination="8gn-MF-E3O" kind="unwind" unwindAction="unwindToHomeViewController:" id="ubh-eL-23k"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPO-fP-eyc">
@@ -680,6 +710,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hCD-tf-7zt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="8gn-MF-E3O" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1497" y="1128"/>
         </scene>
