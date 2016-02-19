@@ -205,7 +205,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="116" y="45" width="250" height="30"/>
+                                                        <rect key="frame" x="116" y="46" width="250" height="30"/>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRG-pq-EQl">
@@ -217,12 +217,19 @@
                                                         <rect key="frame" x="116" y="8" width="250" height="30"/>
                                                     </variation>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beerEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="1K4-Tv-9pu">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="336" y="71" width="30" height="30"/>
+                                                    </variation>
+                                                </imageView>
                                             </subviews>
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="AJ5-T7-Bqm"/>
                                                     <exclude reference="94p-sT-heC"/>
                                                     <exclude reference="HRG-pq-EQl"/>
+                                                    <exclude reference="1K4-Tv-9pu"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -230,6 +237,7 @@
                                                     <include reference="AJ5-T7-Bqm"/>
                                                     <include reference="94p-sT-heC"/>
                                                     <include reference="HRG-pq-EQl"/>
+                                                    <include reference="1K4-Tv-9pu"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
