@@ -170,6 +170,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     }
                 }
             self.title = self.locality?.capitalizedString
+            print(self.locality)
+            print(self.region)
+            print(self.countryName)
             self.accessBreweryDB()
         })
       
@@ -187,7 +190,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
             do{
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
-               // print(localBrew["data"])
+               print(localBrew["data"])
                 
                 
                 self.breweries = localBrew.objectForKey("data") as! [NSDictionary]

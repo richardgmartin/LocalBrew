@@ -184,7 +184,7 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
             else
             {
                 likedBreweryRef.setValue(["breweryName":self.breweryDetail.name])
-                self.breweryLikeButton.imageView?.image = UIImage(named: "beerFull")
+                self.breweryLikeButton.imageView?.image = UIImage(named: "Beer")
                 
             }
         })
