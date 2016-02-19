@@ -100,7 +100,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         super.viewDidLoad()
        
-        //self.setCurrentUser()
+        self.setCurrentUser()
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()

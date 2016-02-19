@@ -15,6 +15,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var breweryIconImageView: UIImageView!
     @IBOutlet weak var breweryPhoneNumberButton: UIButton!
+    @IBOutlet weak var breweryLikeButton: UIButton!
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var addressLabelField: UILabel!
@@ -169,22 +170,20 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
     func likeBrewery()
     {
         
-    
-            //FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries/\(breweryDetail.firebaseID)").removeValue()
-            //FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").childByAppendingPath(breweryDetail.firebaseID).setValue(["breweryName":self.breweryDetail.name])
-       
-                //FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").childByAppendingPath(breweryDetail.firebaseID).setValue(["breweryName":self.breweryDetail.name])
-         let likedBreweryRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").childByAppendingPath(breweryDetail.firebaseID)
+        let likedBreweryRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").childByAppendingPath(breweryDetail.firebaseID)
        
         likedBreweryRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             
             if snapshot.exists()
             {
                 likedBreweryRef.removeValue()
+                self.breweryLikeButton.imageView?.image = UIImage(named: "beerEmpty")
             }
             else
             {
                 likedBreweryRef.setValue(["breweryName":self.breweryDetail.name])
+                self.breweryLikeButton.imageView?.image = UIImage(named: "beerFull")
+                
             }
         })
         
