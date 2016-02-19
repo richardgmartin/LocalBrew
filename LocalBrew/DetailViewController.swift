@@ -139,7 +139,7 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
         //let userRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF
         
         breweryRef.queryOrderedByChild("breweryID").queryEqualToValue(self.breweryDetail.breweryID).observeSingleEventOfType(.Value, withBlock: {snapshots in
-            //print(snapshots)
+            print(snapshots)
             
             // if breweries entity is empty
             if(snapshots.value is NSNull)
@@ -170,18 +170,16 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
     
     func likeBrewery()
     {
-        // Check if user has liked brewery
-        FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").queryOrderedByChild("likedBreweries").observeSingleEventOfType(.Value, withBlock: {snapshot in
+        let userRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries/\(breweryDetail.firebaseID)")
+        
+        userRef.observeSingleEventOfType(.Value, withBlock: {snapshot in
             print(snapshot)
-            // if likes is empty or not in there add beer
-            if snapshot.value is NSNull
-            {
-                FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").childByAppendingPath(self.breweryDetail.firebaseID).setValue(["breweryID":self.breweryDetail.breweryID, "breweryName":self.breweryDetail.name])
-            }
         })
+        
+        
     }
     
-        
+    
 //        //Check if user has liked breweries aka user has brewery
 //        userRef.childByAppendingPath("likedbreweries").queryOrderedByChild("breweryID").queryEqualToValue(brewery.breweryID).observeSingleEventOfType(.Value, withBlock: { snapshot in
 //            

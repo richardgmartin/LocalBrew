@@ -34,7 +34,7 @@ class FirebaseConnection: NSObject
         return _BREWERY_REF
     }
     
-    func createNewAccount(uid: String, user: Dictionary<String,String>) {
+    func createNewAccount(uid: String, user: Dictionary<String, AnyObject>) {
         
         USER_REF.childByAppendingPath(uid).setValue(user)
     }
