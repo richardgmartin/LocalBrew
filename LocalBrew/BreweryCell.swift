@@ -48,7 +48,7 @@ class BreweryCell: UITableViewCell {
         FirebaseConnection.firebaseConnection.BREWERY_REF.childByAppendingPath(brewery.firebaseID).childByAppendingPath("numberOfLikes").observeEventType(.Value, withBlock: { snapshot in
             let likes = snapshot.value as! Int
             
-            self.breweryLikeLabel.text = "Number of likes: \(likes)"
+            self.breweryLikeLabel.text = "Likes: \(likes)"
         })
         
         
