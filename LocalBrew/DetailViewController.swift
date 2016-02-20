@@ -26,8 +26,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     var beerList = [NSDictionary]()
     var beerObjects = [Beer]()
     let progressHUD = ProgressHUD(text: "Brewing")
-
-
+    let userDefaults = NSUserDefaults.standardUserDefaults()
 
     
     override func viewDidLoad() {
@@ -37,6 +36,37 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         self.title = self.breweryDetail.name
         self.addressLabelField.text = self.breweryDetail.streetAddress
         self.breweryPhoneNumberButton.setTitle(self.breweryDetail.phoneNumber, forState: .Normal)
+        
+        if(breweryDetail.firebaseID == nil)
+        {
+            FirebaseConnection.firebaseConnection.createNewBrewery(breweryDetail)
+        }
+        
+        
+        let likedBreweryRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries")
+        
+        likedBreweryRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+            if(snapshot.exists())
+            {
+                likedBreweryRef.childByAppendingPath(self.breweryDetail.firebaseID).observeSingleEventOfType(.Value, withBlock: { snapshot in
+                    
+                    if snapshot.exists()
+                    {
+                        self.breweryLikeButton.imageView?.image = UIImage(named: "beerFull")
+                    }
+                    else
+                    {
+                        self.breweryLikeButton.imageView?.image = UIImage(named: "beerEmpty")
+                    }
+                })
+            }
+        
+        })
+        
+        
+        
+        
         
         
         
@@ -136,67 +166,46 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
     
     func checkFirebaseForBrewery()
     {
-        // Check if brewery is in firebase.
-        let breweryRef = FirebaseConnection.firebaseConnection.BREWERY_REF
-        //let userRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF
-        
-        breweryRef.queryOrderedByChild("breweryID").queryEqualToValue(self.breweryDetail.breweryID).observeSingleEventOfType(.Value, withBlock: {snapshots in
-            print(snapshots)
-            
-            // if breweries entity is empty
-            if(snapshots.value is NSNull)
-            {
-                FirebaseConnection.firebaseConnection.createNewBrewery(self.breweryDetail)
-                self.likeBrewery()
-            }
-            else
-            {
-                for snapshot in snapshots.value.allObjects
-                {
-                    // if brewery exists in firebase
-                    if snapshot["breweryID"] as! String == self.breweryDetail.breweryID
-                    {
-                        //print(snapshot.key as! String)
-                        self.likeBrewery()
-                        return
-                    }
-                    
-                }
-                //if brewery doesn't exist in firebase
-                FirebaseConnection.firebaseConnection.createNewBrewery(self.breweryDetail)
-                self.likeBrewery()
-            }
-            
-        })
+        self.likeBrewery()
     }
     
     func likeBrewery()
     {
-        
         let likedBreweryRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").childByAppendingPath(breweryDetail.firebaseID)
+        var liked:Bool = false
+        
         likedBreweryRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            
             if snapshot.exists()
             {
                 likedBreweryRef.removeValue()
                 self.breweryLikeButton.imageView?.image = UIImage(named: "beerEmpty")
+
             }
             else
             {
                 likedBreweryRef.setValue(["breweryName":self.breweryDetail.name])
-                self.breweryLikeButton.imageView?.image = UIImage(named: "Beer")
-                
+                self.breweryLikeButton.imageView?.image = UIImage(named: "beerFull")
+                liked = true
             }
+            
         })
         
-    
+        let breweryRef = FirebaseConnection.firebaseConnection.BREWERY_REF.childByAppendingPath(breweryDetail.firebaseID)
         
+        breweryRef.childByAppendingPath("numberOfLikes").observeSingleEventOfType(.Value, withBlock: { snapshot in
+            let like = snapshot.value as! Int
+            
+            if liked
+            {
+                breweryRef.updateChildValues(["numberOfLikes":like+1])
+            }
+            else
+            {
+                breweryRef.updateChildValues(["numberOfLikes":like-1])
+            }
+            
+        })
     }
-        
-        
-        
-    
-    
     
     
     @IBAction func onWebsiteButtonPressed(sender: UIButton) {
@@ -248,11 +257,6 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
         // Check if brewery is in firebase if not add it
         checkFirebaseForBrewery()
         
-        //check if user has liked brewery
-        //FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").queryOrderedByChild("breweryID").queryOrderedByValue().observeSingleEventOfType(.Value, withBlock: { snapshot in
-            
-           // print(snapshot.value)
-       // })
         
     }
     

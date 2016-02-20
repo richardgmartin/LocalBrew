@@ -106,7 +106,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
         self.navigationController?.navigationBar.barTintColor = UIColor.fromHexString("#040f0f", alpha: 1.0)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.fromHexString("#FAFAFA", alpha: 1.0)]
-        self.setCurrentUser()
+        //self.setCurrentUser()
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -170,9 +170,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     }
                 }
             self.title = self.locality?.capitalizedString
-            print(self.locality)
-            print(self.region)
-            print(self.countryName)
+            //print(self.locality)
+            //print(self.region)
+            //print(self.countryName)
             self.accessBreweryDB()
         })
       
@@ -220,7 +220,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         FirebaseConnection.firebaseConnection.CURRENT_USER_REF.observeSingleEventOfType( FEventType.Value) { (snapshot : FDataSnapshot!) -> Void in
             
             //print(snapshot.value)
-            self.currentUser = snapshot.value as! Dictionary<String, AnyObject>
+            //self.currentUser = snapshot.value as! Dictionary<String, AnyObject>
         }
     }
     

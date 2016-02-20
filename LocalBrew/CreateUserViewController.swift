@@ -40,6 +40,8 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate
                 self.rootRef.authUser(self.createEmailTextField!.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()), password: self.createPasswordTextField!.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()), withCompletionBlock: { error, authData  in
                     let user = ["provider":authData.provider!, "email":self.createEmailTextField.text!, "username":self.createUsernameTextField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()), "uid":authData.uid!, "name":self.createNameTextField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())]
                     FirebaseConnection.firebaseConnection.createNewAccount(authData.uid, user: user)
+                    self.userDefaults.setValue(authData.uid, forKey: "uid")
+
                     
                     self.performSegueWithIdentifier("fromCreateUser", sender: nil)
                 })

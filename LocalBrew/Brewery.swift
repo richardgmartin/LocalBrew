@@ -126,8 +126,6 @@ class Brewery {
         
         FirebaseConnection.firebaseConnection.BREWERY_REF.queryOrderedByChild("breweryID").queryEqualToValue(self.breweryID).observeSingleEventOfType(.Value, withBlock: { snapshot in
             
-//
-            
             if !snapshot.children.allObjects.isEmpty
             {
                 let firebaseKey = snapshot.children.allObjects[0].key as String!

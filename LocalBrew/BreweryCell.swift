@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class BreweryCell: UITableViewCell {
     
@@ -31,11 +32,25 @@ class BreweryCell: UITableViewCell {
         self.breweryNameLabel!.text = brewery.name
         self.breweryAddressLabel.text = brewery.streetAddress
         self.breweryDistanceLabel.text = "0.4 miles"
-        self.breweryLikeLabel.text = "15 Likes"
+        //self.breweryLikeLabel.text = "15 Likes"
         self.breweryImageView.image = brewery.breweryImageIcon
         self.backgroundColor = UIColor.fromHexString("#FAFAFA", alpha: 1.0)
         self.layer.borderColor = UIColor.fromHexString("#f03939", alpha: 1.0).CGColor
         self.layer.borderWidth = 3.0
+        
+        
+        
+        if brewery.firebaseID == nil
+        {
+            FirebaseConnection.firebaseConnection.createNewBrewery(brewery)
+        }
+        
+        FirebaseConnection.firebaseConnection.BREWERY_REF.childByAppendingPath(brewery.firebaseID).childByAppendingPath("numberOfLikes").observeEventType(.Value, withBlock: { snapshot in
+            let likes = snapshot.value as! Int
+            
+            self.breweryLikeLabel.text = "Number of likes: \(likes)"
+        })
+        
         
     }
 }

@@ -61,9 +61,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                         self.userDefaults.setValue(auth.uid, forKey: "uid")
                         FirebaseConnection.firebaseConnection.CURRENT_USER_REF.observeEventType(FEventType.Value, withBlock: { snapshot in
                             let currentUsername = snapshot.value.objectForKey("username") as? String
-                            print(currentUsername)
+                            //print(currentUsername)
                             let currentName = snapshot.value.objectForKey("name") as? String
-                            print(currentName)
+                            //print(currentName)
                             let currentUser = ["provider":auth.provider, "username":currentUsername, "name":currentName]
                             self.rootRef.childByAppendingPath("users").childByAppendingPath(auth.uid).setValue(currentUser)
                             self.userDefaults.setValue(auth.uid, forKey: "uid")
