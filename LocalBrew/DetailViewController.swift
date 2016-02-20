@@ -37,11 +37,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         self.addressLabelField.text = self.breweryDetail.streetAddress
         self.breweryPhoneNumberButton.setTitle(self.breweryDetail.phoneNumber, forState: .Normal)
         
-        if(breweryDetail.firebaseID == nil)
-        {
-            FirebaseConnection.firebaseConnection.createNewBrewery(breweryDetail)
-        }
-        
         
         let likedBreweryRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries")
         
@@ -65,11 +60,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         })
         
         
-        
-        
-        
-        
-        
         // 1. set brewery region
         
         let breweryLatitude:CLLocationDegrees = self.breweryDetail.latitude
@@ -87,7 +77,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         breweryAnnotation.title = self.breweryDetail.name
         mapView.addAnnotation(breweryAnnotation)
         
-     accessDBBeerList()
+        accessDBBeerList()
         
         self.view.addSubview(progressHUD)        
     }
@@ -164,47 +154,43 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
     
     
     
-    func checkFirebaseForBrewery()
-    {
-        self.likeBrewery()
-    }
-    
     func likeBrewery()
     {
         let likedBreweryRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries").childByAppendingPath(breweryDetail.firebaseID)
-        var liked:Bool = false
+        var liked:Bool = true
         
         likedBreweryRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             if snapshot.exists()
             {
                 likedBreweryRef.removeValue()
                 self.breweryLikeButton.imageView?.image = UIImage(named: "beerEmpty")
-
+                liked = false
             }
             else
             {
                 likedBreweryRef.setValue(["breweryName":self.breweryDetail.name])
                 self.breweryLikeButton.imageView?.image = UIImage(named: "beerFull")
-                liked = true
             }
+            
+            let breweryRef = FirebaseConnection.firebaseConnection.BREWERY_REF.childByAppendingPath(self.self.breweryDetail.firebaseID)
+            
+            breweryRef.childByAppendingPath("numberOfLikes").observeSingleEventOfType(.Value, withBlock: { snapshot in
+                let numlikes = snapshot.value as! Int
+                
+                if liked
+                {
+                    breweryRef.updateChildValues(["numberOfLikes":numlikes+1])
+                }
+                else
+                {
+                    breweryRef.updateChildValues(["numberOfLikes":numlikes-1])
+                }
+                
+            })
             
         })
         
-        let breweryRef = FirebaseConnection.firebaseConnection.BREWERY_REF.childByAppendingPath(breweryDetail.firebaseID)
         
-        breweryRef.childByAppendingPath("numberOfLikes").observeSingleEventOfType(.Value, withBlock: { snapshot in
-            let like = snapshot.value as! Int
-            
-            if liked
-            {
-                breweryRef.updateChildValues(["numberOfLikes":like+1])
-            }
-            else
-            {
-                breweryRef.updateChildValues(["numberOfLikes":like-1])
-            }
-            
-        })
     }
     
     
@@ -254,10 +240,7 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
     
     @IBAction func onBreweryButtonTapped(sender: UIButton)
     {
-        // Check if brewery is in firebase if not add it
-        checkFirebaseForBrewery()
-        
-        
+        self.likeBrewery()
     }
     
     

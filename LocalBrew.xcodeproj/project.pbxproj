@@ -17,6 +17,7 @@
 		A37600C41C74E7080045A169 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37600C31C74E7080045A169 /* MapKit.framework */; };
 		A37600C61C7507C90045A169 /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37600C51C7507C90045A169 /* Beer.swift */; };
 		B2117353290697217C4C112E /* Pods_LocalBrew.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D0EE5F2967359314A1FB406 /* Pods_LocalBrew.framework */; };
+		DB05AA231C78548100D6F9BB /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB05AA221C78548100D6F9BB /* Comment.swift */; };
 		DB30EB891C717671006FB1A3 /* FirebaseConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB30EB881C717671006FB1A3 /* FirebaseConnection.swift */; };
 		DB9D2EA71C712F30007E7228 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D2EA61C712F30007E7228 /* LoginViewController.swift */; };
 		DB9D2EAB1C71533F007E7228 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D2EAA1C71533F007E7228 /* CreateUserViewController.swift */; };
@@ -47,6 +48,7 @@
 		A37600C51C7507C90045A169 /* Beer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beer.swift; sourceTree = "<group>"; };
 		D156A588F0662AE9F3E3CD9D /* Pods-LocalBrew.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalBrew.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocalBrew/Pods-LocalBrew.release.xcconfig"; sourceTree = "<group>"; };
 		D9EE20D9235388306130DE2B /* Pods-LocalBrew.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalBrew.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocalBrew/Pods-LocalBrew.debug.xcconfig"; sourceTree = "<group>"; };
+		DB05AA221C78548100D6F9BB /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		DB30EB881C717671006FB1A3 /* FirebaseConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseConnection.swift; sourceTree = SOURCE_ROOT; };
 		DB9D2EA61C712F30007E7228 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DB9D2EAA1C71533F007E7228 /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			children = (
 				A3025F3B1C6F87B3004617DB /* Brewery.swift */,
 				A37600C51C7507C90045A169 /* Beer.swift */,
+				DB05AA221C78548100D6F9BB /* Comment.swift */,
 				DB30EB881C717671006FB1A3 /* FirebaseConnection.swift */,
 				E52D37FE1C77817700184B4E /* CustomActivityIndicator.swift */,
 				E50758231C77AD1F008CA35A /* UIColor+LocalBrew.swift */,
@@ -295,6 +298,7 @@
 				DB9D2EA71C712F30007E7228 /* LoginViewController.swift in Sources */,
 				A3025F3C1C6F87B3004617DB /* Brewery.swift in Sources */,
 				E5ACAB3D1C7232D70013468E /* ChangeCityViewController.swift in Sources */,
+				DB05AA231C78548100D6F9BB /* Comment.swift in Sources */,
 				E50758241C77AD1F008CA35A /* UIColor+LocalBrew.swift in Sources */,
 				A37600C61C7507C90045A169 /* Beer.swift in Sources */,
 				A3025F261C6F7E7D004617DB /* HomeViewController.swift in Sources */,

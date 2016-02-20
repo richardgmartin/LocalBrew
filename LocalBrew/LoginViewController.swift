@@ -64,7 +64,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                             //print(currentUsername)
                             let currentName = snapshot.value.objectForKey("name") as? String
                             //print(currentName)
-                            let currentUser = ["provider":auth.provider, "username":currentUsername, "name":currentName]
+                            let likedBreweries:NSDictionary? = snapshot.value.objectForKey("likedbreweries") as? NSDictionary
+                            var currentUser:Dictionary<String, AnyObject>!
+                            
+                            if let actualLikedBreweries = likedBreweries
+                            {
+                                currentUser = ["provider":auth.provider, "username":currentUsername!, "name":currentName!, "likedbreweries":actualLikedBreweries] as Dictionary<String, AnyObject>
+                            }
+                            else
+                            {
+                                currentUser = ["provider":auth.provider, "username":currentUsername!, "name":currentName!] as Dictionary<String, AnyObject>
+                            }
                             self.rootRef.childByAppendingPath("users").childByAppendingPath(auth.uid).setValue(currentUser)
                             self.userDefaults.setValue(auth.uid, forKey: "uid")
                             self.performSegueWithIdentifier("fromLogin", sender: nil)
