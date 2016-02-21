@@ -27,8 +27,6 @@ class BeerCell: UITableViewCell {
         self.beerCellImageView.image = beer.beerImageIcon
         self.beerCellName.text = beer.beerName
         self.beerCellStyle.text = beer.style
-
-
         
     }
 }

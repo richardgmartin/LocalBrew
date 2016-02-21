@@ -305,6 +305,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
     }
+    
+    @IBAction func showBreweryComments(recognizer: UIGestureRecognizer)
+    {
+        let point = recognizer.locationInView(self.tableView)
+        let indexPath = self.tableView.indexPathForRowAtPoint(point)
+        let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! BreweryCell
+        
+        if recognizer.state == UIGestureRecognizerState.Ended
+        {
+            let commentsVC = self.storyboard?.instantiateViewControllerWithIdentifier("CommentsView") as! CommentViewController
+            commentsVC.brewery = cell .brewery
+            
+            self.navigationController?.presentViewController(commentsVC, animated: true, completion: nil)
+            
+        }
+    }
+    
         
     // MARK: tableview cell display logic
 
@@ -319,7 +336,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let cell = tableView.dequeueReusableCellWithIdentifier("BreweryCellID") as? BreweryCell {
             cell.configureCell(brewery)
             self.progressHUD.removeFromSuperview()  //remove activity spinner and label
-
+            
+            let longPress = UILongPressGestureRecognizer(target: self, action: "showBreweryComments:")
+            longPress.minimumPressDuration = 0.5
+            cell.addGestureRecognizer(longPress)
+            
             
             return cell
 
@@ -336,14 +357,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let dvc = segue.destinationViewController as? ChangeCityViewController
             dvc!.delegate = self
         }
-        if(segue.identifier == "detailViewController") {
+       else if(segue.identifier == "detailViewController") {
             let dvc = segue.destinationViewController as? DetailViewController
             let index = self.tableView.indexPathForSelectedRow
             dvc?.breweryDetail = self.breweryObjects[(index?.row)!]
-
-
             
         }
+        
         
     }
     
