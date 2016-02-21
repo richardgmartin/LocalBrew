@@ -12,7 +12,7 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+
     
     var window: UIWindow?
     let userDefaults = NSUserDefaults.standardUserDefaults()

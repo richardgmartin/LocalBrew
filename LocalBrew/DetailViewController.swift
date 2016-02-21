@@ -19,6 +19,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var addressLabelField: UILabel!
+    @IBOutlet weak var breweryDirectionsButton: UIButton!
+    @IBOutlet weak var breweryWebsiteButton: UIButton!
     
     var breweryDetail: Brewery!
     var breweryDestination = MKMapItem()
@@ -36,6 +38,25 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         self.title = self.breweryDetail.name
         self.addressLabelField.text = self.breweryDetail.streetAddress
         self.breweryPhoneNumberButton.setTitle(self.breweryDetail.phoneNumber, forState: .Normal)
+        
+        self.breweryPhoneNumberButton.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
+        self.breweryPhoneNumberButton.backgroundColor = UIColor.blackColor()
+        self.breweryPhoneNumberButton.layer.cornerRadius = 5
+        self.breweryPhoneNumberButton.layer.borderWidth = 1
+        self.breweryPhoneNumberButton.layer.borderColor = UIColor.blackColor().CGColor
+        self.breweryDirectionsButton.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
+        self.breweryDirectionsButton.backgroundColor = UIColor.blackColor()
+        self.breweryDirectionsButton.layer.cornerRadius = 5
+        self.breweryDirectionsButton.layer.borderWidth = 1
+        self.breweryDirectionsButton.layer.borderColor = UIColor.blackColor().CGColor
+        self.breweryWebsiteButton.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
+        self.breweryWebsiteButton.backgroundColor = UIColor.blackColor()
+        self.breweryWebsiteButton.layer.cornerRadius = 5
+        self.breweryWebsiteButton.layer.borderWidth = 1
+        self.breweryWebsiteButton.layer.borderColor = UIColor.blackColor().CGColor
+        
+        
+
         
         
         let likedBreweryRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries")

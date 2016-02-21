@@ -12,9 +12,10 @@ import Firebase
 
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, ChangeCityViewControllerDelegate {
-    @IBOutlet weak var changeCityButton: UIButton!
+
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     
+    @IBOutlet weak var changeCityButton: UIBarButtonItem!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -102,11 +103,20 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         super.viewDidLoad()
         
-        self.changeCityButton.setTitleColor(UIColor.fromHexString("#41EAD4", alpha: 1.0), forState: .Normal)
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
         self.navigationController?.navigationBar.barTintColor = UIColor.fromHexString("#040f0f", alpha: 1.0)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.fromHexString("#FAFAFA", alpha: 1.0)]
         self.setCurrentUser()
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
+        self.navigationController?.navigationBar.translucent = false
+        self.automaticallyAdjustsScrollViewInsets = false
+
+
+
+
+
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()

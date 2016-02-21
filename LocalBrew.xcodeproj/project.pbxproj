@@ -203,7 +203,7 @@
 				TargetAttributes = {
 					A3025F1F1C6F7E7C004617DB = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 767ELXNDQ9;
+						DevelopmentTeam = U2E38G82JZ;
 					};
 				};
 			};
@@ -424,7 +424,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = LocalBrew/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = .com.YemiAjibola.LocalBrew;
+				PRODUCT_BUNDLE_IDENTIFIER = Michael.LocalBrew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -439,7 +439,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = LocalBrew/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = .com.YemiAjibola.LocalBrew;
+				PRODUCT_BUNDLE_IDENTIFIER = Michael.LocalBrew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

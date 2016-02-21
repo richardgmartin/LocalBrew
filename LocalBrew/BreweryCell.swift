@@ -34,9 +34,9 @@ class BreweryCell: UITableViewCell {
         self.breweryDistanceLabel.text = "0.4 miles"
         //self.breweryLikeLabel.text = "15 Likes"
         self.breweryImageView.image = brewery.breweryImageIcon
-        self.backgroundColor = UIColor.fromHexString("#FAFAFA", alpha: 1.0)
-        self.layer.borderColor = UIColor.fromHexString("#f03939", alpha: 1.0).CGColor
-        self.layer.borderWidth = 3.0
+
+
+
         
         
         

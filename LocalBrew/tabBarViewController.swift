@@ -15,6 +15,12 @@ class tabBarViewController: UITabBarController {
 
         self.tabBar.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
         self.tabBar.barTintColor = UIColor.fromHexString("#040f0f", alpha: 1.0)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: .Normal)
+        self.tabBar.translucent = false
+    
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

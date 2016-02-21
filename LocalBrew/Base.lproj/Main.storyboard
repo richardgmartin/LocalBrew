@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yrr-PM-mMY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yrr-PM-mMY">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Local Brew-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="LocalBrew" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="HomeViewController" customModule="LocalBrew" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -18,31 +18,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="RMG-Lu-22b">
-                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
-                                <color key="color" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="282" width="37" height="37"/>
-                                </variation>
-                            </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRT-4X-bRW">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="267" width="400" height="55"/>
-                                </variation>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tUW-LN-0xc">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BreweryCellID" rowHeight="91" id="MoN-eO-1hx" customClass="BreweryCell" customModule="LocalBrew" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="91"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MoN-eO-1hx" id="Sil-sa-ODg">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="90.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4o-Rw-XT5">
@@ -75,7 +59,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3x-92-tXT">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="widthClass=compact" fixedFrame="YES">
                                                         <rect key="frame" x="263" y="54.5" width="100" height="28"/>
@@ -120,28 +104,27 @@
                             <constraint firstItem="tUW-LN-0xc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gOT-pC-NxM"/>
                             <constraint firstAttribute="trailing" secondItem="tUW-LN-0xc" secondAttribute="trailing" id="gZl-zT-ijV"/>
                             <constraint firstAttribute="bottom" secondItem="tUW-LN-0xc" secondAttribute="bottom" id="j9B-XJ-8vp"/>
-                            <constraint firstItem="tUW-LN-0xc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="vKs-ik-zzg"/>
+                            <constraint firstItem="tUW-LN-0xc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="vKs-ik-zzg">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Local Brew" id="b23-sV-1A3">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="dTp-UI-Xm0">
                             <connections>
                                 <action selector="onLogoutButtonPressed:" destination="BYZ-38-t0r" id="EEE-dY-nKJ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="b8T-8g-FFu">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="757-re-mea">
-                                <rect key="frame" x="447" y="7" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Change City"/>
-                                <connections>
-                                    <segue destination="8Eq-oV-2za" kind="show" identifier="changeCity" id="7Dg-kD-ve9"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Change City" id="0Ax-mi-2qT">
+                            <connections>
+                                <segue destination="8Eq-oV-2za" kind="show" identifier="changeCity" id="2EM-5G-cIa"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="changeCityButton" destination="757-re-mea" id="ONu-d5-ItW"/>
+                        <outlet property="changeCityButton" destination="0Ax-mi-2qT" id="FSx-gm-adT"/>
                         <outlet property="logoutButton" destination="dTp-UI-Xm0" id="d8G-JF-ApP"/>
                         <outlet property="tableView" destination="tUW-LN-0xc" id="Fcy-uN-3hI"/>
                     </connections>
@@ -206,7 +189,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yU3-xF-cE1" id="0hI-Bj-0S4">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="109"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="109.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AJ5-T7-Bqm">
@@ -218,7 +201,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Style" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94p-sT-heC">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="widthClass=compact" fixedFrame="YES">
                                                         <rect key="frame" x="116" y="46" width="250" height="30"/>
@@ -227,7 +210,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRG-pq-EQl">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="widthClass=compact" fixedFrame="YES">
                                                         <rect key="frame" x="116" y="8" width="250" height="30"/>
@@ -322,9 +305,11 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addressLabelField" destination="g0g-Dh-NfU" id="eDe-K4-XgT"/>
+                        <outlet property="breweryDirectionsButton" destination="moJ-Wp-YtC" id="hZB-WM-eod"/>
                         <outlet property="breweryIconImageView" destination="5fh-7p-cCy" id="tzL-Va-Akn"/>
                         <outlet property="breweryLikeButton" destination="KFn-z1-Uda" id="xDU-Yr-bfy"/>
                         <outlet property="breweryPhoneNumberButton" destination="tnf-j6-vde" id="hs3-LQ-6mf"/>
+                        <outlet property="breweryWebsiteButton" destination="wF3-GJ-DBr" id="b2E-Ft-XTb"/>
                         <outlet property="mapView" destination="daV-Ax-20k" id="Ndn-Wv-EZ4"/>
                         <outlet property="tableView" destination="hX9-8W-Qo4" id="mmd-eY-UrJ"/>
                     </connections>
@@ -661,24 +646,17 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nai-W3-Uek">
                                 <rect key="frame" x="257" y="251" width="86" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="D3c-RP-EL1"/>
-                                    <constraint firstAttribute="width" constant="86" id="kdl-WK-mfn"/>
+                                    <constraint firstAttribute="height" constant="32" id="D3c-RP-EL1">
+                                        <variation key="widthClass=compact" constant="40"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="86" id="kdl-WK-mfn">
+                                        <variation key="widthClass=compact" constant="100"/>
+                                    </constraint>
                                 </constraints>
                                 <state key="normal" title="Update"/>
                                 <connections>
                                     <action selector="saveLocation:" destination="8Eq-oV-2za" eventType="touchUpInside" id="q2T-cf-dUS"/>
                                     <segue destination="8gn-MF-E3O" kind="unwind" unwindAction="unwindToHomeViewController:" id="ubh-eL-23k"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPO-fP-eyc">
-                                <rect key="frame" x="276" y="308" width="48" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="FCf-g0-uaU"/>
-                                    <constraint firstAttribute="height" constant="30" id="eGK-lY-cSU"/>
-                                </constraints>
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <segue destination="Xsn-Rp-3Wp" kind="unwind" unwindAction="unwindToHomeViewController:" id="3A1-uw-QVO"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Country" borderStyle="line" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4mR-kq-oHA">
@@ -690,32 +668,91 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2A-Ay-hFS">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="73" y="413" width="86" height="27"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gY-Ut-r2X">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="94" y="448" width="83" height="25"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPO-fP-eyc">
+                                <rect key="frame" x="276" y="308" width="48" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="FCf-g0-uaU">
+                                        <variation key="widthClass=compact" constant="100"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="30" id="eGK-lY-cSU">
+                                        <variation key="widthClass=compact" constant="40"/>
+                                    </constraint>
+                                </constraints>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <segue destination="Xsn-Rp-3Wp" kind="unwind" unwindAction="unwindToHomeViewController:" id="3A1-uw-QVO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="myG-ml-Llw" secondAttribute="trailing" constant="74" id="28j-kk-fZg"/>
-                            <constraint firstItem="Nai-W3-Uek" firstAttribute="top" secondItem="4mR-kq-oHA" secondAttribute="bottom" constant="30" id="6cb-1f-1pz"/>
+                            <constraint firstItem="Nai-W3-Uek" firstAttribute="top" secondItem="4mR-kq-oHA" secondAttribute="bottom" constant="30" id="6cb-1f-1pz">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstItem="Nai-W3-Uek" firstAttribute="centerX" secondItem="PdL-dV-lVv" secondAttribute="centerX" id="7Xq-2y-LDB"/>
-                            <constraint firstItem="myG-ml-Llw" firstAttribute="top" secondItem="xOg-yY-jH8" secondAttribute="bottom" constant="8" id="8H4-o0-R0B"/>
+                            <constraint firstItem="myG-ml-Llw" firstAttribute="top" secondItem="xOg-yY-jH8" secondAttribute="bottom" constant="8" id="8H4-o0-R0B">
+                                <variation key="widthClass=compact" constant="106"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="Y26-r3-Ijc" secondAttribute="trailing" constant="74" id="E8w-2h-hmw"/>
                             <constraint firstItem="4mR-kq-oHA" firstAttribute="leading" secondItem="PdL-dV-lVv" secondAttribute="leadingMargin" constant="74" id="G5Y-SY-UqZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4mR-kq-oHA" secondAttribute="trailing" constant="74" id="LUU-yN-5Qr"/>
                             <constraint firstItem="Nai-W3-Uek" firstAttribute="centerX" secondItem="PdL-dV-lVv" secondAttribute="centerX" id="R6q-AI-CVn"/>
-                            <constraint firstItem="Nai-W3-Uek" firstAttribute="top" secondItem="4mR-kq-oHA" secondAttribute="bottom" constant="30" id="SI4-oF-IDF"/>
-                            <constraint firstItem="HPO-fP-eyc" firstAttribute="top" secondItem="4mR-kq-oHA" secondAttribute="bottom" constant="87" id="TtX-6F-vin"/>
-                            <constraint firstItem="4mR-kq-oHA" firstAttribute="top" secondItem="Y26-r3-Ijc" secondAttribute="bottom" constant="31" id="b9d-el-YRi"/>
+                            <constraint firstItem="Nai-W3-Uek" firstAttribute="top" secondItem="4mR-kq-oHA" secondAttribute="bottom" constant="30" id="SI4-oF-IDF">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
+                            <constraint firstItem="HPO-fP-eyc" firstAttribute="top" secondItem="4mR-kq-oHA" secondAttribute="bottom" constant="87" id="TtX-6F-vin">
+                                <variation key="widthClass=compact" constant="56"/>
+                            </constraint>
+                            <constraint firstItem="4mR-kq-oHA" firstAttribute="top" secondItem="Y26-r3-Ijc" secondAttribute="bottom" constant="31" id="b9d-el-YRi">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstItem="HPO-fP-eyc" firstAttribute="centerX" secondItem="PdL-dV-lVv" secondAttribute="centerX" id="k13-i5-dli"/>
                             <constraint firstItem="myG-ml-Llw" firstAttribute="leading" secondItem="PdL-dV-lVv" secondAttribute="leadingMargin" constant="74" id="lX6-cg-Cxt"/>
                             <constraint firstItem="Y26-r3-Ijc" firstAttribute="leading" secondItem="PdL-dV-lVv" secondAttribute="leadingMargin" constant="74" id="lsd-73-hLS"/>
-                            <constraint firstItem="Y26-r3-Ijc" firstAttribute="top" secondItem="myG-ml-Llw" secondAttribute="bottom" constant="28" id="m7v-zw-uTh"/>
+                            <constraint firstItem="Y26-r3-Ijc" firstAttribute="top" secondItem="myG-ml-Llw" secondAttribute="bottom" constant="28" id="m7v-zw-uTh">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="F2A-Ay-hFS"/>
+                                <exclude reference="8gY-Ut-r2X"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="F2A-Ay-hFS"/>
+                                <include reference="8gY-Ut-r2X"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="cancelButton" destination="HPO-fP-eyc" id="A4B-5v-OBc"/>
                         <outlet property="cityTextField" destination="myG-ml-Llw" id="AsZ-wV-brD"/>
                         <outlet property="countryTextField" destination="4mR-kq-oHA" id="cQS-WX-wlf"/>
                         <outlet property="regionTextField" destination="Y26-r3-Ijc" id="ddv-y3-wS3"/>
+                        <outlet property="updateButton" destination="Nai-W3-Uek" id="pbr-3q-svt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hCD-tf-7zt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -723,11 +760,11 @@
             </objects>
             <point key="canvasLocation" x="1497" y="1128"/>
         </scene>
-        <!--Profile-->
+        <!--Navigation Controller-->
         <scene sceneID="NvL-ux-fgt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hUf-Kh-bvb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="Profile" id="cuG-Wt-jvf"/>
+                    <tabBarItem key="tabBarItem" systemItem="recents" id="cuG-Wt-jvf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XLo-Rs-hqx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -744,7 +781,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Profile" width="50" height="50"/>
         <image name="beerEmpty" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>

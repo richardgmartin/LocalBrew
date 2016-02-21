@@ -53,12 +53,12 @@ class Brewery {
         if let streetAddress = dataDictionary["streetAddress"] as? String {
             self.streetAddress = streetAddress
         } else {
-            self.streetAddress = "Sorry. The brewery did not provide us a street address."
+            self.streetAddress = "Address."
         }
         if let phoneNumber = dataDictionary["phone"] as? String {
             self.phoneNumber = phoneNumber
         } else {
-            self.phoneNumber = "unavailable number"
+            self.phoneNumber = "Unavailable number"
         }
         
         if let postalCode = dataDictionary["postalCode"] as? String {
