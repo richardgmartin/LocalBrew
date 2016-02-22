@@ -56,8 +56,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         self.breweryWebsiteButton.layer.borderColor = UIColor.blackColor().CGColor
         
         
-
-        
         
         let likedBreweryRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries")
         

@@ -136,10 +136,10 @@
 		A3025F391C6F872D004617DB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DB30EB881C717671006FB1A3 /* FirebaseConnection.swift */,
 				A3025F3B1C6F87B3004617DB /* Brewery.swift */,
 				A37600C51C7507C90045A169 /* Beer.swift */,
 				DB05AA221C78548100D6F9BB /* Comment.swift */,
-				DB30EB881C717671006FB1A3 /* FirebaseConnection.swift */,
 				E52D37FE1C77817700184B4E /* CustomActivityIndicator.swift */,
 				E50758231C77AD1F008CA35A /* UIColor+LocalBrew.swift */,
 			);

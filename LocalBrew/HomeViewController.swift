@@ -218,7 +218,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
             catch let error as NSError{
-                print("JSON Error: \(error.localizedDescription)")
+               
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
