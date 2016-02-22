@@ -315,14 +315,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func handleTap(recognizer:UIGestureRecognizer)
     {
-        performSegueWithIdentifier("toDetailViewController", sender: self.view)
+        performSegueWithIdentifier("toDetailViewController", sender: recognizer)
     }
     
     @IBAction func showBreweryComments(recognizer: UIGestureRecognizer)
     {
         if recognizer.state == UIGestureRecognizerState.Began
         {
-            performSegueWithIdentifier("toCommentViewController", sender: self.view)
+            performSegueWithIdentifier("toCommentViewController", sender: recognizer)
         }
     }
     
@@ -349,6 +349,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
     }
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
@@ -357,18 +358,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let dvc = segue.destinationViewController as? ChangeCityViewController
             dvc!.delegate = self
         }
-       else if(segue.identifier == "toDetailViewController")
+        else if(segue.identifier == "toDetailViewController")
         {
-            let dvc = segue.destinationViewController as? DetailViewController
-             let point = self.tableView.convertPoint(sender!.frame.origin, fromView:sender?.superview)
+            let point = self.tableView.convertPoint((sender?.locationInView(self.tableView))!, fromView:self.tableView)
             let indexPath = self.tableView.indexPathForRowAtPoint(point)
+            let dvc = segue.destinationViewController as? DetailViewController
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! BreweryCell
             dvc?.breweryDetail = cell.brewery
             
         }
         else if (segue.identifier == "toCommentViewController")
         {
-            let point = self.tableView.convertPoint(sender!.frame.origin, fromView:sender?.superview)
+           let point = self.tableView.convertPoint((sender?.locationInView(self.tableView))!, fromView:self.tableView)
             let indexPath = self.tableView.indexPathForRowAtPoint(point)
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! BreweryCell
             let commentsVC = segue.destinationViewController as! CommentViewController

@@ -38,8 +38,15 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
     func loadComments()
     {
         FirebaseConnection.firebaseConnection.COMMENT_REF.childByAppendingPath(brewery.firebaseID).observeEventType(.Value, withBlock: { snapshot in
-        
-            self.commmentsArray = snapshot.value.allObjects 
+            
+            if(snapshot.value is NSNull)
+            {
+                self.commmentsArray = []
+            }
+            else
+            {
+                self.commmentsArray = snapshot.value.allObjects
+            }
             
             self.commentsTableView.reloadData()
             //print(self.commmentsArray)
