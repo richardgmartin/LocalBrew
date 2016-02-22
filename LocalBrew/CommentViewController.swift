@@ -8,25 +8,89 @@
 
 import UIKit
 
-class CommentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CommentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     var brewery:Brewery!
+    var commmentsArray:NSArray = []
+    let username = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String
+    @IBOutlet weak var commentsTableView: UITableView!
 
-    override func viewDidLoad() {
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.loadComments()
+    }
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        //self.navigationItem.title = brewery.name
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+        
+    }
+    
+    
+    func loadComments()
+    {
+        FirebaseConnection.firebaseConnection.COMMENT_REF.childByAppendingPath(brewery.firebaseID).observeEventType(.Value, withBlock: { snapshot in
+        
+            self.commmentsArray = snapshot.value.allObjects 
+            
+            self.commentsTableView.reloadData()
+            //print(self.commmentsArray)
+            
+            
+        
+        })
+        
     }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.commmentsArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCellWithIdentifier("CommentCell")!
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell")
+        let comment = self.commmentsArray[indexPath.row] as? NSDictionary
+        cell?.textLabel?.text = comment?.valueForKey("text") as? String
+        cell?.detailTextLabel?.text = comment?.valueForKey("username") as? String
+       
+        
+        return cell!
+    }
+    
+    
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        FirebaseConnection.firebaseConnection.COMMENT_REF.childByAppendingPath(brewery.firebaseID).childByAutoId().setValue(["text":textField.text!, "username":username!])
+        
+        textField.text = ""
+        
+        self.loadComments()
+        
+        return textField.resignFirstResponder()
+    }
+    
+    
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y -= keyboardSize.height
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y += keyboardSize.height
+        }
     }
     
 }

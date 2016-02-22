@@ -77,6 +77,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                             }
                             self.rootRef.childByAppendingPath("users").childByAppendingPath(auth.uid).setValue(currentUser)
                             self.userDefaults.setValue(auth.uid, forKey: "uid")
+                            self.userDefaults.setValue(currentUsername, forKey: "username")
                             self.performSegueWithIdentifier("fromLogin", sender: nil)
                             }, withCancelBlock: { error in
                                 print(error.description)

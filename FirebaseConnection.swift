@@ -12,6 +12,7 @@ import Firebase
 let BASE_URL = "https://localbrew.firebaseio.com/"
 let _USER_REF = Firebase(url: "\(BASE_URL)/users")
 let _BREWERY_REF = Firebase(url: "\(BASE_URL)/breweries")
+let _COMMENT_REF = Firebase(url: "\(BASE_URL)/comments")
 
 class FirebaseConnection: NSObject
 {
@@ -32,6 +33,11 @@ class FirebaseConnection: NSObject
     var BREWERY_REF:Firebase
     {
         return _BREWERY_REF
+    }
+    
+    var COMMENT_REF:Firebase
+    {
+        return _COMMENT_REF
     }
     
     func createNewAccount(uid: String, user: Dictionary<String, AnyObject>) {

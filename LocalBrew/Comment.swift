@@ -8,6 +8,10 @@
 
 import UIKit
 
-class Comment: NSObject {
+class Comment: NSObject
+{
+    var userID:String!
+    var objectID:String!
+    var text:String!
 
 }
