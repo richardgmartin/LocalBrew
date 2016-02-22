@@ -65,15 +65,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                             let currentName = snapshot.value.objectForKey("name") as? String
                             //print(currentName)
                             let likedBreweries:NSDictionary? = snapshot.value.objectForKey("likedbreweries") as? NSDictionary
+                            let likedBeers:NSDictionary? = snapshot.value.objectForKey("likedbeers") as? NSDictionary
                             var currentUser:Dictionary<String, AnyObject>!
                             
                             if let actualLikedBreweries = likedBreweries
                             {
-                                currentUser = ["provider":auth.provider, "username":currentUsername!, "name":currentName!, "likedbreweries":actualLikedBreweries] as Dictionary<String, AnyObject>
+                                if let actualLikedBeers = likedBeers
+                                {
+                                    currentUser = ["provider":auth.provider, "username":currentUsername!, "name":currentName!, "likedbreweries":actualLikedBreweries, "likedbeers":actualLikedBeers] as Dictionary<String, AnyObject>
+                                }
+                                
+                                else
+                                {
+                                     currentUser = ["provider":auth.provider, "username":currentUsername!, "name":currentName!, "likedbreweries":actualLikedBreweries] as Dictionary<String, AnyObject>
+                                }
                             }
                             else
                             {
-                                currentUser = ["provider":auth.provider, "username":currentUsername!, "name":currentName!] as Dictionary<String, AnyObject>
+                                if let actualLikedBeers = likedBeers
+                                {
+                                    currentUser = ["provider":auth.provider, "username":currentUsername!, "name":currentName!, "likedbeers":actualLikedBeers] as Dictionary<String, AnyObject>
+                                }
+                                    
+                                else
+                                {
+                                    currentUser = ["provider":auth.provider, "username":currentUsername!, "name":currentName!] as Dictionary<String, AnyObject>
+                                }
                             }
                             self.rootRef.childByAppendingPath("users").childByAppendingPath(auth.uid).setValue(currentUser)
                             self.userDefaults.setValue(auth.uid, forKey: "uid")
