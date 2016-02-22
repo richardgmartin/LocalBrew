@@ -9,14 +9,14 @@
 import UIKit
 import CoreLocation
 import Firebase
+import MapKit
 
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, ChangeCityViewControllerDelegate, UIGestureRecognizerDelegate {
 
+    @IBOutlet weak var mapButton: UIButton!
     @IBOutlet weak var logoutButton: UIBarButtonItem!
-    
     @IBOutlet weak var changeCityButton: UIBarButtonItem!
-    
     @IBOutlet weak var tableView: UITableView!
     
     var breweries = [NSDictionary]()
@@ -140,6 +140,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.view.addGestureRecognizer(self.longPress)
         self.view.addGestureRecognizer(self.tap)
+        
+        self.mapButton.tintColor = UIColor.whiteColor()
+        self.mapButton.backgroundColor = UIColor.grayColor()
+        self.mapButton.layer.cornerRadius = 5
+        self.mapButton.layer.borderWidth = 1
+        self.mapButton.layer.borderColor = UIColor.grayColor().CGColor
+        
     
         
     }
@@ -187,9 +194,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     }
                 }
             self.title = self.locality?.capitalizedString
-            //print(self.locality)
-            //print(self.region)
-            //print(self.countryName)
+         
             self.accessBreweryDB()
         })
       
@@ -207,7 +212,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
             do{
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
-               print(localBrew["data"])
                 
                 
                 self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
@@ -374,6 +378,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let commentsVC = segue.destinationViewController as! CommentViewController
             commentsVC.brewery = cell.brewery
         }
+        else if (segue.identifier == "map") {
+            let dvc = segue.destinationViewController as? mapViewController
+            dvc?.title = self.title
+
+
+        }
         
     }
     
@@ -388,4 +398,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.presentViewController(vc!, animated: true, completion: nil)
     }
     
+//    @IBAction func mapToggleButtonTapped(sender: AnyObject) {
+//        if breweryMapView.hidden {
+//            tableView.userInteractionEnabled = true
+//            breweryMapView.hidden = false
+//            tableView.hidden = true
+//            
+//        } else {
+//            breweryMapView.hidden = true
+//            tableView.hidden = false
+//            tableView.userInteractionEnabled = false
+//        }
+//        
+//    }
    }
