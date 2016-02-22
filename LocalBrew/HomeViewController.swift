@@ -329,18 +329,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     // MARK: tableview cell display logic
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         return self.breweries.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
         
         let brewery = breweryObjects[indexPath.row]
         
         if let cell = tableView.dequeueReusableCellWithIdentifier("BreweryCellID") as? BreweryCell {
             cell.configureCell(brewery)
             self.progressHUD.removeFromSuperview()  //remove activity spinner and label
-
             return cell
             
         } else {
@@ -356,7 +357,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let dvc = segue.destinationViewController as? ChangeCityViewController
             dvc!.delegate = self
         }
-       else if(segue.identifier == "toDetailViewController") {
+       else if(segue.identifier == "toDetailViewController")
+        {
             let dvc = segue.destinationViewController as? DetailViewController
              let point = self.tableView.convertPoint(sender!.frame.origin, fromView:sender?.superview)
             let indexPath = self.tableView.indexPathForRowAtPoint(point)
@@ -371,13 +373,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! BreweryCell
             let commentsVC = segue.destinationViewController as! CommentViewController
             commentsVC.brewery = cell.brewery
-            
         }
         
-        
     }
-    
-    
     
     
     

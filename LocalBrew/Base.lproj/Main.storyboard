@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -256,6 +257,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="sbK-Lj-PUP" id="Ash-gR-7xZ"/>
                                     <outlet property="delegate" destination="sbK-Lj-PUP" id="BhV-2O-QpU"/>
+                                    <outletCollection property="gestureRecognizers" destination="IEJ-DA-VxY" appends="YES" id="SAv-0I-bJC"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-GJ-DBr">
@@ -319,6 +321,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Bx-AJ-Kot" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="IEJ-DA-VxY"/>
             </objects>
             <point key="canvasLocation" x="2311.5" y="337"/>
         </scene>
@@ -346,6 +349,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cZN-Uy-2ce">
+                                                    <rect key="frame" x="15" y="1" width="34" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -355,6 +359,7 @@
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QKn-aJ-nbg">
+                                                    <rect key="frame" x="15" y="22" width="59" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -410,10 +415,10 @@
                                 <exclude reference="dn9-5d-jw2"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="MSA-fi-5co"/>
                                 <exclude reference="P6B-s0-0iK"/>
                                 <exclude reference="XSQ-aH-7yJ"/>
                                 <exclude reference="m7s-hr-Fjc"/>
-                                <exclude reference="MSA-fi-5co"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -422,10 +427,10 @@
                                 <include reference="dn9-5d-jw2"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="MSA-fi-5co"/>
                                 <include reference="P6B-s0-0iK"/>
                                 <include reference="XSQ-aH-7yJ"/>
                                 <include reference="m7s-hr-Fjc"/>
-                                <include reference="MSA-fi-5co"/>
                             </mask>
                         </variation>
                     </view>
