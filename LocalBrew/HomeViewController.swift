@@ -37,6 +37,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var longPress = UILongPressGestureRecognizer()
     var tap = UITapGestureRecognizer()
     
+    let defaultCity = "new york"
+    let defaultState = "new york"
+    let defaultCountry = "us"
+    
     let nameAbbreviations: [String:String] = [
         "AL":"alabama",
         "AK":"alaska",
@@ -116,10 +120,34 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.automaticallyAdjustsScrollViewInsets = false
         
         
-        
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        
+        if CLLocationManager.authorizationStatus() == .NotDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        }
+        
+        if CLLocationManager.authorizationStatus() == .Denied {
+            
+            let alertController = UIAlertController(title: "Oops. There was a problem.", message: "There was something wrong with the city information you provided. Try again or change the selected city.", preferredStyle: .Alert)
+            
+            
+            let OKAction = UIAlertAction(title: "Try Again", style: .Default) { (action) in
+                
+                // redirect user back to ChangeCityViewController to choose another city
+                self.changeCity()
+                
+            }
+            alertController.addAction(OKAction)
+            
+            self.presentViewController(alertController, animated: true) {
+                
+            }
+        }
+        
+        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+        }
+        
         
         // set delegate relationship with ChangeCityViewController
         
@@ -143,6 +171,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
         
     }
+    
+    
    
     // MARK : - Location manager delogates
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -175,7 +205,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.countryName = "ca"
             }
             
-           // print(placemarkRegion)
             
 //              var key = placemark?.administrativeArea
                 for (key,value) in self.nameAbbreviations
@@ -187,9 +216,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     }
                 }
             self.title = self.locality?.capitalizedString
-            //print(self.locality)
-            //print(self.region)
-            //print(self.countryName)
+    
             self.accessBreweryDB()
         })
       
@@ -200,23 +227,51 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         // MARK: logic to import breweryDB data
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=324f8ff71fe7f84fab3655aeab07f01c")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=6f75023f91495f22253de067b9136d1d")
         
         let session = NSURLSession.sharedSession()
         
         let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
             do{
+                
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
-               print(localBrew["data"])
                 
+                // MARK: check to see if user has selected city with a brewery or has entered bad data
                 
-                self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
-                for dict: NSDictionary in self.breweries
-                {
-                    let breweryObject: Brewery = Brewery(dataDictionary: dict)
-                    self.breweryObjects.append(breweryObject)
+                if localBrew["data"] == nil {
+                    print("Ooops, localBrew is empty")
+                    
+                    let alertController = UIAlertController(title: "Oops. There was a problem.", message: "There was something wrong with the city information you provided. Try again or change the selected city.", preferredStyle: .Alert)
+                    
+                    
+                    let OKAction = UIAlertAction(title: "Try Again", style: .Default) { (action) in
+                        
+                        // redirect user back to ChangeCityViewController to choose another city
+                        self.changeCity()
+                        
+                    }
+                    alertController.addAction(OKAction)
+                    
+                    self.presentViewController(alertController, animated: true) {
+
+                    }
                 }
+                else {
+                    print("Good to go: localBrew is not empty")
+                    
+                    self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
+                    
+                    for dict: NSDictionary in self.breweries
+                    {
+                        let breweryObject: Brewery = Brewery(dataDictionary: dict)
+                        self.breweryObjects.append(breweryObject)
+                    }
+
+                }
+                print(localBrew["data"])
+                
             }
+            
             catch let error as NSError{
                
             }
@@ -228,6 +283,68 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         task.resume()
         
     }
+    
+    func accessDefaultBreweryDB()
+    {
+        // MARK: logic to import breweryDB data
+        
+        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.defaultCity)&region=\(self.defaultState)&countryIsoCode=\(self.defaultCountry)&key=6f75023f91495f22253de067b9136d1d")
+        
+        let session = NSURLSession.sharedSession()
+        
+        let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
+            do{
+                
+                let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
+                
+                // MARK: check to see if user has selected city with a brewery or has entered bad data
+                
+                if localBrew["data"] == nil {
+                    print("Ooops, localBrew is empty")
+                    
+                    let alertController = UIAlertController(title: "Oops. There was a problem.", message: "There was something wrong with the city information you provided. Try again or change the selected city.", preferredStyle: .Alert)
+                    
+                    
+                    let OKAction = UIAlertAction(title: "Try Again", style: .Default) { (action) in
+                        
+                        // redirect user back to ChangeCityViewController to choose another city
+                        self.changeCity()
+                        
+                    }
+                    alertController.addAction(OKAction)
+                    
+                    self.presentViewController(alertController, animated: true) {
+                        
+                    }
+                }
+                else {
+                    print("Good to go: localBrew is not empty")
+                    
+                    self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
+                    
+                    for dict: NSDictionary in self.breweries
+                    {
+                        let breweryObject: Brewery = Brewery(dataDictionary: dict)
+                        self.breweryObjects.append(breweryObject)
+                    }
+                    
+                }
+                print(localBrew["data"])
+                
+            }
+                
+            catch let error as NSError{
+                
+            }
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+                
+            })
+        }
+        task.resume()
+        
+    }
+
 
     func setCurrentUser()
     {
@@ -261,7 +378,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             self.locality = cleanCity
             
-            
             // clean incoming region/state/province string
             
             self.givenState = didChangeRegion
@@ -269,7 +385,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let cleanState = removeBlanksState.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
             
             self.region = cleanState
-            
             
             // clean incoming country string
             
@@ -309,8 +424,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
         }
         
-        
-        
+    }
+    
+    func changeCity()
+    {
+        self.performSegueWithIdentifier("changeCity", sender: self.view)
+
     }
     
     @IBAction func handleTap(recognizer:UIGestureRecognizer)
