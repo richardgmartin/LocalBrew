@@ -42,6 +42,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var longPress = UILongPressGestureRecognizer()
     var tap = UITapGestureRecognizer()
     
+    let defaultCity = "chicago"
+    let defaultState = "illinois"
+    let defaultCountry = "us"
+    
     let nameAbbreviations: [String:String] = [
         "AL":"alabama",
         "AK":"alaska",
@@ -123,14 +127,42 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
          self.mapSegmentControl.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
         self.mapSegmentControl.backgroundColor = UIColor.whiteColor()
         
-        
-        
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-        // set delegate relationship with ChangeCityViewController
         
+        if CLLocationManager.authorizationStatus() == .NotDetermined {
+            locationManager.requestWhenInUseAuthorization()
+            while CLLocationManager.authorizationStatus() == .NotDetermined {
+                // wait until user provides response
+            }
+            if CLLocationManager.authorizationStatus() == .Denied {
+                
+                let alertController = UIAlertController(title: "Oops. There was a problem.", message: "There was something wrong with the city information you provided. Try again or change the selected city.", preferredStyle: .Alert)
+                
+                
+                let OKAction = UIAlertAction(title: "Try Again", style: .Default) { (action) in
+                    
+                    // redirect user back to ChangeCityViewController to choose another city
+                    self.changeCity()
+                    
+                }
+                alertController.addAction(OKAction)
+                
+                self.presentViewController(alertController, animated: true) {
+                    
+                }
+            }
+            
+            if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+                locationManager.startUpdatingLocation()
+            }
+            
+        }
+        
+
+        // set delegate relationship with ChangeCityViewController
         changeCityController?.delegate = self
         
         //add activity spinner and label
@@ -139,7 +171,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // All done!
         
-        
+        self.view.backgroundColor = UIColor.blackColor()
         
         self.longPress.addTarget(self, action: "showBreweryComments:")
         self.longPress.minimumPressDuration = 0.5
@@ -185,7 +217,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.countryName = "ca"
             }
             
-            // print(placemarkRegion)
             
             //              var key = placemark?.administrativeArea
             for (key,value) in self.nameAbbreviations
@@ -214,16 +245,45 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
             do{
+                
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
                 
+                // MARK: check to see if user has selected city with a brewery or has entered bad data
                 
-                self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
-                for dict: NSDictionary in self.breweries
-                {
-                    let breweryObject: Brewery = Brewery(dataDictionary: dict)
-                    self.breweryObjects.append(breweryObject)
+                if localBrew["data"] == nil {
+                    print("Ooops, localBrew is empty")
+                    
+                    let alertController = UIAlertController(title: "Oops. There was a problem.", message: "There was something wrong with the city information you provided. Try again or change the selected city.", preferredStyle: .Alert)
+                    
+                    
+                    let OKAction = UIAlertAction(title: "Try Again", style: .Default) { (action) in
+                        
+                        // redirect user back to ChangeCityViewController to choose another city
+                        self.changeCity()
+                        
+                    }
+                    alertController.addAction(OKAction)
+                    
+                    self.presentViewController(alertController, animated: true) {
+
+                    }
                 }
+                else {
+                    print("Good to go: localBrew is not empty")
+                    
+                    self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
+                    
+                    for dict: NSDictionary in self.breweries
+                    {
+                        let breweryObject: Brewery = Brewery(dataDictionary: dict)
+                        self.breweryObjects.append(breweryObject)
+                    }
+
+                }
+                print(localBrew["data"])
+                
             }
+            
             catch let error as NSError{
                 
             }
@@ -236,6 +296,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
+    
+
     func setCurrentUser()
     {
         FirebaseConnection.firebaseConnection.CURRENT_USER_REF.observeSingleEventOfType(.Value, withBlock: { snapshot in
@@ -269,7 +331,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             self.locality = cleanCity
             
-            
             // clean incoming region/state/province string
             
             self.givenState = didChangeRegion
@@ -277,7 +338,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let cleanState = removeBlanksState.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
             
             self.region = cleanState
-            
             
             // clean incoming country string
             
@@ -317,8 +377,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
         }
         
-        
-        
+    }
+    
+    func changeCity()
+    {
+        self.performSegueWithIdentifier("changeCity", sender: self.view)
+
     }
     
     @IBAction func handleTap(recognizer:UIGestureRecognizer)
