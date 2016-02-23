@@ -135,7 +135,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                     self.beerList = (brewList.objectForKey("data") as? [NSDictionary])!
                     for dict: NSDictionary in self.beerList
                     {
-                        let beerObject: Beer = Beer(beerDataDictionary: dict)
+                        let beerObject: Beer = Beer(beerDataDictionary: dict, beerBrewery: self.breweryDetail)
                         self.beerObjects.append(beerObject)
                     }
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
