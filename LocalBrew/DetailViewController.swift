@@ -96,7 +96,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
         accessDBBeerList()
         
-//        self.view.addSubview(progressHUD)
+        self.view.addSubview(progressHUD)
     }
 
 
