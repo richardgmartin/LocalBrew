@@ -214,7 +214,7 @@
                                     <action selector="onCallButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="U69-sb-kCl"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-GJ-DBr">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-GJ-DBz">
                                 <rect key="frame" x="399" y="99" width="46" height="30"/>
                                 <state key="normal" title="Website"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
@@ -222,7 +222,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="onWebsiteButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="c8v-gt-n6J"/>
-                                    <segue destination="FbL-aH-l2a" kind="show" id="Kzy-la-UTe"/>
+                                    <segue destination="FbL-aH-l2a" kind="show" id="Kzy-la-UTi"/>
                                 </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="daV-Ax-20k">
@@ -430,14 +430,14 @@
                                     <outlet property="delegate" destination="sbK-Lj-PUP" id="BhV-2O-QpU"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-GJ-DBr">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-GJ-DBe">
                                 <rect key="frame" x="399" y="99" width="46" height="30"/>
                                 <state key="normal" title="Website"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="282" y="134" width="75" height="30"/>
                                 </variation>
                                 <connections>
-                                    <action selector="onWebsiteButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="c8v-gt-n6J"/>
+                                    <action selector="onWebsiteButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="c8v-gt-n6H"/>
                                     <segue destination="FbL-aH-l2a" kind="show" identifier="toWebsite" id="Kzy-la-UTe"/>
                                 </connections>
                             </button>
@@ -496,7 +496,6 @@
                         <outlet property="breweryIconImageView" destination="5fh-7p-cCy" id="tzL-Va-Akn"/>
                         <outlet property="breweryLikeButton" destination="KFn-z1-Uda" id="xDU-Yr-bfy"/>
                         <outlet property="breweryPhoneNumberButton" destination="tnf-j6-vde" id="hs3-LQ-6mf"/>
-                        <outlet property="breweryWebsiteButton" destination="wF3-GJ-DBr" id="b2E-Ft-XTb"/>
                         <outlet property="mapView" destination="daV-Ax-20k" id="Ndn-Wv-EZ4"/>
                         <outlet property="sorryNoBeerLabel" destination="rPd-xm-fhA" id="h9j-69-P8z"/>
                         <outlet property="tableView" destination="hX9-8W-Qo4" id="mmd-eY-UrJ"/>
@@ -1115,6 +1114,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="YuJ-4B-xS7"/>
+        <segue reference="Kzy-la-UTi"/>
         <segue reference="dI1-xd-hxN"/>
     </inferredMetricsTieBreakers>
 </document>
