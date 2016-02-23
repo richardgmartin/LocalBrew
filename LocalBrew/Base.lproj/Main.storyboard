@@ -214,6 +214,17 @@
                                     <action selector="onCallButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="U69-sb-kCl"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-GJ-DBr">
+                                <rect key="frame" x="399" y="99" width="46" height="30"/>
+                                <state key="normal" title="Website"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="282" y="134" width="75" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="onWebsiteButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="c8v-gt-n6J"/>
+                                    <segue destination="FbL-aH-l2a" kind="show" id="Kzy-la-UTe"/>
+                                </connections>
+                            </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="daV-Ax-20k">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
@@ -420,23 +431,21 @@
                                     <outletCollection property="gestureRecognizers" destination="IEJ-DA-VxY" appends="YES" id="SAv-0I-bJC"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-GJ-DBr">
-                                <rect key="frame" x="399" y="99" width="46" height="30"/>
-                                <state key="normal" title="Website"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="282" y="134" width="75" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="onWebsiteButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="c8v-gt-n6J"/>
-                                    <segue destination="FbL-aH-l2a" kind="show" id="Kzy-la-UTe"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fh-7p-cCy">
                                 <rect key="frame" x="20" y="64" width="100" height="100"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="7" y="64" width="100" height="100"/>
                                 </variation>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry No Beers Listed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPd-xm-fhA">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="100" y="422" width="200" height="50"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -445,6 +454,7 @@
                                 <exclude reference="moJ-Wp-YtC"/>
                                 <exclude reference="tnf-j6-vde"/>
                                 <exclude reference="daV-Ax-20k"/>
+                                <exclude reference="rPd-xm-fhA"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -452,6 +462,7 @@
                                 <include reference="moJ-Wp-YtC"/>
                                 <include reference="tnf-j6-vde"/>
                                 <include reference="daV-Ax-20k"/>
+                                <include reference="rPd-xm-fhA"/>
                             </mask>
                         </variation>
                     </view>
@@ -477,6 +488,7 @@
                         <outlet property="breweryPhoneNumberButton" destination="tnf-j6-vde" id="hs3-LQ-6mf"/>
                         <outlet property="breweryWebsiteButton" destination="wF3-GJ-DBr" id="b2E-Ft-XTb"/>
                         <outlet property="mapView" destination="daV-Ax-20k" id="Ndn-Wv-EZ4"/>
+                        <outlet property="sorryNoBeerLabel" destination="rPd-xm-fhA" id="h9j-69-P8z"/>
                         <outlet property="tableView" destination="hX9-8W-Qo4" id="mmd-eY-UrJ"/>
                     </connections>
                 </viewController>

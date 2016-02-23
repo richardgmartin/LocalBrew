@@ -12,7 +12,6 @@ class WebsiteViewController: UIViewController {
     @IBOutlet weak var webView: UIWebView!
     
     var breweryDetail: Brewery!
-    let progressHUD = ProgressHUD(text: "Brewing")
 
 
     override func viewDidLoad() {
@@ -21,7 +20,6 @@ class WebsiteViewController: UIViewController {
         let url = NSURL (string: "\(self.breweryDetail.website!)")
         let requestObj = NSURLRequest(URL: url!)
         self.webView.loadRequest(requestObj)
-        self.webView.addSubview(progressHUD)
     }
 
 }

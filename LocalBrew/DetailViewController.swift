@@ -20,6 +20,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var addressLabelField: UILabel!
     @IBOutlet weak var breweryDirectionsButton: UIButton!
     @IBOutlet weak var breweryWebsiteButton: UIButton!
+    @IBOutlet weak var sorryNoBeerLabel: UILabel!
     
     var breweryDetail: Brewery!
     var breweryDestination = MKMapItem()
@@ -53,6 +54,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         self.breweryWebsiteButton.layer.borderWidth = 1
         self.breweryWebsiteButton.layer.borderColor = UIColor.blackColor().CGColor
         
+        self.tableView.hidden = true
+        self.sorryNoBeerLabel.hidden = true
         
         
         let likedBreweryRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries")
@@ -104,7 +107,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     func accessDBBeerList()
     {
         // MARK: logic to import breweryDB data
-        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(self.breweryDetail.breweryID)/beers?key=6f75023f91495f22253de067b9136d1d")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(self.breweryDetail.breweryID)/beers?key=324f8ff71fe7f84fab3655aeab07f01c")
         
         let session = NSURLSession.sharedSession()
         
@@ -129,18 +132,24 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                     self.presentViewController(alertController, animated: true) {
                         
                     }
-                } else
-                {
+                    self.tableView.hidden = true
+                    self.sorryNoBeerLabel.hidden = false
+                } else {
                     print("Hey, this place has beer!")
                     self.beerList = (brewList.objectForKey("data") as? [NSDictionary])!
+                    self.tableView.hidden = false
+                    self.sorryNoBeerLabel.hidden = true
                     for dict: NSDictionary in self.beerList
                     {
                         let beerObject: Beer = Beer(beerDataDictionary: dict, beerBrewery: self.breweryDetail)
                         self.beerObjects.append(beerObject)
                     }
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.view.addSubview(self.progressHUD)
                         self.tableView.reloadData()
+
+                        
+                        
+
 
                     })
                 }
