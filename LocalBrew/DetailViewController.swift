@@ -16,7 +16,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var breweryIconImageView: UIImageView!
     @IBOutlet weak var breweryPhoneNumberButton: UIButton!
     @IBOutlet weak var breweryLikeButton: UIButton!
-    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var addressLabelField: UILabel!
     @IBOutlet weak var breweryDirectionsButton: UIButton!
@@ -29,7 +28,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     var beerObjects = [Beer]()
     let progressHUD = ProgressHUD(text: "Brewing")
     let userDefaults = NSUserDefaults.standardUserDefaults()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -206,8 +204,9 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     
+    
     @IBAction func onWebsiteButtonPressed(sender: UIButton) {
-                
+        
         
     }
     
@@ -224,12 +223,12 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
         let phoneNumber = self.breweryDetail.phoneNumber
         
-            let aURL = NSURL(string: "telprompt://\(phoneNumber)")
-            if UIApplication.sharedApplication().canOpenURL(aURL!) {
-                UIApplication.sharedApplication().openURL(aURL!)
-            } else {
-                print("error")
-            }
+        let aURL = NSURL(string: "telprompt://\(phoneNumber)")
+        if UIApplication.sharedApplication().canOpenURL(aURL!) {
+            UIApplication.sharedApplication().openURL(aURL!)
+        } else {
+            print("error")
+        }
     }
     
     
@@ -256,25 +255,28 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     
+   
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return beerObjects.count
         
     }
-        func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let beer = beerObjects[indexPath.row]
-
+        
         
         if let cell = tableView.dequeueReusableCellWithIdentifier("BeerCellID") as? BeerCell{
-            cell.configureCell(beer)
+            cell.configureCell(beer, beerBrewery: self.breweryDetail)
             self.progressHUD.removeFromSuperview()
             return cell
             
         } else {
             return BeerCell()
         }
-    
+        
     }
-
+    
 }

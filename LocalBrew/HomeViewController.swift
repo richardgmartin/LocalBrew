@@ -497,11 +497,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func onLogoutButtonPressed(sender: UIBarButtonItem)
     {
-        FirebaseConnection.firebaseConnection.CURRENT_USER_REF.unauth()
-        self.userDefaults.setValue(nil, forKey: "uid")
-        // Return to login screen
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("login")
-        self.presentViewController(vc!, animated: true, completion: nil)
+        let logoutAlert = UIAlertController(title: "Logout?", message: "Are you sure you want to logout", preferredStyle: .Alert)
+        
+        let logoutAction = UIAlertAction(title: "Logout", style: .Default) { (action) -> Void in
+            
+            FirebaseConnection.firebaseConnection.CURRENT_USER_REF.unauth()
+            self.userDefaults.setValue(nil, forKey: "uid")
+            // Return to login screen
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("login")
+            self.presentViewController(vc!, animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        logoutAlert.addAction(logoutAction)
+        logoutAlert.addAction(cancelAction)
+        
+        self.presentViewController(logoutAlert, animated: true, completion: nil)
     }
     
     func dropPinForLocation(brewery: Brewery)

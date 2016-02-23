@@ -35,10 +35,6 @@ class BreweryCell: UITableViewCell {
         //self.breweryLikeLabel.text = "15 Likes"
         self.breweryImageView.image = brewery.breweryImageIcon
 
-
-
-        
-        
         
         if brewery.firebaseID == nil
         {
