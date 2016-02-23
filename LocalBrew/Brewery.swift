@@ -29,7 +29,7 @@ class Brewery {
     var breweryImageSquareMedium: UIImage?
     var breweryImageLarge: UIImage?
     var phoneNumber: String
-
+    var beers:[Beer]!
 
     
     

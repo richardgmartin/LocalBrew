@@ -200,14 +200,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         // MARK: logic to import breweryDB data
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=324f8ff71fe7f84fab3655aeab07f01c")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=6f75023f91495f22253de067b9136d1d")
         
         let session = NSURLSession.sharedSession()
         
         let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
             do{
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
-               print(localBrew["data"])
+               //print(localBrew["data"])
                 
                 
                 self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
@@ -382,11 +382,30 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func onLogoutButtonPressed(sender: UIBarButtonItem)
     {
-        FirebaseConnection.firebaseConnection.CURRENT_USER_REF.unauth()
-        self.userDefaults.setValue(nil, forKey: "uid")
-         // Return to login screen
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("login")
-        self.presentViewController(vc!, animated: true, completion: nil)
+        let logoutAlert = UIAlertController(title: "Logout?", message: "Are you sure you want to logout", preferredStyle: .Alert)
+        
+        let logoutAction = UIAlertAction(title: "Logout", style: .Default) { (action) -> Void in
+            
+            FirebaseConnection.firebaseConnection.CURRENT_USER_REF.unauth()
+            self.userDefaults.setValue(nil, forKey: "uid")
+            // Return to login screen
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("login")
+            self.presentViewController(vc!, animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        logoutAlert.addAction(logoutAction)
+        logoutAlert.addAction(cancelAction)
+        
+        self.presentViewController(logoutAlert, animated: true, completion: nil)
+        
+        
+        
+        
+        
+        
+       
     }
     
    }

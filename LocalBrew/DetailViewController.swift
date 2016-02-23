@@ -16,7 +16,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var breweryIconImageView: UIImageView!
     @IBOutlet weak var breweryPhoneNumberButton: UIButton!
     @IBOutlet weak var breweryLikeButton: UIButton!
-    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var addressLabelField: UILabel!
     @IBOutlet weak var breweryDirectionsButton: UIButton!
@@ -29,7 +28,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     var beerObjects = [Beer]()
     let progressHUD = ProgressHUD(text: "Brewing")
     let userDefaults = NSUserDefaults.standardUserDefaults()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +96,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
         accessDBBeerList()
         
-        self.view.addSubview(progressHUD)        
+        self.view.addSubview(progressHUD)
     }
 
 
@@ -106,7 +104,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     func accessDBBeerList()
     {
         // MARK: logic to import breweryDB data
-        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(self.breweryDetail.breweryID)/beers?key=324f8ff71fe7f84fab3655aeab07f01c")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(self.breweryDetail.breweryID)/beers?key=6f75023f91495f22253de067b9136d1d")
         
         let session = NSURLSession.sharedSession()
         
@@ -117,13 +115,17 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
 
                 
                 self.beerList = (brewList.objectForKey("data") as? [NSDictionary])!
-                for dict: NSDictionary in self.beerList {
-                    let beerObject: Beer = Beer(beerDataDictionary: dict)
+                for dict: NSDictionary in self.beerList
+                {
+                    
+                    let beerObject: Beer = Beer(beerDataDictionary: dict, beerBrewery: self.breweryDetail)
                     self.beerObjects.append(beerObject)
 
                 }
+                
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.tableView.reloadData()
+                self.tableView.reloadData()
+                    
                 })
             }
             catch let error as NSError{
@@ -144,33 +146,6 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
         return pin
     
 }
-
-
-//    @IBAction func addBeerOnButtonTapped(sender: AnyObject) {
-//        
-//        addFavoriteBeer()
-//        
-//    }
-//
-//
-//    func addFavoriteBeer() {
-//        let addBeer = UIAlertController(title: "Add your favorite Beer!", message: nil, preferredStyle: .Alert)
-//        addBeer.addTextFieldWithConfigurationHandler(nil)
-//        
-//        let submitAction = UIAlertAction(title: "Submit", style: .Default) { [unowned self, addBeer](action: UIAlertAction!) in
-//            let answer = addBeer.textFields![0].text
-//            let favoriteBeer = FavoriteBeer(name: answer!, favorite: 0)
-//            self.favoriteBeerObjects.append(favoriteBeer)
-//             self.tableView.reloadData()
-//        }
-//        addBeer.addAction(submitAction)
-//        
-//        presentViewController(addBeer, animated: true, completion: nil)
-//        
-//       
-//        
-//    }
-    
     
     
     func likeBrewery()
@@ -213,8 +188,9 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
     }
     
     
+    
     @IBAction func onWebsiteButtonPressed(sender: UIButton) {
-                
+        
         
     }
     
@@ -231,12 +207,12 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
         
         let phoneNumber = self.breweryDetail.phoneNumber
         
-            let aURL = NSURL(string: "telprompt://\(phoneNumber)")
-            if UIApplication.sharedApplication().canOpenURL(aURL!) {
-                UIApplication.sharedApplication().openURL(aURL!)
-            } else {
-                print("error")
-            }
+        let aURL = NSURL(string: "telprompt://\(phoneNumber)")
+        if UIApplication.sharedApplication().canOpenURL(aURL!) {
+            UIApplication.sharedApplication().openURL(aURL!)
+        } else {
+            print("error")
+        }
     }
     
     
@@ -263,25 +239,28 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
     }
     
     
+   
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return beerObjects.count
         
     }
-        func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let beer = beerObjects[indexPath.row]
-
+        
         
         if let cell = tableView.dequeueReusableCellWithIdentifier("BeerCellID") as? BeerCell{
-            cell.configureCell(beer)
+            cell.configureCell(beer, beerBrewery: self.breweryDetail)
             self.progressHUD.removeFromSuperview()
             return cell
             
         } else {
             return BeerCell()
         }
-    
+        
     }
-
+    
 }

@@ -54,6 +54,19 @@ class FirebaseConnection: NSObject
         brewery.firebaseID = firebaseID.key
     }
     
+    func createNewBeer(brewery:Brewery, beer:Beer)
+    {
+        let dict = ["beerID":beer.beerID, "name":beer.beerName, "numberOfLikes":0]
+        
+        let firebaseID = BREWERY_REF.childByAppendingPath(brewery.firebaseID).childByAppendingPath("beers").childByAutoId()
+       
+        firebaseID.setValue(dict)
+        beer.firebaseID = firebaseID.key
+    
+    }
+    
+    
+    
     var CURRENT_USER_REF: Firebase
     {
 

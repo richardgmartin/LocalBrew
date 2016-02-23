@@ -13,24 +13,30 @@ class Beer {
 
     var beerName: String
     var beerImageIcon: UIImage?
-    var style: String
-
+    var style: String?
+    var beerID: String!
+    var firebaseID: String?
+    var brewery:Brewery!
 
     
-
-    
-    init(beerDataDictionary: NSDictionary) {
+    init(beerDataDictionary: NSDictionary, beerBrewery:Brewery) {
         
 
         let styleDictionary = beerDataDictionary["style"]
         
+        
+        beerID = beerDataDictionary["id"] as! String
         beerName = beerDataDictionary["name"] as! String
+        self.brewery = beerBrewery
         
 
         
-        if let style = styleDictionary?["name"] as? String {
+        if let style = styleDictionary?["name"] as? String
+        {
             self.style = style
-        } else {
+        }
+        else
+        {
             self.style = "Sorry, The style is not available"
         }
         
@@ -48,10 +54,29 @@ class Beer {
                 }
             }
         
-        } else {
+        }
+        else
+        {
             self.beerImageIcon = UIImage(named: "Beer")
         }
+        
+       
+        let beerRef = FirebaseConnection.firebaseConnection.BREWERY_REF.childByAppendingPath(self.brewery.firebaseID).childByAppendingPath("beers")
+        
+        beerRef.queryOrderedByChild("beerID").queryEqualToValue(self.beerID).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+            if !snapshot.children.allObjects.isEmpty
+            {
+                let firebaseKey = snapshot.children.allObjects[0].key as String!
+                self.firebaseID = firebaseKey
+            }
+            
+        })
+        
+        
     }
+    
+    
     
     
 }
