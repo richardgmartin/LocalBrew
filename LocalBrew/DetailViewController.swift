@@ -106,7 +106,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     func accessDBBeerList()
     {
         // MARK: logic to import breweryDB data
-        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(self.breweryDetail.breweryID)/beers?key=324f8ff71fe7f84fab3655aeab07f01c")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(self.breweryDetail.breweryID)/beers?key=6f75023f91495f22253de067b9136d1d")
         
         let session = NSURLSession.sharedSession()
         
@@ -144,33 +144,6 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
         return pin
     
 }
-
-
-//    @IBAction func addBeerOnButtonTapped(sender: AnyObject) {
-//        
-//        addFavoriteBeer()
-//        
-//    }
-//
-//
-//    func addFavoriteBeer() {
-//        let addBeer = UIAlertController(title: "Add your favorite Beer!", message: nil, preferredStyle: .Alert)
-//        addBeer.addTextFieldWithConfigurationHandler(nil)
-//        
-//        let submitAction = UIAlertAction(title: "Submit", style: .Default) { [unowned self, addBeer](action: UIAlertAction!) in
-//            let answer = addBeer.textFields![0].text
-//            let favoriteBeer = FavoriteBeer(name: answer!, favorite: 0)
-//            self.favoriteBeerObjects.append(favoriteBeer)
-//             self.tableView.reloadData()
-//        }
-//        addBeer.addAction(submitAction)
-//        
-//        presentViewController(addBeer, animated: true, completion: nil)
-//        
-//       
-//        
-//    }
-    
     
     
     func likeBrewery()

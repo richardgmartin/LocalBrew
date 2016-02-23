@@ -12,9 +12,11 @@ import Firebase
 import MapKit
 
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, ChangeCityViewControllerDelegate, UIGestureRecognizerDelegate {
-
-    @IBOutlet weak var mapButton: UIButton!
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, ChangeCityViewControllerDelegate, UIGestureRecognizerDelegate, MKMapViewDelegate {
+    @IBOutlet weak var mapSegmentControl: UISegmentedControl!
+    
+    @IBOutlet weak var mapView: MKMapView!
+    
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     @IBOutlet weak var changeCityButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
@@ -26,7 +28,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var locality: String?
     var region: String?
     var countryName: String?
-    
+    var averageLatitude: Double = 0
+    var averageLongitude: Double = 0
+    let centerAnnotation = MKPointAnnotation()
+    var annotations = [MKPointAnnotation]()
     var givenCity: String?
     var givenState: String?
     var givenCountry: String?
@@ -100,7 +105,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         "QC":"quebec",
         "ON":"ontario"]
     
-
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -115,6 +120,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationController?.navigationBar.translucent = false
         self.automaticallyAdjustsScrollViewInsets = false
         
+         self.mapSegmentControl.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
+        self.mapSegmentControl.backgroundColor = UIColor.whiteColor()
+        
         
         
         locationManager.delegate = self
@@ -125,13 +133,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         changeCityController?.delegate = self
         
-       //add activity spinner and label
+        //add activity spinner and label
         self.view.addSubview(progressHUD)
-
-
+        
+        
         // All done!
         
-        self.view.backgroundColor = UIColor.blackColor()
         
         
         self.longPress.addTarget(self, action: "showBreweryComments:")
@@ -141,16 +148,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.view.addGestureRecognizer(self.longPress)
         self.view.addGestureRecognizer(self.tap)
         
-        self.mapButton.tintColor = UIColor.whiteColor()
-        self.mapButton.backgroundColor = UIColor.grayColor()
-        self.mapButton.layer.cornerRadius = 5
-        self.mapButton.layer.borderWidth = 1
-        self.mapButton.layer.borderColor = UIColor.grayColor().CGColor
+        self.mapView.hidden = true
         
-    
+        self.mapSegmentControl.selectedSegmentIndex == 0
+        
+
+        
+
         
     }
-   
+    
     // MARK : - Location manager delogates
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first
@@ -167,10 +174,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks:[CLPlacemark]?, error:NSError?) -> Void in
-        
+            
             let placemark = placemarks?.first
-            let address = "\(placemark!.locality!) \(placemark!.administrativeArea!) \(placemark!.country!)"
-
+            _ = "\(placemark!.locality!) \(placemark!.administrativeArea!) \(placemark!.country!)"
+            
             
             self.locality = String(UTF8String: (placemark?.locality)!)!
             let placemarkRegion = String(UTF8String: placemark!.administrativeArea!)!
@@ -182,22 +189,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.countryName = "ca"
             }
             
-           // print(placemarkRegion)
+            // print(placemarkRegion)
             
-//              var key = placemark?.administrativeArea
-                for (key,value) in self.nameAbbreviations
+            //              var key = placemark?.administrativeArea
+            for (key,value) in self.nameAbbreviations
+            {
+                if key == placemarkRegion
                 {
-                    if key == placemarkRegion
-                    {
-                        self.region = value
-                        //print(value)
-                    }
+                    self.region = value
+                    //print(value)
                 }
+            }
             self.title = self.locality?.capitalizedString
-         
+            
             self.accessBreweryDB()
         })
-      
+        
         
     }
     
@@ -205,7 +212,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         // MARK: logic to import breweryDB data
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=324f8ff71fe7f84fab3655aeab07f01c")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=6f75023f91495f22253de067b9136d1d")
         
         let session = NSURLSession.sharedSession()
         
@@ -222,7 +229,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
             catch let error as NSError{
-               
+                
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
@@ -232,7 +239,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         task.resume()
         
     }
-
+    
     func setCurrentUser()
     {
         FirebaseConnection.firebaseConnection.CURRENT_USER_REF.observeSingleEventOfType(.Value, withBlock: { snapshot in
@@ -249,7 +256,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
-
+    
     // MARK: change user location delegate method
     
     func changeLocation(controller: ChangeCityViewController, didChangeCity: String, didChangeRegion: String, didChangeCountry: String) {
@@ -308,7 +315,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.breweryObjects = []
                 
                 self.tableView.reloadData()
-
+                
             })
             
         }
@@ -330,9 +337,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-        
+    
     // MARK: tableview cell display logic
-
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return self.breweries.count
@@ -353,7 +360,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
     }
-
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
@@ -373,7 +380,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         else if (segue.identifier == "toCommentViewController")
         {
-           let point = self.tableView.convertPoint((sender?.locationInView(self.tableView))!, fromView:self.tableView)
+            let point = self.tableView.convertPoint((sender?.locationInView(self.tableView))!, fromView:self.tableView)
             let indexPath = self.tableView.indexPathForRowAtPoint(point)
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! BreweryCell
             let commentsVC = segue.destinationViewController as! CommentViewController
@@ -382,34 +389,105 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         else if (segue.identifier == "map") {
             let dvc = segue.destinationViewController as? mapViewController
             dvc?.title = self.title
-
-
+            dvc?.breweryObjects = self.breweryObjects
+            
         }
         
     }
     
-    
+    @IBAction func mapSegmentControlTapped(sender: AnyObject) {
+        
+        
+        if (self.mapSegmentControl.selectedSegmentIndex == 0) {
+            
+            // add annotations to mapView by looping through the array
+            for brewery in self.breweryObjects
+            {
+                
+                self.dropPinForLocation(brewery)
+                
+                self.averageLatitude = self.averageLatitude + brewery.latitude
+                self.averageLongitude = self.averageLongitude + brewery.longitude
+            }
+            self.averageLatitude = self.averageLatitude / Double(self.breweryObjects.count)
+            self.averageLongitude = self.averageLongitude / Double(self.breweryObjects.count)
+            self.centerAnnotation.coordinate = CLLocationCoordinate2DMake(self.averageLatitude, self.averageLongitude)
+            self.mapView.setRegion(MKCoordinateRegionMake(self.centerAnnotation.coordinate, MKCoordinateSpanMake(0.5, 0.5)), animated: true)
+            
+            self.mapView.hidden = true
+            self.tableView.hidden = false
+            
+        } else if (self.mapSegmentControl.selectedSegmentIndex == 1) {
+            self.mapView.hidden = false
+            self.tableView.hidden = true
+            self.averageLatitude = 0
+            self.averageLongitude = 0
+//            self.mapView.removeAnnotations(mapView.annotations)
+            
+        }
+        
+        
+    }
     
     @IBAction func onLogoutButtonPressed(sender: UIBarButtonItem)
     {
         FirebaseConnection.firebaseConnection.CURRENT_USER_REF.unauth()
         self.userDefaults.setValue(nil, forKey: "uid")
-         // Return to login screen
+        // Return to login screen
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("login")
         self.presentViewController(vc!, animated: true, completion: nil)
     }
     
-//    @IBAction func mapToggleButtonTapped(sender: AnyObject) {
-//        if breweryMapView.hidden {
-//            tableView.userInteractionEnabled = true
-//            breweryMapView.hidden = false
-//            tableView.hidden = true
-//            
-//        } else {
-//            breweryMapView.hidden = true
-//            tableView.hidden = false
-//            tableView.userInteractionEnabled = false
-//        }
-//        
-//    }
-   }
+    func dropPinForLocation(brewery: Brewery)
+    {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2DMake(brewery.latitude, brewery.longitude)
+        annotation.title = brewery.name
+        self.mapView.addAnnotation(annotation)
+        self.annotations.append(annotation)
+        
+    }
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView?
+    {
+        if annotation .isEqual(mapView.userLocation)
+        {
+            return nil
+            
+        } else {
+            
+            let pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
+            pin.canShowCallout = true
+            pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+            return pin
+        }
+    }
+    
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl)
+    {
+        for brewery in breweryObjects
+        {
+            if brewery.name == ((view.annotation?.title)!) {
+                let breweryCoordinates = CLLocationCoordinate2DMake(brewery.latitude, brewery.longitude)
+                openMapForPlace(brewery, breweryCoordinates: breweryCoordinates)
+            }
+        }
+        
+    }
+    
+    func openMapForPlace(brewery: Brewery, breweryCoordinates: CLLocationCoordinate2D) {
+        let options = [
+            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving
+        ]
+        let placemark = MKPlacemark(coordinate: breweryCoordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "\(brewery.name)"
+        mapItem.openInMapsWithLaunchOptions(options)
+        
+    }
+    
+
+
+    
+}
