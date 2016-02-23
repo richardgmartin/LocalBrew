@@ -11,7 +11,7 @@ import MapKit
 import AddressBook
 import Firebase
 
-class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate {
+class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate{
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var breweryIconImageView: UIImageView!
     @IBOutlet weak var breweryPhoneNumberButton: UIButton!
@@ -28,6 +28,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     var beerObjects = [Beer]()
     let progressHUD = ProgressHUD(text: "Brewing")
     let userDefaults = NSUserDefaults.standardUserDefaults()
+    var longPress = UILongPressGestureRecognizer()
+    var tap = UITapGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,6 +99,15 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         accessDBBeerList()
         
         self.view.addSubview(progressHUD)
+        
+        self.longPress.addTarget(self, action: "showBeerComments:")
+        self.longPress.minimumPressDuration = 0.5
+        
+        self.tap.addTarget(self, action: "handleTap:")
+        
+        self.view.addGestureRecognizer(self.longPress)
+        self.view.addGestureRecognizer(self.tap)
+        
     }
 
 
@@ -210,13 +221,39 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    
+    @IBAction func handleTap(recognizer:UIGestureRecognizer)
+    {
+        performSegueWithIdentifier("toDescription", sender: recognizer)
+    }
+    
+    @IBAction func showBeerComments(recognizer: UIGestureRecognizer)
+    {
+        if recognizer.state == UIGestureRecognizerState.Began
+        {
+            performSegueWithIdentifier("fromBeer", sender: recognizer)
+        }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         
-        let dvc = segue.destinationViewController as? WebsiteViewController
-        print(self.breweryDetail)
-        dvc?.breweryDetail = self.breweryDetail
-        dvc?.title = self.breweryDetail.name
+        if segue.identifier == "toWebsite"
+        {
+            let dvc = segue.destinationViewController as? WebsiteViewController
+            print(self.breweryDetail)
+            dvc?.breweryDetail = self.breweryDetail
+            dvc?.title = self.breweryDetail.name
+        }
+        else if (segue.identifier == "fromBeer")
+        {
+            let point = self.tableView.convertPoint((sender?.locationInView(self.tableView))!, fromView:self.tableView)
+            let indexPath = self.tableView.indexPathForRowAtPoint(point)
+            let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! BeerCell
+            let commentsVC = segue.destinationViewController as! CommentViewController
+            commentsVC.beer = cell.beer
+        }
+        
     }
     
     @IBAction func onCallButtonPressed(sender: AnyObject) {

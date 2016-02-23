@@ -417,7 +417,6 @@
                                 <connections>
                                     <outlet property="dataSource" destination="sbK-Lj-PUP" id="Ash-gR-7xZ"/>
                                     <outlet property="delegate" destination="sbK-Lj-PUP" id="BhV-2O-QpU"/>
-                                    <outletCollection property="gestureRecognizers" destination="IEJ-DA-VxY" appends="YES" id="SAv-0I-bJC"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-GJ-DBr">
@@ -428,7 +427,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="onWebsiteButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="c8v-gt-n6J"/>
-                                    <segue destination="FbL-aH-l2a" kind="show" id="Kzy-la-UTe"/>
+                                    <segue destination="FbL-aH-l2a" kind="show" identifier="toWebsite" id="Kzy-la-UTe"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fh-7p-cCy">
@@ -478,10 +477,10 @@
                         <outlet property="breweryWebsiteButton" destination="wF3-GJ-DBr" id="b2E-Ft-XTb"/>
                         <outlet property="mapView" destination="daV-Ax-20k" id="Ndn-Wv-EZ4"/>
                         <outlet property="tableView" destination="hX9-8W-Qo4" id="mmd-eY-UrJ"/>
+                        <segue destination="Vu9-Bc-Tr4" kind="show" identifier="fromBeer" id="dI1-xd-hxN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Bx-AJ-Kot" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="IEJ-DA-VxY"/>
             </objects>
             <point key="canvasLocation" x="2311.5" y="337"/>
         </scene>
@@ -601,7 +600,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzQ-j7-3aP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2455.5" y="1116"/>
+            <point key="canvasLocation" x="2275.5" y="1105"/>
         </scene>
         <!--Title-->
         <scene sceneID="eqU-8m-qWG">
@@ -1092,5 +1091,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="YuJ-4B-xS7"/>
+        <segue reference="dI1-xd-hxN"/>
     </inferredMetricsTieBreakers>
 </document>
