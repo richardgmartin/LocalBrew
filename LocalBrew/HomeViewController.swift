@@ -352,6 +352,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             else if (removeBlanksCountry == "canada" || removeBlanksCountry == "can" || removeBlanksCountry == "ca")
             {
                 self.countryName = "ca"
+            } else {
+                self.countryName = "texas"
             }
             
             // update self.title with nice looking city name
