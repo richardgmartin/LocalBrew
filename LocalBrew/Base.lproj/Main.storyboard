@@ -368,16 +368,16 @@
                                                     <exclude reference="94p-sT-heC"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="05H-T0-PMp"/>
-                                                    <exclude reference="dgu-8W-Gvf"/>
-                                                    <exclude reference="9ex-L9-960"/>
-                                                    <exclude reference="Zhb-mk-Ld7"/>
-                                                    <exclude reference="EMA-E8-Gfn"/>
-                                                    <exclude reference="P7o-8r-Bj2"/>
-                                                    <exclude reference="hib-pm-qBZ"/>
-                                                    <exclude reference="u3d-vd-zy9"/>
                                                     <exclude reference="R66-BC-28i"/>
                                                     <exclude reference="bQn-q7-OjM"/>
+                                                    <exclude reference="EMA-E8-Gfn"/>
+                                                    <exclude reference="P7o-8r-Bj2"/>
+                                                    <exclude reference="9ex-L9-960"/>
+                                                    <exclude reference="Zhb-mk-Ld7"/>
+                                                    <exclude reference="hib-pm-qBZ"/>
+                                                    <exclude reference="u3d-vd-zy9"/>
+                                                    <exclude reference="05H-T0-PMp"/>
+                                                    <exclude reference="dgu-8W-Gvf"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -389,16 +389,16 @@
                                                     <include reference="94p-sT-heC"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="05H-T0-PMp"/>
-                                                    <include reference="dgu-8W-Gvf"/>
-                                                    <include reference="9ex-L9-960"/>
-                                                    <include reference="Zhb-mk-Ld7"/>
-                                                    <include reference="EMA-E8-Gfn"/>
-                                                    <include reference="P7o-8r-Bj2"/>
-                                                    <include reference="hib-pm-qBZ"/>
-                                                    <include reference="u3d-vd-zy9"/>
                                                     <include reference="R66-BC-28i"/>
                                                     <include reference="bQn-q7-OjM"/>
+                                                    <include reference="EMA-E8-Gfn"/>
+                                                    <include reference="P7o-8r-Bj2"/>
+                                                    <include reference="9ex-L9-960"/>
+                                                    <include reference="Zhb-mk-Ld7"/>
+                                                    <include reference="hib-pm-qBZ"/>
+                                                    <include reference="u3d-vd-zy9"/>
+                                                    <include reference="05H-T0-PMp"/>
+                                                    <include reference="dgu-8W-Gvf"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -663,11 +663,11 @@
             </objects>
             <point key="canvasLocation" x="4776" y="353"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Home-->
         <scene sceneID="dVk-h9-jlO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xXZ-aB-tII" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="ktF-b6-9VC"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home50" id="ktF-b6-9VC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rdz-Ca-G44">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1070,7 +1070,7 @@
         <scene sceneID="NvL-ux-fgt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hUf-Kh-bvb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="ProfileMan" selectedImage="ProfileMan" id="cuG-Wt-jvf"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="UserMale" id="cuG-Wt-jvf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XLo-Rs-hqx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1087,8 +1087,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ProfileMan" width="20" height="20"/>
+        <image name="UserMale" width="25" height="25"/>
         <image name="beerEmpty" width="30" height="30"/>
+        <image name="home50" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="YuJ-4B-xS7"/>

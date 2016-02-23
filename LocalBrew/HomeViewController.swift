@@ -113,6 +113,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.view.userInteractionEnabled = false
         
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
@@ -372,6 +373,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 // flush out old city array data
                 self.breweries = []
                 self.breweryObjects = []
+                self.view.userInteractionEnabled = false
+                self.view.addSubview(self.progressHUD)
+
+
                 
                 self.tableView.reloadData()
                 
@@ -416,6 +421,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let cell = tableView.dequeueReusableCellWithIdentifier("BreweryCellID") as? BreweryCell {
             cell.configureCell(brewery)
             self.progressHUD.removeFromSuperview()  //remove activity spinner and label
+            self.view.userInteractionEnabled = true
+
             return cell
             
         } else {
