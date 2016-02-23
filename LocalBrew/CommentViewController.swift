@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class CommentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     var brewery:Brewery!
+    var beer:Beer!
     var commmentsArray:NSArray = []
     let username = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String
     @IBOutlet weak var commentsTableView: UITableView!
@@ -37,7 +39,19 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func loadComments()
     {
-        FirebaseConnection.firebaseConnection.COMMENT_REF.childByAppendingPath(brewery.firebaseID).observeEventType(.Value, withBlock: { snapshot in
+        let commentRef:Firebase!
+        
+        if self.beer == nil
+        {
+            commentRef =  FirebaseConnection.firebaseConnection.COMMENT_REF.childByAppendingPath(brewery.firebaseID)
+        }
+        else
+        {
+            commentRef = FirebaseConnection.firebaseConnection.COMMENT_REF.childByAppendingPath(beer.firebaseID)
+        }
+        
+        
+       commentRef.observeEventType(.Value, withBlock: { snapshot in
             
             if(snapshot.value is NSNull)
             {
@@ -50,8 +64,6 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
             
             self.commentsTableView.reloadData()
             //print(self.commmentsArray)
-            
-            
         
         })
         
@@ -75,8 +87,20 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
     
     
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        FirebaseConnection.firebaseConnection.COMMENT_REF.childByAppendingPath(brewery.firebaseID).childByAutoId().setValue(["text":textField.text!, "username":username!])
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        let commentRef:Firebase!
+        
+        if self.beer == nil
+        {
+            commentRef =  FirebaseConnection.firebaseConnection.COMMENT_REF.childByAppendingPath(brewery.firebaseID)
+        }
+        else
+        {
+            commentRef = FirebaseConnection.firebaseConnection.COMMENT_REF.childByAppendingPath(beer.firebaseID)
+        }
+        
+       commentRef.childByAutoId().setValue(["text":textField.text!, "username":username!])
         
         textField.text = ""
         
