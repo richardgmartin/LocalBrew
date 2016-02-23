@@ -180,8 +180,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         pin.canShowCallout = true
         pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
         return pin
-        
-    }
+    
+}
     
     
     func likeBrewery()
@@ -226,8 +226,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     @IBAction func onWebsiteButtonPressed(sender: UIButton) {
-        
-        
     }
     
     
