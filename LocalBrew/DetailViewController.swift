@@ -116,7 +116,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                 
                 if brewList["data"] == nil {
                     print("Ooops, brewList is empty!")
-                    let alertController = UIAlertController(title: "Oops. Where's the beer.?", message: "This brewery has not provided us with a list of their brews.", preferredStyle: .Alert)
+                    let alertController = UIAlertController(title: "Oops. Where's the beer?", message: "This brewery has not provided us with a list of their brews.", preferredStyle: .Alert)
                     
                     
                     let OKAction = UIAlertAction(title: "Dismiss", style: .Default) { (action) in
