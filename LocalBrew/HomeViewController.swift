@@ -149,11 +149,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.view.addGestureRecognizer(self.tap)
         
         self.mapView.hidden = true
-        
-        self.mapSegmentControl.selectedSegmentIndex == 0
-        
-
-        
+    
 
         
     }
@@ -161,7 +157,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK : - Location manager delogates
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first
-        if location?.verticalAccuracy < 1000 && location?.horizontalAccuracy < 1000 {
+        if location!.verticalAccuracy < 2000 && location!.horizontalAccuracy < 2000 {
             reversGeocode(location!)
             locationManager.stopUpdatingLocation()
         }
@@ -253,6 +249,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func unwindToHomeViewController(segue: UIStoryboardSegue)
     {
         self.view.addSubview(progressHUD)
+        self.mapSegmentControl.selectedSegmentIndex = 0
     }
     
     
@@ -400,6 +397,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if (self.mapSegmentControl.selectedSegmentIndex == 0) {
             
+            self.mapView.hidden = true
+            self.tableView.hidden = false
+            self.averageLatitude = 0
+            self.averageLongitude = 0
+            self.mapView.removeAnnotations(annotations)
+            self.view.addGestureRecognizer(tap)
+
+        //  self.mapView.removeAnnotations(mapView.annotations)
+  
+        } else if (self.mapSegmentControl.selectedSegmentIndex == 1) {
             // add annotations to mapView by looping through the array
             for brewery in self.breweryObjects
             {
@@ -414,16 +421,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.centerAnnotation.coordinate = CLLocationCoordinate2DMake(self.averageLatitude, self.averageLongitude)
             self.mapView.setRegion(MKCoordinateRegionMake(self.centerAnnotation.coordinate, MKCoordinateSpanMake(0.5, 0.5)), animated: true)
             
-            self.mapView.hidden = true
-            self.tableView.hidden = false
-            
-        } else if (self.mapSegmentControl.selectedSegmentIndex == 1) {
             self.mapView.hidden = false
             self.tableView.hidden = true
-            self.averageLatitude = 0
-            self.averageLongitude = 0
-//            self.mapView.removeAnnotations(mapView.annotations)
-            
+            self.view.removeGestureRecognizer(tap)
         }
         
         

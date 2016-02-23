@@ -942,11 +942,11 @@
             </objects>
             <point key="canvasLocation" x="1635" y="1110"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Profile-->
         <scene sceneID="NvL-ux-fgt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hUf-Kh-bvb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="topRated" id="cuG-Wt-jvf"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="ProfileMan" selectedImage="ProfileMan" id="cuG-Wt-jvf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XLo-Rs-hqx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -963,6 +963,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ProfileMan" width="20" height="20"/>
         <image name="beerEmpty" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
