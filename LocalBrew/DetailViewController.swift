@@ -98,7 +98,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
         accessDBBeerList()
         
-        self.view.addSubview(progressHUD)        
+//        self.view.addSubview(progressHUD)
     }
 
 
@@ -106,71 +106,64 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     func accessDBBeerList()
     {
         // MARK: logic to import breweryDB data
-        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(self.breweryDetail.breweryID)/beers?key=324f8ff71fe7f84fab3655aeab07f01c")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(self.breweryDetail.breweryID)/beers?key=6f75023f91495f22253de067b9136d1d")
         
         let session = NSURLSession.sharedSession()
         
         
         let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
             do{
+            
                 let brewList = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
-
                 
-                self.beerList = (brewList.objectForKey("data") as? [NSDictionary])!
-                for dict: NSDictionary in self.beerList {
-                    let beerObject: Beer = Beer(beerDataDictionary: dict)
-                    self.beerObjects.append(beerObject)
+                if brewList["data"] == nil {
+                    print("Ooops, brewList is empty!")
+                    let alertController = UIAlertController(title: "Oops. Where's the beer.?", message: "This brewery has not provided us with a list of their brews.", preferredStyle: .Alert)
+                    
+                    
+                    let OKAction = UIAlertAction(title: "Dismiss", style: .Default) { (action) in
+                        
+                        // dismiss UIAlert
+                        
+                    }
+                    alertController.addAction(OKAction)
+                    
+                    self.presentViewController(alertController, animated: true) {
+                        
+                    }
+                } else
+                {
+                    print("Hey, this place has beer!")
+                    self.beerList = (brewList.objectForKey("data") as? [NSDictionary])!
+                    for dict: NSDictionary in self.beerList
+                    {
+                        let beerObject: Beer = Beer(beerDataDictionary: dict)
+                        self.beerObjects.append(beerObject)
+                    }
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.view.addSubview(self.progressHUD)
+                        self.tableView.reloadData()
 
+                    })
                 }
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.tableView.reloadData()
-                })
             }
             catch let error as NSError{
                 print("JSON Error: \(error.localizedDescription)")
             }
-            
         }
         task.resume()
     }
     
 
-func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
         let pin = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
         pin.image = self.breweryDetail.breweryImageIcon
         pin.canShowCallout = true
         pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
         return pin
-    
-}
-
-
-//    @IBAction func addBeerOnButtonTapped(sender: AnyObject) {
-//        
-//        addFavoriteBeer()
-//        
-//    }
-//
-//
-//    func addFavoriteBeer() {
-//        let addBeer = UIAlertController(title: "Add your favorite Beer!", message: nil, preferredStyle: .Alert)
-//        addBeer.addTextFieldWithConfigurationHandler(nil)
-//        
-//        let submitAction = UIAlertAction(title: "Submit", style: .Default) { [unowned self, addBeer](action: UIAlertAction!) in
-//            let answer = addBeer.textFields![0].text
-//            let favoriteBeer = FavoriteBeer(name: answer!, favorite: 0)
-//            self.favoriteBeerObjects.append(favoriteBeer)
-//             self.tableView.reloadData()
-//        }
-//        addBeer.addAction(submitAction)
-//        
-//        presentViewController(addBeer, animated: true, completion: nil)
-//        
-//       
-//        
-//    }
-    
+        
+    }
     
     
     func likeBrewery()

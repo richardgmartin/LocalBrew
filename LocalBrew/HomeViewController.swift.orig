@@ -127,9 +127,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
          self.mapSegmentControl.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
         self.mapSegmentControl.backgroundColor = UIColor.whiteColor()
         
+        
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
         
         
         if CLLocationManager.authorizationStatus() == .NotDetermined {
@@ -171,7 +170,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // All done!
         
-        self.view.backgroundColor = UIColor.blackColor()
         
         self.longPress.addTarget(self, action: "showBreweryComments:")
         self.longPress.minimumPressDuration = 0.5
@@ -186,6 +184,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
+
     // MARK : - Location manager delogates
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first
@@ -217,6 +216,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.countryName = "ca"
             }
             
+
             
             //              var key = placemark?.administrativeArea
             for (key,value) in self.nameAbbreviations
@@ -228,7 +228,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
             self.title = self.locality?.capitalizedString
-            
+
             self.accessBreweryDB()
         })
         
@@ -296,7 +296,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    
 
     func setCurrentUser()
     {
@@ -352,8 +351,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             else if (removeBlanksCountry == "canada" || removeBlanksCountry == "can" || removeBlanksCountry == "ca")
             {
                 self.countryName = "ca"
-            } else {
-                self.countryName = "texas"
             }
             
             // update self.title with nice looking city name
