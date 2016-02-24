@@ -221,7 +221,6 @@
                                     <rect key="frame" x="282" y="134" width="75" height="30"/>
                                 </variation>
                                 <connections>
-                                    <action selector="onWebsiteButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="c8v-gt-n6J"/>
                                     <segue destination="FbL-aH-l2a" kind="show" id="Kzy-la-UTi"/>
                                 </connections>
                             </button>
@@ -496,6 +495,7 @@
                         <outlet property="breweryIconImageView" destination="5fh-7p-cCy" id="tzL-Va-Akn"/>
                         <outlet property="breweryLikeButton" destination="KFn-z1-Uda" id="xDU-Yr-bfy"/>
                         <outlet property="breweryPhoneNumberButton" destination="tnf-j6-vde" id="hs3-LQ-6mf"/>
+                        <outlet property="breweryWebsiteButton" destination="wF3-GJ-DBe" id="ezQ-yd-eaR"/>
                         <outlet property="mapView" destination="daV-Ax-20k" id="Ndn-Wv-EZ4"/>
                         <outlet property="sorryNoBeerLabel" destination="rPd-xm-fhA" id="h9j-69-P8z"/>
                         <outlet property="tableView" destination="hX9-8W-Qo4" id="mmd-eY-UrJ"/>
@@ -1114,7 +1114,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="YuJ-4B-xS7"/>
-        <segue reference="Kzy-la-UTi"/>
+        <segue reference="Kzy-la-UTe"/>
         <segue reference="dI1-xd-hxN"/>
     </inferredMetricsTieBreakers>
 </document>
