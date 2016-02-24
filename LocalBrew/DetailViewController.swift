@@ -17,10 +17,10 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var breweryPhoneNumberButton: UIButton!
     @IBOutlet weak var breweryLikeButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var addressLabelField: UILabel!
     @IBOutlet weak var breweryDirectionsButton: UIButton!
     @IBOutlet weak var breweryWebsiteButton: UIButton!
     @IBOutlet weak var sorryNoBeerLabel: UILabel!
+    @IBOutlet weak var addressButton: UIButton!
     
     var breweryDetail: Brewery!
     var breweryDestination = MKMapItem()
@@ -37,8 +37,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
 
         self.breweryIconImageView.image = self.breweryDetail.breweryImageIcon
         self.title = self.breweryDetail.name
-        self.addressLabelField.text = self.breweryDetail.streetAddress
-        self.breweryPhoneNumberButton.setTitle(self.breweryDetail.phoneNumber, forState: .Normal)
+        self.breweryPhoneNumberButton.setTitle("Call", forState: .Normal)
         
         self.breweryPhoneNumberButton.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
         self.breweryPhoneNumberButton.backgroundColor = UIColor.blackColor()
@@ -55,6 +54,12 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         self.breweryWebsiteButton.layer.cornerRadius = 5
         self.breweryWebsiteButton.layer.borderWidth = 1
         self.breweryWebsiteButton.layer.borderColor = UIColor.blackColor().CGColor
+        self.addressButton.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
+        self.addressButton.backgroundColor = UIColor.blackColor()
+        self.addressButton.layer.cornerRadius = 5
+        self.addressButton.layer.borderWidth = 1
+        self.addressButton.layer.borderColor = UIColor.blackColor().CGColor
+        
         
         self.tableView.hidden = true
         self.sorryNoBeerLabel.hidden = true
@@ -228,8 +233,44 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     @IBAction func onWebsiteButtonPressed(sender: UIButton) {
+        
+
     }
     
+    @IBAction func addressButtonPressed(sender: AnyObject) {
+        
+        if self.breweryDetail.streetAddress == "No Address" {
+            
+            let alertController = UIAlertController(title: "No Address", message: "Sorry the brewery does not provide an address.", preferredStyle: .Alert)
+            
+            
+            let OKAction = UIAlertAction(title: "Dismiss", style: .Default) { (action) in
+                
+                
+            }
+            alertController.addAction(OKAction)
+            
+            self.presentViewController(alertController, animated: true) {
+            }
+
+        
+        
+        } else {
+                
+                let alertController = UIAlertController(title: "\(self.breweryDetail.name)", message: "\(self.breweryDetail.streetAddress!)", preferredStyle: .Alert)
+                
+                
+                let OKAction = UIAlertAction(title: "Dismiss", style: .Default) { (action) in
+                    
+                    
+                }
+                alertController.addAction(OKAction)
+                
+                self.presentViewController(alertController, animated: true) {
+                }
+
+        }
+    }
     
     @IBAction func handleTap(recognizer:UIGestureRecognizer)
     {
@@ -244,6 +285,38 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    
+    
+   
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
+        if identifier == "toWebsite" {
+            
+            if self.breweryDetail.website == "No Website" {
+                
+                let alertController = UIAlertController(title: "No Website", message: "Sorry the brewery does not have a website.", preferredStyle: .Alert)
+                
+                
+                let OKAction = UIAlertAction(title: "Dismiss", style: .Default) { (action) in
+                    
+                    
+                }
+                alertController.addAction(OKAction)
+                
+                self.presentViewController(alertController, animated: true) {
+                }
+                
+                return false
+            }
+                
+            else {
+                return true
+            }
+        }
+        
+        // by default, transition
+        return true
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         
@@ -253,9 +326,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             print(self.breweryDetail)
             dvc?.breweryDetail = self.breweryDetail
             dvc?.title = self.breweryDetail.name
-        }
-        else if (segue.identifier == "fromBeer")
-        {
+        
+        } else if (segue.identifier == "fromBeer") {
             let point = self.tableView.convertPoint((sender?.locationInView(self.tableView))!, fromView:self.tableView)
             let indexPath = self.tableView.indexPathForRowAtPoint(point)
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! BeerCell
@@ -266,14 +338,34 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     @IBAction func onCallButtonPressed(sender: AnyObject) {
-        
-        let phoneNumber = self.breweryDetail.phoneNumber
-        
-        let aURL = NSURL(string: "telprompt://\(phoneNumber)")
-        if UIApplication.sharedApplication().canOpenURL(aURL!) {
-            UIApplication.sharedApplication().openURL(aURL!)
+        if self.breweryDetail.phoneNumber == "Unavailable number" {
+            
+            let alertController = UIAlertController(title: "No Phone Number", message: "Sorry the brewery did not provide thier Phone Number.", preferredStyle: .Alert)
+            
+            
+            let OKAction = UIAlertAction(title: "Dismiss", style: .Default) { (action) in
+                
+                
+            }
+            alertController.addAction(OKAction)
+            
+            self.presentViewController(alertController, animated: true) {
+            }
+
+            
         } else {
-            print("error")
+            let phoneNumber = self.breweryDetail.phoneNumber
+            let removeBlanksNumber = phoneNumber.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            let cleanNumber = removeBlanksNumber.stringByReplacingOccurrencesOfString(" ", withString: "-", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
+            let newPhoneNumber = cleanNumber
+
+            let aURL = NSURL(string: "telprompt://\(newPhoneNumber)")
+            if UIApplication.sharedApplication().canOpenURL(aURL!) {
+            UIApplication.sharedApplication().openURL(aURL!)
+            } else {
+                print("error")
+            }
         }
     }
     
