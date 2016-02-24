@@ -41,6 +41,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let userDefaults = NSUserDefaults.standardUserDefaults()
     var longPress = UILongPressGestureRecognizer()
     var tap = UITapGestureRecognizer()
+    var location = CLLocation()
+    
+    
     
     let defaultCity = "chicago"
     let defaultState = "illinois"
@@ -189,9 +192,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK : - Location manager delogates
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.first
-        if location!.verticalAccuracy < 2000 && location!.horizontalAccuracy < 2000 {
-            reversGeocode(location!)
+         self.location = locations.first!
+        if self.location.verticalAccuracy < 2000 && self.location.horizontalAccuracy < 2000 {
+            reversGeocode(self.location)
             locationManager.stopUpdatingLocation()
         }
     }
@@ -231,6 +234,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.title = self.locality?.capitalizedString
             
             self.accessBreweryDB()
+            
+
+            
+            
         })
         
         
@@ -240,7 +247,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         // MARK: logic to import breweryDB data
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=324f8ff71fe7f84fab3655aeab07f01c")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=6f75023f91495f22253de067b9136d1d")
         
         let session = NSURLSession.sharedSession()
         
@@ -276,12 +283,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     
                     for dict: NSDictionary in self.breweries
                     {
-                        let breweryObject: Brewery = Brewery(dataDictionary: dict)
+                        let breweryObject: Brewery = Brewery(dataDictionary: dict, userLcation: self.location)
                         self.breweryObjects.append(breweryObject)
                     }
 
                 }
-                print(localBrew["data"])
+                //print(localBrew["data"])
                 
             }
             
@@ -289,12 +296,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.breweryObjects.sortInPlace { $0.distance < $1.distance }
                 self.tableView.reloadData()
                 
             })
         }
         task.resume()
-        
     }
     
     

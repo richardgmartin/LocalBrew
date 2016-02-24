@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import Firebase
+import CoreLocation
+import MapKit
 
 class BreweryCell: UITableViewCell {
     
@@ -47,6 +49,10 @@ class BreweryCell: UITableViewCell {
             self.breweryLikeLabel.text = "Likes: \(likes)"
         })
         
+        
+        let distance = brewery.distance * 0.00062137
+        
+        self.breweryDistanceLabel.text = String(format: "%.2f miles", arguments: [distance])
         
     }
 }
