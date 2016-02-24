@@ -120,6 +120,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
+        self.navigationItem.rightBarButtonItem?.enabled = false
         self.navigationController?.navigationBar.barTintColor = UIColor.fromHexString("#040f0f", alpha: 1.0)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.fromHexString("#FAFAFA", alpha: 1.0)]
         self.setCurrentUser()
@@ -127,6 +128,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationController?.navigationBar.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
         self.navigationController?.navigationBar.translucent = false
         self.automaticallyAdjustsScrollViewInsets = false
+
         
          self.mapSegmentControl.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
         self.mapSegmentControl.backgroundColor = UIColor.whiteColor()
@@ -298,6 +300,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.breweryObjects.sortInPlace { $0.distance < $1.distance }
                 self.tableView.reloadData()
+                self.navigationItem.rightBarButtonItem?.enabled = true
+
                 
             })
         }
@@ -318,8 +322,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func unwindToHomeViewController(segue: UIStoryboardSegue)
     {
-        self.view.addSubview(progressHUD)
         self.mapSegmentControl.selectedSegmentIndex = 0
+        self.navigationController?.navigationBarHidden = false
     }
     
     
@@ -380,6 +384,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 // flush out old city array data
                 self.breweries = []
                 self.breweryObjects = []
+                self.navigationController?.navigationBarHidden = false
                 self.view.userInteractionEnabled = false
                 self.view.addSubview(self.progressHUD)
 
@@ -445,6 +450,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         {
             let dvc = segue.destinationViewController as? ChangeCityViewController
             dvc!.delegate = self
+            dvc?.breweryLatitude = 41.89374
+            dvc?.breweryLongitude = -87.63533
+            
         }
         else if(segue.identifier == "toDetailViewController")
         {

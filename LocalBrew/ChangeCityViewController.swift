@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MapKit
 // 1. declare delegate protocol
 protocol ChangeCityViewControllerDelegate {
     
@@ -16,7 +17,7 @@ protocol ChangeCityViewControllerDelegate {
     func changeLocation(controller: ChangeCityViewController, didChangeCity: String, didChangeRegion: String, didChangeCountry: String)
     
 }
-class ChangeCityViewController: UIViewController {
+class ChangeCityViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
@@ -24,6 +25,12 @@ class ChangeCityViewController: UIViewController {
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var regionTextField: UITextField!
     @IBOutlet weak var countryTextField: UITextField!
+    @IBOutlet weak var changeCityMapView: MKMapView!
+
+
+    
+    var breweryLatitude: Double = 0.0
+    var breweryLongitude: Double = 0.0
     
     // 2. declare delegate property
     
@@ -60,6 +67,19 @@ class ChangeCityViewController: UIViewController {
         
         self.navigationController!.navigationBar.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
     
+        self.navigationItem.hidesBackButton = true
+        self.navigationController?.navigationBarHidden = true
+        let breweryLatitude:CLLocationDegrees = self.breweryLatitude
+        let breweryLongitude:CLLocationDegrees = self.breweryLongitude
+        let breweryLatDelta:CLLocationDegrees = 0.08
+        let breweryLongDelta:CLLocationDegrees = 0.08
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(breweryLatDelta, breweryLongDelta)
+        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(breweryLatitude, breweryLongitude)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+        self.changeCityMapView.setRegion(region, animated: true)
+
+        
+        
 
         
     }

@@ -185,20 +185,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0g-Dh-NfU">
-                                <rect key="frame" x="137" y="122" width="196" height="37"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="115" y="72" width="153" height="54"/>
-                                </variation>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moJ-Wp-YtC">
                                 <rect key="frame" x="399" y="99" width="46" height="30"/>
                                 <state key="normal" title="Directions"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="282" y="84" width="75" height="30"/>
+                                    <rect key="frame" x="274" y="84" width="85" height="30"/>
                                 </variation>
                                 <connections>
                                     <action selector="onDirectionsButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="JDh-hw-355"/>
@@ -206,25 +197,27 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnf-j6-vde">
                                 <rect key="frame" x="399" y="99" width="46" height="30"/>
-                                <state key="normal" title="559-641-0000"/>
+                                <state key="normal" title="Call"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="115" y="134" width="143" height="30"/>
+                                    <rect key="frame" x="148" y="134" width="85" height="30"/>
                                 </variation>
                                 <connections>
                                     <action selector="onCallButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="U69-sb-kCl"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-GJ-DBr">
+<<<<<<< HEAD
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-GJ-DBz">
                                 <rect key="frame" x="399" y="99" width="46" height="30"/>
                                 <state key="normal" title="Website"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="282" y="134" width="75" height="30"/>
                                 </variation>
                                 <connections>
-                                    <action selector="onWebsiteButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="c8v-gt-n6J"/>
-                                    <segue destination="FbL-aH-l2a" kind="show" id="Kzy-la-UTe"/>
+                                    <segue destination="FbL-aH-l2a" kind="show" id="Kzy-la-UTi"/>
                                 </connections>
                             </button>
+=======
+>>>>>>> errorChecks
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="daV-Ax-20k">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
@@ -430,17 +423,6 @@
                                     <outlet property="delegate" destination="sbK-Lj-PUP" id="BhV-2O-QpU"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-GJ-DBr">
-                                <rect key="frame" x="399" y="99" width="46" height="30"/>
-                                <state key="normal" title="Website"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="282" y="134" width="75" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="onWebsiteButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="c8v-gt-n6J"/>
-                                    <segue destination="FbL-aH-l2a" kind="show" identifier="toWebsite" id="Kzy-la-UTe"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fh-7p-cCy">
                                 <rect key="frame" x="20" y="64" width="100" height="100"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
@@ -456,6 +438,27 @@
                                     <rect key="frame" x="100" y="422" width="200" height="50"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-GJ-DBe">
+                                <rect key="frame" x="399" y="99" width="46" height="30"/>
+                                <state key="normal" title="Website"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="274" y="134" width="85" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="onWebsiteButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="c8v-gt-n6H"/>
+                                    <segue destination="FbL-aH-l2a" kind="show" identifier="toWebsite" id="Kzy-la-UTe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCZ-SS-rTc">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Address"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="148" y="84" width="85" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="addressButtonPressed:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="Rjq-sm-vsR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -465,6 +468,7 @@
                                 <exclude reference="tnf-j6-vde"/>
                                 <exclude reference="daV-Ax-20k"/>
                                 <exclude reference="rPd-xm-fhA"/>
+                                <exclude reference="lCZ-SS-rTc"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -473,6 +477,7 @@
                                 <include reference="tnf-j6-vde"/>
                                 <include reference="daV-Ax-20k"/>
                                 <include reference="rPd-xm-fhA"/>
+                                <include reference="lCZ-SS-rTc"/>
                             </mask>
                         </variation>
                     </view>
@@ -491,12 +496,12 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="addressLabelField" destination="g0g-Dh-NfU" id="eDe-K4-XgT"/>
+                        <outlet property="addressButton" destination="lCZ-SS-rTc" id="1QK-dc-Cvm"/>
                         <outlet property="breweryDirectionsButton" destination="moJ-Wp-YtC" id="hZB-WM-eod"/>
                         <outlet property="breweryIconImageView" destination="5fh-7p-cCy" id="tzL-Va-Akn"/>
                         <outlet property="breweryLikeButton" destination="KFn-z1-Uda" id="xDU-Yr-bfy"/>
                         <outlet property="breweryPhoneNumberButton" destination="tnf-j6-vde" id="hs3-LQ-6mf"/>
-                        <outlet property="breweryWebsiteButton" destination="wF3-GJ-DBr" id="b2E-Ft-XTb"/>
+                        <outlet property="breweryWebsiteButton" destination="wF3-GJ-DBe" id="lF7-BR-Lc4"/>
                         <outlet property="mapView" destination="daV-Ax-20k" id="Ndn-Wv-EZ4"/>
                         <outlet property="sorryNoBeerLabel" destination="rPd-xm-fhA" id="h9j-69-P8z"/>
                         <outlet property="tableView" destination="hX9-8W-Qo4" id="mmd-eY-UrJ"/>
@@ -932,32 +937,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="City" borderStyle="line" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="myG-ml-Llw">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.75" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qKu-dx-pF0">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="8Eq-oV-2za" id="DN5-om-NNZ"/>
+                                </connections>
+                            </mapView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="City" borderStyle="line" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="myG-ml-Llw">
                                 <rect key="frame" x="94" y="72" width="412" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ClM-ML-clV"/>
+                                    <constraint firstAttribute="height" constant="30" id="ClM-ML-clV">
+                                        <variation key="widthClass=compact" constant="40"/>
+                                    </constraint>
                                 </constraints>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="State/Province" borderStyle="line" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y26-r3-Ijc">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="State/Province" borderStyle="line" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y26-r3-Ijc">
                                 <rect key="frame" x="94" y="130" width="412" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="mSD-OH-5Va"/>
+                                    <constraint firstAttribute="height" constant="30" id="mSD-OH-5Va">
+                                        <variation key="widthClass=compact" constant="40"/>
+                                    </constraint>
                                 </constraints>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nai-W3-Uek">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nai-W3-Uek">
                                 <rect key="frame" x="257" y="251" width="86" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="D3c-RP-EL1">
                                         <variation key="widthClass=compact" constant="40"/>
                                     </constraint>
                                     <constraint firstAttribute="width" constant="86" id="kdl-WK-mfn">
-                                        <variation key="widthClass=compact" constant="100"/>
+                                        <variation key="widthClass=compact" constant="250"/>
                                     </constraint>
                                 </constraints>
                                 <state key="normal" title="Update"/>
@@ -966,15 +982,6 @@
                                     <segue destination="8gn-MF-E3O" kind="unwind" unwindAction="unwindToHomeViewController:" id="ubh-eL-23k"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Country" borderStyle="line" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4mR-kq-oHA">
-                                <rect key="frame" x="94" y="191" width="412" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="1xT-4J-XR9"/>
-                                </constraints>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2A-Ay-hFS">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -993,11 +1000,11 @@
                                     <rect key="frame" x="94" y="448" width="83" height="25"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPO-fP-eyc">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPO-fP-eyc">
                                 <rect key="frame" x="276" y="308" width="48" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="FCf-g0-uaU">
-                                        <variation key="widthClass=compact" constant="100"/>
+                                        <variation key="widthClass=compact" constant="250"/>
                                     </constraint>
                                     <constraint firstAttribute="height" constant="30" id="eGK-lY-cSU">
                                         <variation key="widthClass=compact" constant="40"/>
@@ -1008,54 +1015,80 @@
                                     <segue destination="Xsn-Rp-3Wp" kind="unwind" unwindAction="unwindToHomeViewController:" id="3A1-uw-QVO"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Country" borderStyle="line" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4mR-kq-oHA">
+                                <rect key="frame" x="94" y="191" width="412" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1xT-4J-XR9">
+                                        <variation key="widthClass=compact" constant="40"/>
+                                    </constraint>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="myG-ml-Llw" secondAttribute="trailing" constant="74" id="28j-kk-fZg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="myG-ml-Llw" secondAttribute="trailing" constant="74" id="28j-kk-fZg">
+                                <variation key="widthClass=compact" constant="55"/>
+                            </constraint>
                             <constraint firstItem="Nai-W3-Uek" firstAttribute="top" secondItem="4mR-kq-oHA" secondAttribute="bottom" constant="30" id="6cb-1f-1pz">
-                                <variation key="widthClass=compact" constant="8"/>
+                                <variation key="widthClass=compact" constant="30"/>
                             </constraint>
                             <constraint firstItem="Nai-W3-Uek" firstAttribute="centerX" secondItem="PdL-dV-lVv" secondAttribute="centerX" id="7Xq-2y-LDB"/>
                             <constraint firstItem="myG-ml-Llw" firstAttribute="top" secondItem="xOg-yY-jH8" secondAttribute="bottom" constant="8" id="8H4-o0-R0B">
-                                <variation key="widthClass=compact" constant="106"/>
+                                <variation key="widthClass=compact" constant="10"/>
                             </constraint>
-                            <constraint firstAttribute="trailingMargin" secondItem="Y26-r3-Ijc" secondAttribute="trailing" constant="74" id="E8w-2h-hmw"/>
-                            <constraint firstItem="4mR-kq-oHA" firstAttribute="leading" secondItem="PdL-dV-lVv" secondAttribute="leadingMargin" constant="74" id="G5Y-SY-UqZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4mR-kq-oHA" secondAttribute="trailing" constant="74" id="LUU-yN-5Qr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Y26-r3-Ijc" secondAttribute="trailing" constant="74" id="E8w-2h-hmw">
+                                <variation key="widthClass=compact" constant="55"/>
+                            </constraint>
+                            <constraint firstItem="4mR-kq-oHA" firstAttribute="leading" secondItem="PdL-dV-lVv" secondAttribute="leadingMargin" constant="74" id="G5Y-SY-UqZ">
+                                <variation key="widthClass=compact" constant="55"/>
+                            </constraint>
+                            <constraint firstAttribute="trailingMargin" secondItem="4mR-kq-oHA" secondAttribute="trailing" constant="74" id="LUU-yN-5Qr">
+                                <variation key="widthClass=compact" constant="55"/>
+                            </constraint>
                             <constraint firstItem="Nai-W3-Uek" firstAttribute="centerX" secondItem="PdL-dV-lVv" secondAttribute="centerX" id="R6q-AI-CVn"/>
                             <constraint firstItem="Nai-W3-Uek" firstAttribute="top" secondItem="4mR-kq-oHA" secondAttribute="bottom" constant="30" id="SI4-oF-IDF">
-                                <variation key="widthClass=compact" constant="8"/>
+                                <variation key="widthClass=compact" constant="30"/>
                             </constraint>
                             <constraint firstItem="HPO-fP-eyc" firstAttribute="top" secondItem="4mR-kq-oHA" secondAttribute="bottom" constant="87" id="TtX-6F-vin">
-                                <variation key="widthClass=compact" constant="56"/>
+                                <variation key="widthClass=compact" constant="100"/>
                             </constraint>
                             <constraint firstItem="4mR-kq-oHA" firstAttribute="top" secondItem="Y26-r3-Ijc" secondAttribute="bottom" constant="31" id="b9d-el-YRi">
-                                <variation key="widthClass=compact" constant="8"/>
+                                <variation key="widthClass=compact" constant="30"/>
                             </constraint>
                             <constraint firstItem="HPO-fP-eyc" firstAttribute="centerX" secondItem="PdL-dV-lVv" secondAttribute="centerX" id="k13-i5-dli"/>
-                            <constraint firstItem="myG-ml-Llw" firstAttribute="leading" secondItem="PdL-dV-lVv" secondAttribute="leadingMargin" constant="74" id="lX6-cg-Cxt"/>
-                            <constraint firstItem="Y26-r3-Ijc" firstAttribute="leading" secondItem="PdL-dV-lVv" secondAttribute="leadingMargin" constant="74" id="lsd-73-hLS"/>
+                            <constraint firstItem="myG-ml-Llw" firstAttribute="leading" secondItem="PdL-dV-lVv" secondAttribute="leadingMargin" constant="74" id="lX6-cg-Cxt">
+                                <variation key="widthClass=compact" constant="55"/>
+                            </constraint>
+                            <constraint firstItem="Y26-r3-Ijc" firstAttribute="leading" secondItem="PdL-dV-lVv" secondAttribute="leadingMargin" constant="74" id="lsd-73-hLS">
+                                <variation key="widthClass=compact" constant="55"/>
+                            </constraint>
                             <constraint firstItem="Y26-r3-Ijc" firstAttribute="top" secondItem="myG-ml-Llw" secondAttribute="bottom" constant="28" id="m7v-zw-uTh">
-                                <variation key="widthClass=compact" constant="8"/>
+                                <variation key="widthClass=compact" constant="30"/>
                             </constraint>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="qKu-dx-pF0"/>
                                 <exclude reference="F2A-Ay-hFS"/>
                                 <exclude reference="8gY-Ut-r2X"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
+                                <include reference="qKu-dx-pF0"/>
                                 <include reference="F2A-Ay-hFS"/>
                                 <include reference="8gY-Ut-r2X"/>
                             </mask>
                         </variation>
                     </view>
                     <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="cancelButton" destination="HPO-fP-eyc" id="A4B-5v-OBc"/>
+                        <outlet property="changeCityMapView" destination="qKu-dx-pF0" id="xgY-mo-4Rm"/>
                         <outlet property="cityTextField" destination="myG-ml-Llw" id="AsZ-wV-brD"/>
                         <outlet property="countryTextField" destination="4mR-kq-oHA" id="cQS-WX-wlf"/>
                         <outlet property="regionTextField" destination="Y26-r3-Ijc" id="ddv-y3-wS3"/>
@@ -1066,27 +1099,6 @@
                 <exit id="8gn-MF-E3O" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="915" y="1116"/>
-        </scene>
-        <!--Map View Controller-->
-        <scene sceneID="wSf-Y3-IQC">
-            <objects>
-                <viewController id="W2P-ny-lDi" customClass="mapViewController" customModule="LocalBrew" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5LU-QR-Tk3"/>
-                        <viewControllerLayoutGuide type="bottom" id="wsY-y7-GXL"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5SZ-qx-1hk">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="mapView" destination="Qg7-Zh-pF3" id="Jv1-Fd-DCq"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fOu-8l-TwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1635" y="1110"/>
         </scene>
         <!--Profile-->
         <scene sceneID="NvL-ux-fgt">
@@ -1115,6 +1127,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="YuJ-4B-xS7"/>
+<<<<<<< HEAD
+        <segue reference="Kzy-la-UTe"/>
+=======
+>>>>>>> errorChecks
         <segue reference="dI1-xd-hxN"/>
     </inferredMetricsTieBreakers>
 </document>
