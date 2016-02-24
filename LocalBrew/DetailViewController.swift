@@ -145,6 +145,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                     }
                     self.tableView.hidden = true
                     self.sorryNoBeerLabel.hidden = false
+                    self.progressHUD.removeFromSuperview()
+
                 } else {
                     print("Hey, this place has beer!")
                     self.beerList = (brewList.objectForKey("data") as? [NSDictionary])!
