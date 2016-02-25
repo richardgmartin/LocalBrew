@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import CoreLocation
+import MapKit
 
 
 class Brewery {
@@ -30,12 +31,16 @@ class Brewery {
     var breweryImageLarge: UIImage?
     var phoneNumber: String
     var beers:[Beer]!
+    var distance: Double!
 
+    
+    
+    
     
     
    
     
-    init(dataDictionary: NSDictionary ) {
+    init(dataDictionary: NSDictionary, userLcation:CLLocation) {
         
         let breweryDictionary = dataDictionary["brewery"]
         let locationDictionary = dataDictionary["country"]
@@ -48,6 +53,10 @@ class Brewery {
         latitude = dataDictionary["latitude"] as! Double
         longitude = dataDictionary["longitude"]as! Double
         isOrganic = breweryDictionary!["isOrganic"] as! String
+        
+        
+        distance = userLcation.distanceFromLocation(CLLocation(latitude: self.latitude, longitude: self.longitude))
+        
         
     
         if let streetAddress = dataDictionary["streetAddress"] as? String {
@@ -137,6 +146,7 @@ class Brewery {
         
     }
 }
+
 
 
 

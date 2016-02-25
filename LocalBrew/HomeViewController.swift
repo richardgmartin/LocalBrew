@@ -41,7 +41,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let userDefaults = NSUserDefaults.standardUserDefaults()
     var longPress = UILongPressGestureRecognizer()
     var tap = UITapGestureRecognizer()
-
+    var location = CLLocation()
     
     let defaultCity = "chicago"
     let defaultState = "illinois"
@@ -126,9 +126,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationController?.navigationBar.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
         self.navigationController?.navigationBar.translucent = false
         self.automaticallyAdjustsScrollViewInsets = false
-
         
-         self.mapSegmentControl.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
+        
+        self.mapSegmentControl.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
         self.mapSegmentControl.backgroundColor = UIColor.whiteColor()
         
         locationManager.delegate = self
@@ -165,7 +165,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
         }
         
-
+        
         // set delegate relationship with ChangeCityViewController
         changeCityController?.delegate = self
         
@@ -201,18 +201,25 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     // MARK : - Location manager delogates
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.first
-        if location!.verticalAccuracy < 2000 && location!.horizontalAccuracy < 2000 {
-            reversGeocode(location!)
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        self.location = locations.first!
+        if self.location.verticalAccuracy < 1000 && self.location.horizontalAccuracy < 1000
+        {
             locationManager.stopUpdatingLocation()
+            self.locationManager.delegate = nil
+            reverseGeocode(self.location, completionHandler: { () -> Void in
+                self.accessBreweryDB()
+            })
+            
         }
     }
+    
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print(error)
     }
     
-    func reversGeocode(location: CLLocation)
+    func reverseGeocode(location: CLLocation, completionHandler:()->Void)
     {
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks:[CLPlacemark]?, error:NSError?) -> Void in
@@ -244,7 +251,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.navigationItem.title = self.locality?.capitalizedString
             
             self.accessBreweryDB()
+            self.title = self.locality?.capitalizedString
+            completionHandler()
         })
+        
+        
         
         
     }
@@ -253,7 +264,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         // MARK: logic to import breweryDB data
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=6f75023f91495f22253de067b9136d1d")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=3613cdc782cfe937d78e52b40d98510e")
         
         let session = NSURLSession.sharedSession()
         
@@ -279,41 +290,51 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     alertController.addAction(OKAction)
                     
                     self.presentViewController(alertController, animated: true) {
-
+                        
                     }
                 }
                 else {
-                    print("Good to go: localBrew is not empty")
+                    //print("Good to go: localBrew is not empty")
                     
                     self.breweries = localBrew.objectForKey("data") as! [NSDictionary]
                     
                     for dict: NSDictionary in self.breweries
                     {
-                        let breweryObject: Brewery = Brewery(dataDictionary: dict)
+                        let breweryObject: Brewery = Brewery(dataDictionary: dict, userLcation: self.location)
                         self.breweryObjects.append(breweryObject)
                     }
-
+                    
                 }
-                print(localBrew["data"])
+                //print(localBrew["data"])
                 
             }
-            
+                
             catch let error as NSError{
+                print(error)
                 
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.breweryObjects.sortInPlace{$0.distance < $1.distance}
                 self.tableView.reloadData()
+                //self.breweryObjects = []
                 self.navigationItem.rightBarButtonItem?.enabled = true
-
-                
             })
+            
+            
         }
         task.resume()
+        
         
     }
     
     
-
+    func sortArray(withCompletionHandler:()->Void)
+    {
+        self.breweryObjects.sortInPlace{ $0.distance < $1.distance }
+        withCompletionHandler()
+    }
+    
+    
     func setCurrentUser()
     {
         FirebaseConnection.firebaseConnection.CURRENT_USER_REF.observeSingleEventOfType(.Value, withBlock: { snapshot in
@@ -391,9 +412,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.navigationController?.navigationBarHidden = false
                 self.view.userInteractionEnabled = false
                 self.view.addSubview(self.progressHUD)
-
-
-                
                 self.tableView.reloadData()
                 
             })
@@ -405,7 +423,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func changeCity()
     {
         self.performSegueWithIdentifier("changeCity", sender: self.view)
-
+        
     }
     
     @IBAction func handleTap(recognizer:UIGestureRecognizer)
@@ -426,7 +444,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return self.breweries.count
+        return self.breweryObjects.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -438,7 +456,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.configureCell(brewery)
             self.progressHUD.removeFromSuperview()  //remove activity spinner and label
             self.view.userInteractionEnabled = true
-
+            
             return cell
             
         } else {
@@ -495,9 +513,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.averageLongitude = 0
             self.mapView.removeAnnotations(annotations)
             self.view.addGestureRecognizer(tap)
-
-        //  self.mapView.removeAnnotations(mapView.annotations)
-  
+            
+            //  self.mapView.removeAnnotations(mapView.annotations)
+            
         } else if (self.mapSegmentControl.selectedSegmentIndex == 1) {
             // add annotations to mapView by looping through the array
             for brewery in self.breweryObjects
@@ -590,5 +608,5 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         mapItem.openInMapsWithLaunchOptions(options)
         
     }
-    
+
 }
