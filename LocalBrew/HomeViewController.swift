@@ -42,7 +42,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var longPress = UILongPressGestureRecognizer()
     var tap = UITapGestureRecognizer()
     var location = CLLocation()
-    
+    var hasCalledAPI:Bool!
     
     
     let defaultCity = "chicago"
@@ -188,6 +188,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.mapView.hidden = true
         
+        self.hasCalledAPI = false
+        
         
         
     }
@@ -199,10 +201,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if self.location.verticalAccuracy < 1000 && self.location.horizontalAccuracy < 1000
         {
             locationManager.stopUpdatingLocation()
-            self.locationManager.delegate = nil
-            reverseGeocode(self.location, completionHandler: { () -> Void in
-                self.accessBreweryDB()
-            })
+            //4self.locationManager.delegate = nil
+            reverseGeocode(self.location)
+            
+          
             
         }
     }
@@ -211,7 +213,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print(error)
     }
     
-    func reverseGeocode(location: CLLocation, completionHandler:()->Void)
+    func reverseGeocode(location: CLLocation)
     {
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks:[CLPlacemark]?, error:NSError?) -> Void in
@@ -241,7 +243,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
             self.title = self.locality?.capitalizedString
-            completionHandler()
+            
+            if(!self.hasCalledAPI)
+            {
+                self.accessBreweryDB()
+            }
+            self.hasCalledAPI = true
         })
         
         

@@ -56,6 +56,7 @@ class Brewery {
         
         
         distance = userLcation.distanceFromLocation(CLLocation(latitude: self.latitude, longitude: self.longitude))
+        print(self.distance)
         
         
     
