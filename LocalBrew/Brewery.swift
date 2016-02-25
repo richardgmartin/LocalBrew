@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 
+
 class Brewery {
     
     var name: String
@@ -32,6 +33,9 @@ class Brewery {
     var beers:[Beer]!
     var distance: Double!
 
+    
+    
+    
     
     
    
@@ -142,6 +146,7 @@ class Brewery {
         
     }
 }
+
 
 
 

@@ -123,7 +123,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     func accessDBBeerList()
     {
         // MARK: logic to import breweryDB data
-        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(self.breweryDetail.breweryID)/beers?key=6f75023f91495f22253de067b9136d1d")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(self.breweryDetail.breweryID)/beers?key=3613cdc782cfe937d78e52b40d98510e")
         
         let session = NSURLSession.sharedSession()
         
@@ -163,14 +163,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                         self.beerObjects.append(beerObject)
                     }
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        // sort the array
-                       
                         self.tableView.reloadData()
-
-                        
-                        
-
-
                     })
                 }
             }
