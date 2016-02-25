@@ -206,7 +206,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         self.location = locations.first!
-        if self.location.verticalAccuracy < 1000 && self.location.horizontalAccuracy < 1000
+        if self.location.verticalAccuracy < 2000 && self.location.horizontalAccuracy < 2000
         {
             locationManager.stopUpdatingLocation()
             //4self.locationManager.delegate = nil
@@ -252,7 +252,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             self.navigationItem.title = self.locality?.capitalizedString
             
-            self.accessBreweryDB()
             self.title = self.locality?.capitalizedString
             
             if(!self.hasCalledAPI)
@@ -260,6 +259,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.accessBreweryDB()
             }
             self.hasCalledAPI = true
+
         })
         
         
@@ -354,7 +354,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func unwindToHomeViewController(segue: UIStoryboardSegue)
     {
-        self.mapSegmentControl.selectedSegmentIndex = 0
+
         self.navigationController?.navigationBarHidden = false
     }
     
@@ -419,6 +419,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.navigationController?.navigationBarHidden = false
                 self.view.userInteractionEnabled = false
                 self.view.addSubview(self.progressHUD)
+                self.mapView.hidden = true
+                self.tableView.hidden = false
+                self.mapSegmentControl.selectedSegmentIndex = 0
+                self.mapView.removeAnnotations(self.annotations)
+                self.view.addGestureRecognizer(self.tap)
                 self.tableView.reloadData()
                 
             })
