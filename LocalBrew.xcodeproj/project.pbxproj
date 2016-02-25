@@ -18,6 +18,7 @@
 		A37600C61C7507C90045A169 /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37600C51C7507C90045A169 /* Beer.swift */; };
 		B2117353290697217C4C112E /* Pods_LocalBrew.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D0EE5F2967359314A1FB406 /* Pods_LocalBrew.framework */; };
 		DB05AA231C78548100D6F9BB /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB05AA221C78548100D6F9BB /* Comment.swift */; };
+		DB2FE0471C7FA4C7007B9AFC /* BeerDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2FE0461C7FA4C7007B9AFC /* BeerDescriptionViewController.swift */; };
 		DB30EB891C717671006FB1A3 /* FirebaseConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB30EB881C717671006FB1A3 /* FirebaseConnection.swift */; };
 		DB90A5D71C7985FA003BE2A2 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB90A5D61C7985FA003BE2A2 /* CommentViewController.swift */; };
 		DB9D2EA71C712F30007E7228 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D2EA61C712F30007E7228 /* LoginViewController.swift */; };
@@ -51,6 +52,7 @@
 		D156A588F0662AE9F3E3CD9D /* Pods-LocalBrew.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalBrew.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocalBrew/Pods-LocalBrew.release.xcconfig"; sourceTree = "<group>"; };
 		D9EE20D9235388306130DE2B /* Pods-LocalBrew.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalBrew.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocalBrew/Pods-LocalBrew.debug.xcconfig"; sourceTree = "<group>"; };
 		DB05AA221C78548100D6F9BB /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		DB2FE0461C7FA4C7007B9AFC /* BeerDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerDescriptionViewController.swift; sourceTree = "<group>"; };
 		DB30EB881C717671006FB1A3 /* FirebaseConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseConnection.swift; sourceTree = SOURCE_ROOT; };
 		DB90A5D61C7985FA003BE2A2 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		DB9D2EA61C712F30007E7228 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				E5ACAB3C1C7232D70013468E /* ChangeCityViewController.swift */,
 				E597B6201C6FDEFE007B8134 /* ProfileViewController.swift */,
 				E5ACAB3E1C7241540013468E /* DetailViewController.swift */,
+				DB2FE0461C7FA4C7007B9AFC /* BeerDescriptionViewController.swift */,
 				E5218EF41C7629B7008DF84F /* WebsiteViewController.swift */,
 				DB9D2EA61C712F30007E7228 /* LoginViewController.swift */,
 				DB9D2EAA1C71533F007E7228 /* CreateUserViewController.swift */,
@@ -209,7 +212,7 @@
 				TargetAttributes = {
 					A3025F1F1C6F7E7C004617DB = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = U2E38G82JZ;
+						DevelopmentTeam = 767ELXNDQ9;
 					};
 				};
 			};
@@ -303,6 +306,7 @@
 				DB30EB891C717671006FB1A3 /* FirebaseConnection.swift in Sources */,
 				DB9D2EA71C712F30007E7228 /* LoginViewController.swift in Sources */,
 				A3025F3C1C6F87B3004617DB /* Brewery.swift in Sources */,
+				DB2FE0471C7FA4C7007B9AFC /* BeerDescriptionViewController.swift in Sources */,
 				E5ACAB3D1C7232D70013468E /* ChangeCityViewController.swift in Sources */,
 				DB05AA231C78548100D6F9BB /* Comment.swift in Sources */,
 				E50758241C77AD1F008CA35A /* UIColor+LocalBrew.swift in Sources */,
@@ -432,7 +436,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = LocalBrew/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Michael.LocalBrew;
+				PRODUCT_BUNDLE_IDENTIFIER = .com.YemiAjibola.LocalBrew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -447,7 +451,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = LocalBrew/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Michael.LocalBrew;
+				PRODUCT_BUNDLE_IDENTIFIER = .com.YemiAjibola.LocalBrew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

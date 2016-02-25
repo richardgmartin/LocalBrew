@@ -329,6 +329,11 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             let commentsVC = segue.destinationViewController as! CommentViewController
             commentsVC.beer = cell.beer
         }
+        else if segue.identifier == "toDescription"
+        {
+            
+        }
+        
         
     }
     
