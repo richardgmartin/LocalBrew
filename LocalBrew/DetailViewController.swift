@@ -36,7 +36,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
 
         self.breweryIconImageView.image = self.breweryDetail.breweryImageIcon
-        self.title = self.breweryDetail.name
+        self.navigationItem.title = self.breweryDetail.name
         self.breweryPhoneNumberButton.setTitle("Call", forState: .Normal)
         
         self.breweryPhoneNumberButton.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)

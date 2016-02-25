@@ -17,6 +17,15 @@ class tabBarViewController: UITabBarController {
         self.tabBar.barTintColor = UIColor.fromHexString("#040f0f", alpha: 1.0)
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: .Normal)
         self.tabBar.translucent = false
+        let tabItems = self.tabBar.items! as [UITabBarItem]
+        let tabItemHome = tabItems[0]
+        let tabItemProfile = tabItems[1]
+        tabItemHome.title = "Home"
+        tabItemProfile.title = "Profile"
+        
+        
+        
+        
     
         
         

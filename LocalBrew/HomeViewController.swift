@@ -12,7 +12,7 @@ import Firebase
 import MapKit
 
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, ChangeCityViewControllerDelegate, UIGestureRecognizerDelegate, MKMapViewDelegate {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, ChangeCityViewControllerDelegate, UIGestureRecognizerDelegate, MKMapViewDelegate, UITabBarControllerDelegate {
     @IBOutlet weak var mapSegmentControl: UISegmentedControl!
     
     @IBOutlet weak var mapView: MKMapView!
@@ -41,6 +41,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let userDefaults = NSUserDefaults.standardUserDefaults()
     var longPress = UILongPressGestureRecognizer()
     var tap = UITapGestureRecognizer()
+
     
     let defaultCity = "chicago"
     let defaultState = "illinois"
@@ -184,9 +185,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.view.addGestureRecognizer(self.tap)
         
         self.mapView.hidden = true
-    
-
+        self.tabBarController?.delegate = self
         
+    }
+    
+    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+
+        self.navigationController?.navigationBarHidden = false
+        self.mapView.hidden = true
+        self.tableView.hidden = false
+        self.mapSegmentControl.selectedSegmentIndex = 0
+        self.mapView.removeAnnotations(annotations)
+        self.view.addGestureRecognizer(tap)
+
     }
     
     // MARK : - Location manager delogates
@@ -230,7 +241,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     //print(value)
                 }
             }
-            self.title = self.locality?.capitalizedString
+            self.navigationItem.title = self.locality?.capitalizedString
             
             self.accessBreweryDB()
         })
@@ -367,7 +378,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             let cityWithCapitals = cityWithPlus.capitalizedString
             
-            self.title = cityWithCapitals
+            self.navigationItem.title = cityWithCapitals
             
             // call breweryDB api to build new city detail
             
@@ -466,7 +477,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         else if (segue.identifier == "map") {
             let dvc = segue.destinationViewController as? mapViewController
-            dvc?.title = self.title
+            dvc?.title = self.navigationItem.title
             dvc?.breweryObjects = self.breweryObjects
             
         }
@@ -579,8 +590,5 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         mapItem.openInMapsWithLaunchOptions(options)
         
     }
-    
-
-
     
 }
