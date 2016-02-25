@@ -20,6 +20,7 @@ class WebsiteViewController: UIViewController {
         let url = NSURL (string: "\(self.breweryDetail.website!)")
         let requestObj = NSURLRequest(URL: url!)
         self.webView.loadRequest(requestObj)
+//        self.navigationController?.navigationBarHidden = true
     }
 
 }

@@ -677,11 +677,11 @@
             </objects>
             <point key="canvasLocation" x="4776" y="353"/>
         </scene>
-        <!--Home-->
+        <!--Navigation Controller-->
         <scene sceneID="dVk-h9-jlO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xXZ-aB-tII" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="home50" id="ktF-b6-9VC"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="" image="home50" id="ktF-b6-9VC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rdz-Ca-G44">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1087,11 +1087,11 @@
             </objects>
             <point key="canvasLocation" x="915" y="1116"/>
         </scene>
-        <!--Profile-->
+        <!--Navigation Controller-->
         <scene sceneID="NvL-ux-fgt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hUf-Kh-bvb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="UserMale" id="cuG-Wt-jvf"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="" image="UserMale" id="cuG-Wt-jvf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XLo-Rs-hqx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
