@@ -36,6 +36,7 @@ class BreweryCell: UITableViewCell {
         self.breweryDistanceLabel.text = "0.4 miles"
         //self.breweryLikeLabel.text = "15 Likes"
         self.breweryImageView.image = brewery.breweryImageIcon
+        self.breweryNameLabel.font = UIFont.boldSystemFontOfSize(15.0)
 
         
         if brewery.firebaseID == nil
