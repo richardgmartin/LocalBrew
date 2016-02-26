@@ -22,13 +22,7 @@ class BreweryCell: UITableViewCell {
     @IBOutlet weak var breweryNameLabel: UILabel!
     @IBOutlet weak var breweryAddressLabel: UILabel!
     @IBOutlet weak var breweryDistanceLabel: UILabel!
-    
  
-
-    
-
-    
-    
     func configureCell(brewery: Brewery) {
         self.brewery = brewery
         self.breweryNameLabel!.text = brewery.name
@@ -51,7 +45,7 @@ class BreweryCell: UITableViewCell {
         })
         
         
-        let distance = brewery.distance * 0.00062137
+        let distance = brewery.distance! * 0.00062137
         
         self.breweryDistanceLabel.text = String(format: "%.2f miles", arguments: [distance])
         

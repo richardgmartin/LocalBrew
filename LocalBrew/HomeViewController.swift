@@ -284,7 +284,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 // MARK: check to see if user has selected city with a brewery or has entered bad data
                 
                 if localBrew["data"] == nil {
-                    print("Ooops, localBrew is empty")
+                   // print("Ooops, localBrew is empty")
                     
                     let alertController = UIAlertController(title: "Oops. There was a problem.", message: "There was something wrong with the city information you provided. Try again or change the selected city.", preferredStyle: .Alert)
                     
@@ -308,7 +308,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     
                     for dict: NSDictionary in self.breweries
                     {
-                        let breweryObject: Brewery = Brewery(dataDictionary: dict, userLcation: self.location)
+                        let breweryObject: Brewery = Brewery(dataDictionary: dict, userLocation: self.location)
                         self.breweryObjects.append(breweryObject)
                     }
                     
