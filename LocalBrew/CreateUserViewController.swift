@@ -14,15 +14,49 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate
     var rootRef:Firebase!
     let userDefaults = NSUserDefaults.standardUserDefaults()
     
+    @IBOutlet weak var localBrewLabel: UILabel!
     @IBOutlet weak var createEmailTextField: UITextField!
     @IBOutlet weak var createPasswordTextField: UITextField!
     @IBOutlet weak var createUsernameTextField: UITextField!
     @IBOutlet weak var createNameTextField: UITextField!
 
+    @IBOutlet weak var createUserProfileButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     override func viewDidLoad()
     {
         super.viewDidLoad()
         self.rootRef = Firebase(url: "https://localbrew.firebaseio.com")
+        
+        self.createEmailTextField.layer.cornerRadius = 5
+        self.createEmailTextField.layer.borderWidth = 1
+        self.createEmailTextField.layer.borderColor = UIColor.blackColor().CGColor
+        self.createEmailTextField.textColor = UIColor.blackColor()
+        self.createPasswordTextField.layer.cornerRadius = 5
+        self.createPasswordTextField.layer.borderWidth = 1
+        self.createPasswordTextField.layer.borderColor = UIColor.blackColor().CGColor
+        self.createPasswordTextField.textColor = UIColor.blackColor()
+        self.createUsernameTextField.layer.cornerRadius = 5
+        self.createUsernameTextField.layer.borderWidth = 1
+        self.createUsernameTextField.layer.borderColor = UIColor.blackColor().CGColor
+        self.createUsernameTextField.textColor = UIColor.blackColor()
+        self.createNameTextField.layer.cornerRadius = 5
+        self.createNameTextField.layer.borderWidth = 1
+        self.createNameTextField.layer.borderColor = UIColor.blackColor().CGColor
+        self.createNameTextField.textColor = UIColor.blackColor()
+        
+        self.createUserProfileButton.backgroundColor = UIColor.fromHexString("#FAD201", alpha: 1.0)
+        self.createUserProfileButton.layer.cornerRadius = 5
+        self.createUserProfileButton.layer.borderWidth = 1
+        self.createUserProfileButton.layer.borderColor = UIColor.fromHexString("#000000", alpha: 1.0) .CGColor
+        self.createUserProfileButton.tintColor = UIColor.fromHexString("#000000", alpha: 1.0)
+        self.backButton.tintColor = UIColor.fromHexString("#000000", alpha: 1.0)
+        self.backButton.backgroundColor = UIColor.fromHexString("#FAD201", alpha: 1.0)
+        self.backButton.layer.cornerRadius = 5
+        self.backButton.layer.borderWidth = 1
+        self.backButton.layer.borderColor = UIColor.fromHexString("#000000", alpha: 1.0) .CGColor
+        
+        self.localBrewLabel.font = UIFont.boldSystemFontOfSize(20.0)
+
     }
 
     override func didReceiveMemoryWarning()

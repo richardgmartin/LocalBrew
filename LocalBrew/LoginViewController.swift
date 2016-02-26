@@ -14,7 +14,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate
 {
     @IBOutlet weak var loginEmailTextField: UITextField!
     @IBOutlet weak var loginPasswordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var dontHaveAccountButton: UIButton!
     
+    @IBOutlet weak var localBrewLabel: UILabel!
     var rootRef:Firebase!
     let userDefaults = NSUserDefaults.standardUserDefaults()
 
@@ -23,7 +26,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         super.viewDidLoad()
         self.rootRef = Firebase(url: "https://localbrew.firebaseio.com")
         //let userRef = rootRef.childByAppendingPath("users")
+        self.loginEmailTextField.layer.cornerRadius = 5
+        self.loginEmailTextField.layer.borderWidth = 1
+        self.loginEmailTextField.layer.borderColor = UIColor.blackColor().CGColor
+        self.loginEmailTextField.textColor = UIColor.blackColor()
+        self.loginPasswordTextField.layer.cornerRadius = 5
+        self.loginPasswordTextField.layer.borderWidth = 1
+        self.loginPasswordTextField.layer.borderColor = UIColor.blackColor().CGColor
+        self.loginPasswordTextField.textColor = UIColor.blackColor()
         
+        self.loginButton.backgroundColor = UIColor.fromHexString("#FAD201", alpha: 1.0)
+        self.loginButton.layer.cornerRadius = 5
+        self.loginButton.layer.borderWidth = 1
+        self.loginButton.layer.borderColor = UIColor.fromHexString("#000000", alpha: 1.0) .CGColor
+        self.loginButton.tintColor = UIColor.fromHexString("#000000", alpha: 1.0)
+        self.dontHaveAccountButton.tintColor = UIColor.fromHexString("#000000", alpha: 1.0)
+        self.dontHaveAccountButton.backgroundColor = UIColor.fromHexString("#FAD201", alpha: 1.0)
+        self.dontHaveAccountButton.layer.cornerRadius = 5
+        self.dontHaveAccountButton.layer.borderWidth = 1
+        self.dontHaveAccountButton.layer.borderColor = UIColor.fromHexString("#000000", alpha: 1.0) .CGColor
+        
+        self.localBrewLabel.font = UIFont.boldSystemFontOfSize(20.0)
+
+
+
 
         // Do any additional setup after loading the view.
     }

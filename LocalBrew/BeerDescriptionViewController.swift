@@ -33,7 +33,7 @@ class BeerDescriptionViewController: UIViewController {
         self.beerImageView.image = beerDetail.beerImageIcon
         self.beerDescriptionTextView.text = beerDetail.beerDescription
         self.beerStyle.text = beerDetail.style
-        self.breweryName.text = beerDetail.beerName
+        self.breweryName.text = breweryDetailName
         self.beerDescriptionLabel.font = UIFont.boldSystemFontOfSize(17.0)
         self.beerOrganicBold.font = UIFont.boldSystemFontOfSize(17.0)
         self.beerStyleBold.font = UIFont.boldSystemFontOfSize(17.0)
