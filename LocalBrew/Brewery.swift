@@ -15,7 +15,7 @@ class Brewery {
     
     var name: String
     var breweryID: String
-    var firebaseID: String!
+    var firebaseID: String?
     var streetAddress: String?
     var locality: String              // city or town
     var region: String                // state or province
@@ -30,8 +30,8 @@ class Brewery {
     var breweryImageSquareMedium: UIImage?
     var breweryImageLarge: UIImage?
     var phoneNumber: String
-    var beers:[Beer]!
-    var distance: Double!
+    var beers:[Beer]?
+    var distance: Double?
 
     
     
@@ -40,7 +40,7 @@ class Brewery {
     
    
     
-    init(dataDictionary: NSDictionary, userLcation:CLLocation) {
+    init(dataDictionary: NSDictionary, userLocation:CLLocation?) {
         
         let breweryDictionary = dataDictionary["brewery"]
         let locationDictionary = dataDictionary["country"]
@@ -55,8 +55,11 @@ class Brewery {
         isOrganic = breweryDictionary!["isOrganic"] as! String
         
         
-        distance = userLcation.distanceFromLocation(CLLocation(latitude: self.latitude, longitude: self.longitude))
-        print(self.distance)
+        if(userLocation != nil)
+        {
+            distance = userLocation!.distanceFromLocation(CLLocation(latitude: self.latitude, longitude: self.longitude))
+        }
+        //print(self.distance)
         
         
     
@@ -145,6 +148,85 @@ class Brewery {
         })
    
         
+    }
+    
+    init(dictionary:NSDictionary)
+    {
+        name = dictionary["name"] as! String
+        breweryID = dictionary["id"] as! String
+        locality = dictionary["locality"] as! String
+        region = dictionary["region"] as! String
+        countryName = dictionary["displayName"] as! String
+        latitude = dictionary["latitude"] as! Double
+        longitude = dictionary["longitude"]as! Double
+        isOrganic = dictionary["isOrganic"] as! String
+        
+        if let streetAddress = dictionary["streetAddress"] as? String
+        {
+            self.streetAddress = streetAddress
+        }
+        else
+        {
+            self.streetAddress = "No Address"
+        }
+        
+        if let streetAddress = dictionary["streetAddress"] as? String
+        {
+            self.streetAddress = streetAddress
+        }
+        else
+        {
+            self.streetAddress = "No Address"
+        }
+        if let phoneNumber = dictionary["phone"] as? String
+        {
+            self.phoneNumber = phoneNumber
+        }
+        else
+        {
+            self.phoneNumber = "Unavailable number"
+        }
+        
+        if let postalCode = dictionary["postalCode"] as? String
+        {
+            self.postalCode = postalCode
+        }
+        else
+        {
+            self.postalCode = "Sorry. The brewery did not provide us a zipcode or postal code."
+        }
+        
+        if let website = dictionary["website"] as? String
+        {
+            self.website = website
+        }
+        else
+        {
+            self.website = "No Website"
+        }
+        
+        if let breweryDescription = dictionary["description"] as? String
+        {
+            self.breweryDescription = breweryDescription
+        }
+        else
+        {
+            self.breweryDescription = "Sorry. The brewery did not provide us with a description."
+        }
+        if let imageDictionary = dictionary["images"] as? NSDictionary
+        {
+            //             Icon Image
+            if let iconImageString = imageDictionary["icon"] as? String
+            {
+                if let url = NSURL(string: iconImageString)
+                {
+                    if let data = NSData(contentsOfURL: url)
+                    {
+                        self.breweryImageIcon = UIImage(data: data)
+                    }
+                }
+            }
+        }
     }
 }
 
