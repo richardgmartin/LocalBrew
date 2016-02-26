@@ -117,20 +117,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         self.view.userInteractionEnabled = false
         
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
+//        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.fromHexString("#FAFAFF", alpha: 1.0)
+//        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.fromHexString("#FAFAFF", alpha: 1.0)
         self.navigationItem.rightBarButtonItem?.enabled = false
-        self.navigationController?.navigationBar.barTintColor = UIColor.fromHexString("#040f0f", alpha: 1.0)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.fromHexString("#FAFAFA", alpha: 1.0)]
+        self.navigationController?.navigationBar.barTintColor = UIColor.fromHexString("#960200", alpha: 1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.fromHexString("#FAFAFF", alpha: 1.0)]
         self.setCurrentUser()
         
-        self.navigationController?.navigationBar.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
+        self.navigationController?.navigationBar.tintColor = UIColor.fromHexString("#FAFAFF", alpha: 1.0)
         self.navigationController?.navigationBar.translucent = false
         self.automaticallyAdjustsScrollViewInsets = false
         
         
-        self.mapSegmentControl.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
-        self.mapSegmentControl.backgroundColor = UIColor.whiteColor()
+        self.mapSegmentControl.tintColor = UIColor.fromHexString("#FAD201", alpha: 1.0)
+        self.mapSegmentControl.backgroundColor = UIColor.fromHexString("#FAFAFF", alpha: 1.0)
+        self.mapSegmentControl.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.fromHexString("#000000", alpha: 1.0)], forState: .Normal)
+        self.mapSegmentControl.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.fromHexString("#000000", alpha: 1.0)], forState: .Selected)
+        
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()

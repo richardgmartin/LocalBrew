@@ -253,7 +253,7 @@
                                 <gestureRecognizers/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BeerCellID" rowHeight="110" id="yU3-xF-cE1" customClass="BeerCell" customModule="LocalBrew" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="110"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yU3-xF-cE1" id="0hI-Bj-0S4">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="109.5"/>
@@ -322,31 +322,6 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBn-Aw-niJ">
-                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="46" id="OVl-hi-Pg9">
-                                                            <variation key="widthClass=compact" constant="39"/>
-                                                        </constraint>
-                                                        <constraint firstAttribute="height" constant="30" id="UdD-WH-M9A"/>
-                                                    </constraints>
-                                                    <state key="normal" image="beerEmpty"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="OVl-hi-Pg9"/>
-                                                            <exclude reference="UdD-WH-M9A"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <variation key="widthClass=compact">
-                                                        <mask key="constraints">
-                                                            <include reference="OVl-hi-Pg9"/>
-                                                            <include reference="UdD-WH-M9A"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <connections>
-                                                        <action selector="onBeerButtonTapped:" destination="yU3-xF-cE1" eventType="touchUpInside" id="vHH-M5-MEh"/>
-                                                    </connections>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Style" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94p-sT-heC">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <constraints>
@@ -369,18 +344,47 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBn-Aw-niJ">
+                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="46" id="OVl-hi-Pg9">
+                                                            <variation key="widthClass=compact" constant="50"/>
+                                                        </constraint>
+                                                        <constraint firstAttribute="height" constant="30" id="UdD-WH-M9A">
+                                                            <variation key="widthClass=compact" constant="50"/>
+                                                        </constraint>
+                                                    </constraints>
+                                                    <state key="normal" image="beerEmpty"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="OVl-hi-Pg9"/>
+                                                            <exclude reference="UdD-WH-M9A"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="OVl-hi-Pg9"/>
+                                                            <include reference="UdD-WH-M9A"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <connections>
+                                                        <action selector="onBeerButtonTapped:" destination="yU3-xF-cE1" eventType="touchUpInside" id="vHH-M5-MEh"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="AJ5-T7-Bqm" firstAttribute="leading" secondItem="0hI-Bj-0S4" secondAttribute="leadingMargin" id="05H-T0-PMp"/>
                                                 <constraint firstItem="HRG-pq-EQl" firstAttribute="top" secondItem="0hI-Bj-0S4" secondAttribute="topMargin" id="9ex-L9-960"/>
                                                 <constraint firstItem="94p-sT-heC" firstAttribute="leading" secondItem="AJ5-T7-Bqm" secondAttribute="trailing" constant="8" id="EMA-E8-Gfn"/>
-                                                <constraint firstItem="94p-sT-heC" firstAttribute="top" secondItem="gBn-Aw-niJ" secondAttribute="bottom" constant="8" id="P7o-8r-Bj2"/>
+                                                <constraint firstItem="94p-sT-heC" firstAttribute="top" secondItem="gBn-Aw-niJ" secondAttribute="bottom" constant="8" id="P7o-8r-Bj2">
+                                                    <variation key="widthClass=compact" constant="-3.5"/>
+                                                </constraint>
                                                 <constraint firstItem="gBn-Aw-niJ" firstAttribute="trailing" secondItem="0hI-Bj-0S4" secondAttribute="trailingMargin" id="R66-BC-28i">
-                                                    <variation key="widthClass=compact" constant="-26"/>
+                                                    <variation key="widthClass=compact" constant="-15"/>
                                                 </constraint>
                                                 <constraint firstItem="HRG-pq-EQl" firstAttribute="leading" secondItem="AJ5-T7-Bqm" secondAttribute="trailing" constant="8" id="Zhb-mk-Ld7"/>
                                                 <constraint firstItem="gBn-Aw-niJ" firstAttribute="bottom" secondItem="0hI-Bj-0S4" secondAttribute="bottomMargin" id="bQn-q7-OjM">
-                                                    <variation key="widthClass=compact" constant="-63"/>
+                                                    <variation key="widthClass=compact" constant="-51.5"/>
                                                 </constraint>
                                                 <constraint firstItem="AJ5-T7-Bqm" firstAttribute="top" secondItem="0hI-Bj-0S4" secondAttribute="topMargin" constant="-7" id="dgu-8W-Gvf"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="zgx-TJ-bxj" secondAttribute="trailing" constant="73" id="hib-pm-qBZ"/>
@@ -391,8 +395,8 @@
                                                     <exclude reference="AJ5-T7-Bqm"/>
                                                     <exclude reference="HRG-pq-EQl"/>
                                                     <exclude reference="zgx-TJ-bxj"/>
-                                                    <exclude reference="gBn-Aw-niJ"/>
                                                     <exclude reference="94p-sT-heC"/>
+                                                    <exclude reference="gBn-Aw-niJ"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <exclude reference="R66-BC-28i"/>
@@ -412,8 +416,8 @@
                                                     <include reference="AJ5-T7-Bqm"/>
                                                     <include reference="HRG-pq-EQl"/>
                                                     <include reference="zgx-TJ-bxj"/>
-                                                    <include reference="gBn-Aw-niJ"/>
                                                     <include reference="94p-sT-heC"/>
+                                                    <include reference="gBn-Aw-niJ"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <include reference="R66-BC-28i"/>
@@ -474,6 +478,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KFn-z1-Uda">
                                 <rect key="frame" x="534" y="7" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" image="beerEmpty"/>
                                 <connections>
                                     <action selector="onBreweryButtonTapped:" destination="sbK-Lj-PUP" eventType="touchUpInside" id="qQu-xu-daZ"/>
@@ -671,6 +676,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beer1024" translatesAutoresizingMaskIntoConstraints="NO" id="sCT-Jk-dhC">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                </variation>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBW-VG-xe9">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -753,6 +764,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="sCT-Jk-dhC"/>
                                 <exclude reference="MBW-VG-xe9"/>
                                 <exclude reference="dTS-sf-EQK"/>
                                 <exclude reference="xVg-Gb-fXX"/>
@@ -766,6 +778,7 @@
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
+                                <include reference="sCT-Jk-dhC"/>
                                 <include reference="MBW-VG-xe9"/>
                                 <include reference="dTS-sf-EQK"/>
                                 <include reference="xVg-Gb-fXX"/>
@@ -1246,7 +1259,8 @@
     </scenes>
     <resources>
         <image name="UserMale" width="25" height="25"/>
-        <image name="beerEmpty" width="30" height="30"/>
+        <image name="beer1024" width="1024" height="1024"/>
+        <image name="beerEmpty" width="25" height="25"/>
         <image name="home50" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>

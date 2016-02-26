@@ -38,6 +38,7 @@ class BeerDescriptionViewController: UIViewController {
         self.beerOrganicBold.font = UIFont.boldSystemFontOfSize(17.0)
         self.beerStyleBold.font = UIFont.boldSystemFontOfSize(17.0)
         self.breweryNameBold.font = UIFont.boldSystemFontOfSize(17.0)
+        self.beerDescriptionTextView.backgroundColor = UIColor.clearColor()
         
         
         

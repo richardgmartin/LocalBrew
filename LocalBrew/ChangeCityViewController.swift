@@ -40,17 +40,16 @@ class ChangeCityViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         
         //button cosmetics
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
-        self.updateButton.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
-        self.updateButton.backgroundColor = UIColor.blackColor()
+        self.updateButton.tintColor = UIColor.fromHexString("#000000", alpha: 1.0)
+        self.updateButton.backgroundColor = UIColor.fromHexString("#FAD201", alpha: 1.0)
         self.updateButton.layer.cornerRadius = 5
         self.updateButton.layer.borderWidth = 1
-        self.updateButton.layer.borderColor = UIColor.blackColor().CGColor
-        self.cancelButton.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
-        self.cancelButton.backgroundColor = UIColor.blackColor()
+        self.updateButton.layer.borderColor = UIColor.fromHexString("#000000", alpha: 1.0) .CGColor
+        self.cancelButton.tintColor = UIColor.fromHexString("#000000", alpha: 1.0)
+        self.cancelButton.backgroundColor = UIColor.fromHexString("#FAD201", alpha: 1.0)
         self.cancelButton.layer.cornerRadius = 5
         self.cancelButton.layer.borderWidth = 1
-        self.cancelButton.layer.borderColor = UIColor.blackColor().CGColor
+        self.cancelButton.layer.borderColor = UIColor.fromHexString("#000000", alpha: 1.0) .CGColor
         
         self.cityTextField.layer.cornerRadius = 5
         self.cityTextField.layer.borderWidth = 1
@@ -65,7 +64,9 @@ class ChangeCityViewController: UIViewController, MKMapViewDelegate {
         self.countryTextField.layer.borderColor = UIColor.blackColor().CGColor
         self.countryTextField.textColor = UIColor.blackColor()
         
-        self.navigationController!.navigationBar.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor = UIColor.fromHexString("#960200", alpha: 1.0)
+        self.navigationController?.navigationBar.tintColor = UIColor.fromHexString("#FAFAFF", alpha: 1.0)
+
     
         self.navigationItem.hidesBackButton = true
         self.navigationController?.navigationBarHidden = true

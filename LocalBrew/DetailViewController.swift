@@ -39,26 +39,27 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         self.navigationItem.title = self.breweryDetail.name
         self.breweryPhoneNumberButton.setTitle("Call", forState: .Normal)
         
-        self.breweryPhoneNumberButton.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
-        self.breweryPhoneNumberButton.backgroundColor = UIColor.blackColor()
+        self.breweryPhoneNumberButton.tintColor = UIColor.fromHexString("#000000", alpha: 1.0)
+        self.breweryPhoneNumberButton.backgroundColor = UIColor.fromHexString("#FAD201", alpha: 1.0)
         self.breweryPhoneNumberButton.layer.cornerRadius = 5
         self.breweryPhoneNumberButton.layer.borderWidth = 1
-        self.breweryPhoneNumberButton.layer.borderColor = UIColor.blackColor().CGColor
-        self.breweryDirectionsButton.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
-        self.breweryDirectionsButton.backgroundColor = UIColor.blackColor()
+        self.breweryPhoneNumberButton.layer.borderColor = UIColor.fromHexString("#FAD201", alpha: 1.0).CGColor
+        self.breweryDirectionsButton.tintColor = UIColor.fromHexString("#000000", alpha: 1.0)
+        self.breweryDirectionsButton.backgroundColor = UIColor.fromHexString("#FAD201", alpha: 1.0)
         self.breweryDirectionsButton.layer.cornerRadius = 5
         self.breweryDirectionsButton.layer.borderWidth = 1
-        self.breweryDirectionsButton.layer.borderColor = UIColor.blackColor().CGColor
-        self.breweryWebsiteButton.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
-        self.breweryWebsiteButton.backgroundColor = UIColor.blackColor()
+        self.breweryDirectionsButton.layer.borderColor = UIColor.fromHexString("#FAD201", alpha: 1.0).CGColor
+        self.breweryWebsiteButton.tintColor = UIColor.fromHexString("#000000", alpha: 1.0)
+        self.breweryWebsiteButton.backgroundColor = UIColor.fromHexString("#FAD201", alpha: 1.0)
         self.breweryWebsiteButton.layer.cornerRadius = 5
         self.breweryWebsiteButton.layer.borderWidth = 1
-        self.breweryWebsiteButton.layer.borderColor = UIColor.blackColor().CGColor
-        self.addressButton.tintColor = UIColor.fromHexString("#41EAD4", alpha: 1.0)
-        self.addressButton.backgroundColor = UIColor.blackColor()
+        self.breweryWebsiteButton.layer.borderColor = UIColor.fromHexString("#FAD201", alpha: 1.0).CGColor
+        
+        self.addressButton.tintColor = UIColor.fromHexString("#000000", alpha: 1.0)
+        self.addressButton.backgroundColor = UIColor.fromHexString("#FAD201", alpha: 1.0)
         self.addressButton.layer.cornerRadius = 5
         self.addressButton.layer.borderWidth = 1
-        self.addressButton.layer.borderColor = UIColor.blackColor().CGColor
+        self.addressButton.layer.borderColor = UIColor.fromHexString("#FAD201", alpha: 1.0).CGColor
         
         
         self.tableView.hidden = true
