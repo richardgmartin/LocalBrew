@@ -116,6 +116,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.addGestureRecognizer(self.longPress)
         self.tableView.addGestureRecognizer(self.tap)
         
+
+        
     }
 
 
@@ -331,8 +333,14 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         }
         else if segue.identifier == "toDescription"
         {
-            
+            let point = self.tableView.convertPoint((sender?.locationInView(self.tableView))!, fromView:self.tableView)
+            let indexPath = self.tableView.indexPathForRowAtPoint(point)
+            let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! BeerCell
+            let dvc = segue.destinationViewController as! BeerDescriptionViewController
+            dvc.beerDetail = cell.beer
+            dvc.breweryDetailName = self.navigationItem.title
         }
+      
         
         
     }

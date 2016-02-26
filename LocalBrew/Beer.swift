@@ -17,6 +17,8 @@ class Beer {
     var beerID: String!
     var firebaseID: String?
     var brewery:Brewery!
+    var isOrganic: String?
+    var beerDescription: String?
 
     
     init(beerDataDictionary: NSDictionary, beerBrewery:Brewery) {
@@ -26,7 +28,7 @@ class Beer {
         
         
         beerID = beerDataDictionary["id"] as! String
-        beerName = beerDataDictionary["name"] as! String
+        beerName = (beerDataDictionary["name"] as! String)
         self.brewery = beerBrewery
         
 
@@ -38,6 +40,17 @@ class Beer {
         else
         {
             self.style = "Sorry, The style is not available"
+        }
+        
+        if let isOrganic = beerDataDictionary["isOrganic"] as? String {
+            self.isOrganic = isOrganic
+        } else {
+            self.isOrganic = "N"
+        }
+        if let beerDescription = beerDataDictionary["description"] as? String {
+            self.beerDescription = beerDescription
+        } else {
+            self.beerDescription = "Sorry, The brewery gave no description about this beer."
         }
         
         if let imageDictionary = beerDataDictionary["labels"] as? NSDictionary

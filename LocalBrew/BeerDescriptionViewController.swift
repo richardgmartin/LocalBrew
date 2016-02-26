@@ -10,26 +10,42 @@ import UIKit
 
 class BeerDescriptionViewController: UIViewController {
 
+    @IBOutlet weak var beerImageView: UIImageView!
+    @IBOutlet weak var beerDescriptionLabel: UILabel!
+    @IBOutlet weak var beerDescriptionTextView: UITextView!
+    @IBOutlet weak var beerOrganic: UILabel!
+    @IBOutlet weak var beerStyle: UILabel!
+    @IBOutlet weak var breweryName: UILabel!
+    @IBOutlet weak var breweryNameBold: UILabel!
+    @IBOutlet weak var beerOrganicBold: UILabel!
+    @IBOutlet weak var beerStyleBold: UILabel!
+    
+    var beerDetail = Beer!()
+    var breweryDetailName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+     
+        
+        self.navigationItem.title = beerDetail.beerName
+        self.beerOrganic.text = beerDetail.isOrganic
+        self.beerImageView.image = beerDetail.beerImageIcon
+        self.beerDescriptionTextView.text = beerDetail.beerDescription
+        self.beerStyle.text = beerDetail.style
+        self.breweryName.text = beerDetail.beerName
+        self.beerDescriptionLabel.font = UIFont.boldSystemFontOfSize(17.0)
+        self.beerOrganicBold.font = UIFont.boldSystemFontOfSize(17.0)
+        self.beerStyleBold.font = UIFont.boldSystemFontOfSize(17.0)
+        self.breweryNameBold.font = UIFont.boldSystemFontOfSize(17.0)
+        
+        
+        
+        
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
+    
 
 }

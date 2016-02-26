@@ -252,8 +252,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             self.navigationItem.title = self.locality?.capitalizedString
             
-            self.title = self.locality?.capitalizedString
-            
             if(!self.hasCalledAPI)
             {
                 self.accessBreweryDB()
