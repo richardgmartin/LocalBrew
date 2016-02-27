@@ -10,8 +10,11 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+{
 
+
+    @IBOutlet weak var userMapView: MKMapView!
     @IBOutlet weak var likedBreweriesTableView: UITableView!
     @IBOutlet weak var likedBeersTableView: UITableView!
     var likedBeersArray = NSMutableArray()
