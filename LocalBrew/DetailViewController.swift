@@ -126,7 +126,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     func accessDBBeerList()
     {
         // MARK: logic to import breweryDB data
-        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(self.breweryDetail.breweryID)/beers?key=3613cdc782cfe937d78e52b40d98510e")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(self.breweryDetail.breweryID)/beers?key=6f75023f91495f22253de067b9136d1d")
         
         let session = NSURLSession.sharedSession()
         
@@ -199,9 +199,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             {
                 likedBreweryRef.removeValue()
                 self.breweryLikeButton.imageView?.image = UIImage(named: "beerEmpty")
-                
-                let likedBreweries = self.userDefaults.objectForKey("likedBreweries") as? NSMutableArray
-                likedBreweries?.addObject(snapshot.value)
                 
                 liked = false
             }
@@ -343,7 +340,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! BeerCell
             let dvc = segue.destinationViewController as! BeerDescriptionViewController
             dvc.beerDetail = cell.beer
-            dvc.breweryDetailName = self.navigationItem.title
+            dvc.breweryDetail = self.breweryDetail
         }
       
         
