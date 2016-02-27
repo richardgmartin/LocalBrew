@@ -363,15 +363,15 @@
                                                     <exclude reference="94p-sT-heC"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="05H-T0-PMp"/>
-                                                    <exclude reference="dgu-8W-Gvf"/>
-                                                    <exclude reference="9ex-L9-960"/>
-                                                    <exclude reference="Zhb-mk-Ld7"/>
                                                     <exclude reference="OK1-fr-12y"/>
                                                     <exclude reference="hbQ-FT-s17"/>
+                                                    <exclude reference="9ex-L9-960"/>
+                                                    <exclude reference="Zhb-mk-Ld7"/>
                                                     <exclude reference="5mC-Xx-rnF"/>
                                                     <exclude reference="DI0-u1-wDp"/>
                                                     <exclude reference="tbH-8e-i5o"/>
+                                                    <exclude reference="05H-T0-PMp"/>
+                                                    <exclude reference="dgu-8W-Gvf"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -382,15 +382,15 @@
                                                     <include reference="94p-sT-heC"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="05H-T0-PMp"/>
-                                                    <include reference="dgu-8W-Gvf"/>
-                                                    <include reference="9ex-L9-960"/>
-                                                    <include reference="Zhb-mk-Ld7"/>
                                                     <include reference="OK1-fr-12y"/>
                                                     <include reference="hbQ-FT-s17"/>
+                                                    <include reference="9ex-L9-960"/>
+                                                    <include reference="Zhb-mk-Ld7"/>
                                                     <include reference="5mC-Xx-rnF"/>
                                                     <include reference="DI0-u1-wDp"/>
                                                     <include reference="tbH-8e-i5o"/>
+                                                    <include reference="05H-T0-PMp"/>
+                                                    <include reference="dgu-8W-Gvf"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
