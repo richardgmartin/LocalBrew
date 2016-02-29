@@ -13,6 +13,7 @@ let BASE_URL = "https://localbrew.firebaseio.com/"
 let _USER_REF = Firebase(url: "\(BASE_URL)/users")
 let _BREWERY_REF = Firebase(url: "\(BASE_URL)/breweries")
 let _COMMENT_REF = Firebase(url: "\(BASE_URL)/comments")
+let _BEER_REF = Firebase(url: "\(BASE_URL)/beers")
 
 class FirebaseConnection: NSObject
 {
@@ -40,6 +41,11 @@ class FirebaseConnection: NSObject
         return _COMMENT_REF
     }
     
+    var BEER_REF:Firebase
+    {
+        return _BEER_REF
+    }
+    
     func createNewAccount(uid: String, user: Dictionary<String, AnyObject>) {
         
         USER_REF.childByAppendingPath(uid).setValue(user)
@@ -56,11 +62,18 @@ class FirebaseConnection: NSObject
     
     func createNewBeer(brewery:Brewery, beer:Beer)
     {
-        let dict = ["beerID":beer.beerID, "name":beer.beerName, "numberOfLikes":0]
+        // Adding to beers ref
+        var dict = ["beerID":beer.beerID, "name":beer.beerName, "numberOfLikes":0, "breweryID": brewery.breweryID]
         
-        let firebaseID = BREWERY_REF.childByAppendingPath(brewery.firebaseID).childByAppendingPath("beers").childByAutoId()
-       
+        let firebaseID = BEER_REF.childByAutoId()
+        
         firebaseID.setValue(dict)
+        
+        
+        // Adding to brewery Ref
+        dict = ["beerID":beer.beerID, "name":beer.beerName, "numberOfLikes":0]
+        
+        BREWERY_REF.childByAppendingPath(brewery.firebaseID).childByAppendingPath("beers").childByAppendingPath(firebaseID.key).setValue(dict)
         beer.firebaseID = firebaseID.key
     
     }

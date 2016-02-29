@@ -199,6 +199,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             {
                 likedBreweryRef.removeValue()
                 self.breweryLikeButton.imageView?.image = UIImage(named: "beerEmpty")
+                
                 liked = false
             }
             else
@@ -207,7 +208,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                 self.breweryLikeButton.imageView?.image = UIImage(named: "beerFull")
             }
             
-            let breweryRef = FirebaseConnection.firebaseConnection.BREWERY_REF.childByAppendingPath(self.self.breweryDetail.firebaseID)
+            let breweryRef = FirebaseConnection.firebaseConnection.BREWERY_REF.childByAppendingPath(self.breweryDetail.firebaseID)
             
             breweryRef.childByAppendingPath("numberOfLikes").observeSingleEventOfType(.Value, withBlock: { snapshot in
                 let numlikes = snapshot.value as! Int
@@ -339,7 +340,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! BeerCell
             let dvc = segue.destinationViewController as! BeerDescriptionViewController
             dvc.beerDetail = cell.beer
-            dvc.breweryDetailName = self.navigationItem.title
+            dvc.breweryDetail = self.breweryDetail
         }
       
         
