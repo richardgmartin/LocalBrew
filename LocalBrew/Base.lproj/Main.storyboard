@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yrr-PM-mMY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yrr-PM-mMY">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -543,7 +543,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6pe-22-rLv" firstAttribute="top" secondItem="KlY-bF-Y1U" secondAttribute="bottom" id="MSA-fi-5co">
-                                <variation key="widthClass=compact" constant="44"/>
+                                <variation key="widthClass=compact" constant="39"/>
                             </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="KlY-bF-Y1U" secondAttribute="trailing" constant="-20" id="P6B-s0-0iK"/>
                             <constraint firstItem="KlY-bF-Y1U" firstAttribute="top" secondItem="Gcn-Vj-epY" secondAttribute="topMargin" id="XSQ-aH-7yJ"/>
@@ -581,7 +581,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzQ-j7-3aP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2095.5" y="1116"/>
+            <point key="canvasLocation" x="2032.5" y="1281"/>
         </scene>
         <!--Title-->
         <scene sceneID="eqU-8m-qWG">
@@ -778,7 +778,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a2I-bQ-00F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2919" y="1107"/>
+            <point key="canvasLocation" x="3024" y="1270"/>
         </scene>
         <!--User's Name-->
         <scene sceneID="ava-94-a6s">
@@ -799,7 +799,7 @@
                                     <constraint firstAttribute="height" constant="221" id="m91-qK-4z4"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LikedBreweryCell" textLabel="7TC-dl-h7g" style="IBUITableViewCellStyleDefault" id="lyD-Tv-2lD">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LikedBreweryCell" textLabel="7TC-dl-h7g" style="IBUITableViewCellStyleDefault" id="lyD-Tv-2lD">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lyD-Tv-2lD" id="Ctx-SU-3fN">
@@ -842,7 +842,7 @@
                                     <constraint firstAttribute="height" constant="231" id="K6M-Rb-6nn"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LikedBeerCell" textLabel="fFG-b8-ePy" style="IBUITableViewCellStyleDefault" id="Zbc-hQ-RW2">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LikedBeerCell" textLabel="fFG-b8-ePy" style="IBUITableViewCellStyleDefault" id="Zbc-hQ-RW2">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zbc-hQ-RW2" id="CFw-Eb-OkN">
@@ -921,11 +921,48 @@
                     <connections>
                         <outlet property="likedBeersTableView" destination="Jio-Fi-gmx" id="xnr-vB-uce"/>
                         <outlet property="likedBreweriesTableView" destination="53t-ce-Tw9" id="1Tg-Vv-xS5"/>
+                        <segue destination="Vu9-Bc-Tr4" kind="show" identifier="fromProfile" id="H8e-yQ-ali"/>
+                        <segue destination="1n0-RG-8QK" kind="show" identifier="toLikedBreweryDetail" id="Cxb-EE-2Pn"/>
+                        <segue destination="EiQ-91-9h4" kind="show" identifier="toLikedBeerDescription" id="Bcs-n1-apY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6B0-bZ-VaD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4695" y="337"/>
+            <point key="canvasLocation" x="4735.5" y="329"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hLZ-dX-LoB">
+            <objects>
+                <viewController id="EiQ-91-9h4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BbH-ZH-uFR"/>
+                        <viewControllerLayoutGuide type="bottom" id="InD-Mg-IhI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1gC-3p-Y3Y">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zER-Av-zN0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5451" y="1103"/>
+        </scene>
+        <!--Liked Brewery View Controller-->
+        <scene sceneID="bZz-2Q-brL">
+            <objects>
+                <viewController id="1n0-RG-8QK" customClass="LikedBreweryViewController" customModule="LocalBrew" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AXb-rf-cH8"/>
+                        <viewControllerLayoutGuide type="bottom" id="w0Q-uW-C8Y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zO7-S4-z1Z">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qA4-74-hm6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5881.5" y="282"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dVk-h9-jlO">
@@ -1435,6 +1472,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="OOl-JH-4Wr"/>
-        <segue reference="dI1-xd-hxN"/>
+        <segue reference="H8e-yQ-ali"/>
     </inferredMetricsTieBreakers>
 </document>

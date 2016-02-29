@@ -30,8 +30,8 @@ class mapViewController: UIViewController, MKMapViewDelegate {
                 
                 self.dropPinForLocation(brewery)
 
-                self.averageLatitude = self.averageLatitude + brewery.latitude
-                self.averageLongitude = self.averageLongitude + brewery.longitude
+                self.averageLatitude = self.averageLatitude + brewery.latitude!
+                self.averageLongitude = self.averageLongitude + brewery.longitude!
         }
         self.averageLatitude = self.averageLatitude / Double(self.breweryObjects.count)
         self.averageLongitude = self.averageLongitude / Double(self.breweryObjects.count)
@@ -45,7 +45,7 @@ class mapViewController: UIViewController, MKMapViewDelegate {
     func dropPinForLocation(brewery: Brewery)
     {
         let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2DMake(brewery.latitude, brewery.longitude)
+        annotation.coordinate = CLLocationCoordinate2DMake(brewery.latitude!, brewery.longitude!)
         annotation.title = brewery.name
         self.mapView.addAnnotation(annotation)
         self.annotations.append(annotation)
@@ -73,7 +73,7 @@ class mapViewController: UIViewController, MKMapViewDelegate {
         for brewery in breweryObjects
         {
             if brewery.name == ((view.annotation?.title)!) {
-                let breweryCoordinates = CLLocationCoordinate2DMake(brewery.latitude, brewery.longitude)
+                let breweryCoordinates = CLLocationCoordinate2DMake(brewery.latitude!, brewery.longitude!)
                 openMapForPlace(brewery, breweryCoordinates: breweryCoordinates)
             }
         }
