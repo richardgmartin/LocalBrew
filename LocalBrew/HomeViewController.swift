@@ -357,6 +357,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
 
         self.navigationController?.navigationBarHidden = false
+        
+        if self.countryName == "texas" {
+            
+        }
     }
     
     
