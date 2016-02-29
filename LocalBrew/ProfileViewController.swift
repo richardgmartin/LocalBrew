@@ -226,23 +226,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     {
         let point = sender!.locationInView(self.view)
         
-        if segue.identifier == "fromProfile"
-        {
-            if CGRectContainsPoint(self.likedBreweriesTableView.frame, point)
-            {
-                
-                let indexPath = self.likedBreweriesTableView.indexPathForRowAtPoint(point)
-                let brewery = self.likedBreweriesArray[indexPath!.row] as! LikedBrewery
-                let commentVC = segue.destinationViewController as? CommentViewController
-                //commentVC?.brewery = brewery
-                
-            }
-            else // Beer Comments
-            {
-                
-            }
-        }
-        if segue.identifier == "toLikedeBreweryDetail"
+        if segue.identifier == "toLikedBreweryDetail"
         {
             let point = self.view.convertPoint(sender!.locationInView(self.likedBreweriesTableView), fromView: self.view)
             let indexPath = self.likedBreweriesTableView.indexPathForRowAtPoint(point)

@@ -543,7 +543,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6pe-22-rLv" firstAttribute="top" secondItem="KlY-bF-Y1U" secondAttribute="bottom" id="MSA-fi-5co">
-                                <variation key="widthClass=compact" constant="39"/>
+                                <variation key="widthClass=compact" constant="44"/>
                             </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="KlY-bF-Y1U" secondAttribute="trailing" constant="-20" id="P6B-s0-0iK"/>
                             <constraint firstItem="KlY-bF-Y1U" firstAttribute="top" secondItem="Gcn-Vj-epY" secondAttribute="topMargin" id="XSQ-aH-7yJ"/>
@@ -921,7 +921,6 @@
                     <connections>
                         <outlet property="likedBeersTableView" destination="Jio-Fi-gmx" id="xnr-vB-uce"/>
                         <outlet property="likedBreweriesTableView" destination="53t-ce-Tw9" id="1Tg-Vv-xS5"/>
-                        <segue destination="Vu9-Bc-Tr4" kind="show" identifier="fromProfile" id="H8e-yQ-ali"/>
                         <segue destination="1n0-RG-8QK" kind="show" identifier="toLikedBreweryDetail" id="Cxb-EE-2Pn"/>
                         <segue destination="EiQ-91-9h4" kind="show" identifier="toLikedBeerDescription" id="Bcs-n1-apY"/>
                     </connections>
@@ -930,10 +929,10 @@
             </objects>
             <point key="canvasLocation" x="4735.5" y="329"/>
         </scene>
-        <!--View Controller-->
+        <!--Liked Beer-->
         <scene sceneID="hLZ-dX-LoB">
             <objects>
-                <viewController id="EiQ-91-9h4" sceneMemberID="viewController">
+                <viewController id="EiQ-91-9h4" customClass="LikedBeerViewController" customModule="LocalBrew" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BbH-ZH-uFR"/>
                         <viewControllerLayoutGuide type="bottom" id="InD-Mg-IhI"/>
@@ -942,12 +941,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Liked Beer" id="f1C-Uc-UQd"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zER-Av-zN0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5451" y="1103"/>
+            <point key="canvasLocation" x="4735.5" y="1116"/>
         </scene>
-        <!--Liked Brewery View Controller-->
+        <!--Liked Brewery-->
         <scene sceneID="bZz-2Q-brL">
             <objects>
                 <viewController id="1n0-RG-8QK" customClass="LikedBreweryViewController" customModule="LocalBrew" customModuleProvider="target" sceneMemberID="viewController">
@@ -959,10 +959,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Liked Brewery" id="4Gi-V9-wtL"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qA4-74-hm6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5881.5" y="282"/>
+            <point key="canvasLocation" x="5646" y="329"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dVk-h9-jlO">
@@ -1472,6 +1473,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="OOl-JH-4Wr"/>
-        <segue reference="H8e-yQ-ali"/>
+        <segue reference="dI1-xd-hxN"/>
     </inferredMetricsTieBreakers>
 </document>
