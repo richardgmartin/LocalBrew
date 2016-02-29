@@ -24,17 +24,25 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad()
     {
+        print("View Did Load")
         super.viewDidLoad()
         
         let username = userDefaults.objectForKey("username") as? String
         
         self.navigationItem.title = username
         
-        self.likedBreweriesArray = []
-        self.likedBeersArray = []
         
-        getLikedBreweries()
-        getLikedBeers()
+        self.navigationController?.navigationBar.barTintColor = UIColor.fromHexString("#960200", alpha: 1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.fromHexString("#FAFAFF", alpha: 1.0)]
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.fromHexString("#FAFAFF", alpha: 1.0)
+        self.navigationController?.navigationBar.translucent = false
+        self.automaticallyAdjustsScrollViewInsets = false
+        
+        
+        
+        
+        
         
         self.longPress.addTarget(self, action: "showComments:")
         self.longPress.minimumPressDuration = 0.5
@@ -43,9 +51,24 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.view.addGestureRecognizer(self.tap)
         self.view.addGestureRecognizer(self.longPress)
 
-
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+        print("View Did Appear")
+    }
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        
+        super.viewWillAppear(animated)
+        print("View Will Appear")
+        
+        getLikedBreweries()
+        getLikedBeers()
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
@@ -85,10 +108,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func getLikedBreweries()
     {
+        self.likedBreweriesArray = []
         
         let likedBreweryRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries")
         
-        likedBreweryRef.observeEventType(.Value, withBlock: { snapshot in
+        likedBreweryRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             //print(snapshot)
             for snap in snapshot!.children!.allObjects
             {
@@ -105,18 +129,18 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func getLikedBeers()
     {
-        
+        self.likedBeersArray = []
         let likedBeerRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbeers")
         
-        likedBeerRef.observeEventType(.Value, withBlock: { snapshot in
+        likedBeerRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             //print(snapshot)
             for snap in snapshot!.children!.allObjects
             {
                 let key = snap.key as String!
                 
-                FirebaseConnection.firebaseConnection.BEER_REF.childByAppendingPath(key).observeEventType(.Value, withBlock: {
+                FirebaseConnection.firebaseConnection.BEER_REF.childByAppendingPath(key).observeSingleEventOfType(.Value, withBlock: {
                     snapshot in
-                     print(snapshot)
+                     //print(snapshot)
                     self.getBeersFromAPI(snapshot.value.allObjects[1] as! String)
                 })
             }
@@ -127,9 +151,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func getBreweriesFromAPI(breweryID:String)
     {
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(breweryID)?key=6f75023f91495f22253de067b9136d1d")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(breweryID)?key=324f8ff71fe7f84fab3655aeab07f01c")
         
-        print(url!)
+        //print(url!)
         
         let session = NSURLSession.sharedSession()
         
@@ -165,9 +189,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func getBeersFromAPI(beerID:String)
     {
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/beer/\(beerID)?key=6f75023f91495f22253de067b9136d1d")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/beer/\(beerID)?key=324f8ff71fe7f84fab3655aeab07f01c")
         
-        print(url!)
+        //print(url!)
         
         let session = NSURLSession.sharedSession()
         
@@ -176,7 +200,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             {
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
                 
-                print(localBrew["data"]!)
+                //print(localBrew["data"]!)
                 
                 let beerObject:LikedBeer = LikedBeer(dict: localBrew["data"] as! NSDictionary)
                 self.likedBeersArray.addObject(beerObject)
@@ -224,8 +248,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        let point = sender!.locationInView(self.view)
-        
         if segue.identifier == "toLikedBreweryDetail"
         {
             let point = self.view.convertPoint(sender!.locationInView(self.likedBreweriesTableView), fromView: self.view)

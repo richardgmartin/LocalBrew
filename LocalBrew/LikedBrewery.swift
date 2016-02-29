@@ -10,7 +10,7 @@ import UIKit
 
 class LikedBrewery: NSObject {
     
-    var breweryDescription:String!
+    var breweryDescription:String?
     var establishDate:String?
     var name:String!
     var breweryID:String!
@@ -21,9 +21,17 @@ class LikedBrewery: NSObject {
     
     init(dictionary:NSDictionary)
     {
-        breweryDescription = dictionary["description"] as! String
+        
         name = dictionary["name"] as! String
         breweryID = dictionary["id"] as! String
+        
+        
+        if let brewDescription = dictionary["description"]
+        {
+            breweryDescription = brewDescription as? String
+        }
+        
+        
         if dictionary["established"] != nil
         {
             establishDate = dictionary["established"] as? String

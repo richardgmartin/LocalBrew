@@ -133,7 +133,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     func accessDBBeerList()
     {
         // MARK: logic to import breweryDB data
-        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(self.breweryDetail.breweryID)/beers?key=6f75023f91495f22253de067b9136d1d")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(self.breweryDetail.breweryID)/beers?key=324f8ff71fe7f84fab3655aeab07f01c")
         
         let session = NSURLSession.sharedSession()
         
