@@ -21,7 +21,7 @@ class LikedBeer: NSObject {
         
         if let organic = dict["isOrganic"]
         {
-            isOrganic = organic as! String
+            isOrganic = organic as? String
         }
         
         

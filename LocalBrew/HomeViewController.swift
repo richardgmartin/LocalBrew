@@ -347,8 +347,32 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func unwindToHomeViewController(segue: UIStoryboardSegue)
     {
-
         self.navigationController?.navigationBarHidden = false
+    
+        if segue.identifier == "cancel" {
+            
+            if self.countryName == "texas" {
+                
+                self.navigationController?.navigationBarHidden = true
+                
+                let alertController = UIAlertController(title: "Oops. There was a problem.", message: "There was something wrong with the city information you provided. Try again or change the selected city.", preferredStyle: .Alert)
+                
+                
+                let OKAction = UIAlertAction(title: "Try Again", style: .Default) { (action) in
+                    
+                    // redirect user back to ChangeCityViewController to choose another city
+
+                    
+                }
+                alertController.addAction(OKAction)
+                
+                self.presentViewController(alertController, animated: true) {
+                    
+                }
+            }
+            
+        }
+        
     }
     
     
@@ -356,7 +380,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: change user location delegate method
     
     func changeLocation(controller: ChangeCityViewController, didChangeCity: String, didChangeRegion: String, didChangeCountry: String) {
-        
+        print("Change Location")
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             
             
