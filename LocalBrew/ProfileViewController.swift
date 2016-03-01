@@ -19,8 +19,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var likedBeersArray = NSMutableArray()
     var likedBreweriesArray = NSMutableArray()
     let userDefaults = NSUserDefaults.standardUserDefaults()
-    var longPress = UILongPressGestureRecognizer()
-    var tap = UITapGestureRecognizer()
     
     override func viewDidLoad()
     {
@@ -39,18 +37,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController?.navigationBar.translucent = false
         self.automaticallyAdjustsScrollViewInsets = false
         
-        
-        
-        
-        
-        
-        self.longPress.addTarget(self, action: "showComments:")
-        self.longPress.minimumPressDuration = 0.5
-        self.tap.addTarget(self, action: "handleTap:")
-        
-        self.view.addGestureRecognizer(self.tap)
-        self.view.addGestureRecognizer(self.longPress)
-        
+
         getLikedBreweries()
         getLikedBeers()
 
@@ -264,30 +251,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-    {
-        if segue.identifier == "toLikedBreweryDetail"
-        {
-            let point = self.view.convertPoint(sender!.locationInView(self.likedBreweriesTableView), fromView: self.view)
-            let indexPath = self.likedBreweriesTableView.indexPathForRowAtPoint(point)
-            let brewery = self.likedBreweriesArray[indexPath!.row] as! LikedBrewery
-            let detailVC = segue.destinationViewController as? LikedBreweryViewController
-            detailVC?.brewery = brewery
-        }
-        
-        if segue.identifier == "toLikedBeerDescription"
-        {
-            let point = self.view.convertPoint(sender!.locationInView(self.likedBeersTableView), fromView: self.view)
-            let indexPath = self.likedBeersTableView.indexPathForRowAtPoint(point)
-            let beer = self.likedBeersArray[indexPath!.row] as! LikedBeer
-            
-            let beerDetailVC = segue.destinationViewController as? LikedBeerViewController
-            beerDetailVC!.beer = beer
-            
-        }
-        
-    }
     
     
     
