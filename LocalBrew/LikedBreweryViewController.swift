@@ -16,9 +16,6 @@ class LikedBreweryViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        //print(brewery.name)
         
         self.navigationItem.title = brewery.name
     }

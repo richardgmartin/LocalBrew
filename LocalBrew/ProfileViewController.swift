@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad()
     {
-        print("View Did Load")
+        //print("View Did Load")
         super.viewDidLoad()
         
         let username = userDefaults.objectForKey("username") as? String
@@ -60,14 +60,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         super.viewDidAppear(animated)
         
-        print("View Did Appear")
+        //print("View Did Appear")
     }
     
     override func viewWillAppear(animated: Bool)
     {
         
         super.viewWillAppear(animated)
-        print("View Will Appear")
+        //print("View Will Appear")
         
         
     }
@@ -125,7 +125,18 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 //print(key)
                 FirebaseConnection.firebaseConnection.BREWERY_REF.childByAppendingPath(key).observeSingleEventOfType(.Value, withBlock: { snapshot in
                     
-                    self.getBreweriesFromAPI(snapshot.value.allObjects[3] as! String)
+                    //print(snapshot.value)
+                    //print(snapshot.value.allObjects[3] as! String)
+                    //print(snapshot.value.count)
+                    
+                    if snapshot.value.count > 3
+                    {
+                        self.getBreweriesFromAPI(snapshot.value.allObjects[3] as! String)
+                    }
+                    else
+                    {
+                        self.getBreweriesFromAPI(snapshot.value.allObjects[2] as! String)
+                    }
                 })
             }
         })
@@ -157,7 +168,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("Calling API")
         self.likedBreweriesArray = []
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(breweryID)?key=b824de9a71437591a999e1e022ae7761")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(breweryID)?key=6f75023f91495f22253de067b9136d1d")
         
         //print(url!)
         
@@ -168,7 +179,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
              {
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
                 
-                print(localBrew["data"]!)
+                //print(localBrew["data"]!)
                 
                 let breweryObject: LikedBrewery = LikedBrewery(dictionary: localBrew["data"] as!NSDictionary)
                 self.likedBreweriesArray.addObject(breweryObject)
@@ -194,10 +205,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func getBeersFromAPI(beerID:String)
     {
-        print("Calling API")
+        //print("Calling API")
         self.likedBeersArray = []
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/beer/\(beerID)?key=b824de9a71437591a999e1e022ae7761")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/beer/\(beerID)?key=6f75023f91495f22253de067b9136d1d")
         
         //print(url!)
         
@@ -208,7 +219,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             {
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
                 
-                print(localBrew["data"]!)
+                //print(localBrew["data"]!)
                 
                 let beerObject:LikedBeer = LikedBeer(dict: localBrew["data"] as! NSDictionary)
                 self.likedBeersArray.addObject(beerObject)
