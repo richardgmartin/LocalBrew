@@ -50,6 +50,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         self.view.addGestureRecognizer(self.tap)
         self.view.addGestureRecognizer(self.longPress)
+        
+        getLikedBreweries()
+        getLikedBeers()
 
     }
     
@@ -66,8 +69,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewWillAppear(animated)
         print("View Will Appear")
         
-        getLikedBreweries()
-        getLikedBeers()
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -94,6 +96,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             cell = tableView.dequeueReusableCellWithIdentifier("LikedBreweryCell")
             cell.textLabel?.text = brewery!.name
+            cell.imageView?.image = brewery?.iconImage
         }
         else if tableView == self.likedBeersTableView
         {
@@ -101,6 +104,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             cell = tableView.dequeueReusableCellWithIdentifier("LikedBeerCell")
             cell.textLabel?.text = beer!.name
+            cell.imageView?.image = beer?.iconImage
         }
         
         return cell!
@@ -108,11 +112,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func getLikedBreweries()
     {
-        self.likedBreweriesArray = []
+        
         
         let likedBreweryRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries")
         
-        likedBreweryRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+        likedBreweryRef.observeEventType(.Value, withBlock: { snapshot in
             //print(snapshot)
             for snap in snapshot!.children!.allObjects
             {
@@ -129,10 +133,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func getLikedBeers()
     {
-        self.likedBeersArray = []
+        
         let likedBeerRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbeers")
         
-        likedBeerRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+        likedBeerRef.observeEventType(.Value, withBlock: { snapshot in
             //print(snapshot)
             for snap in snapshot!.children!.allObjects
             {
@@ -150,8 +154,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func getBreweriesFromAPI(breweryID:String)
     {
+        print("Calling API")
+        self.likedBreweriesArray = []
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(breweryID)?key=324f8ff71fe7f84fab3655aeab07f01c")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(breweryID)?key=b824de9a71437591a999e1e022ae7761")
         
         //print(url!)
         
@@ -162,7 +168,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
              {
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
                 
-                //print(localBrew["data"]!)
+                print(localBrew["data"]!)
                 
                 let breweryObject: LikedBrewery = LikedBrewery(dictionary: localBrew["data"] as!NSDictionary)
                 self.likedBreweriesArray.addObject(breweryObject)
@@ -188,8 +194,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func getBeersFromAPI(beerID:String)
     {
+        print("Calling API")
+        self.likedBeersArray = []
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/beer/\(beerID)?key=324f8ff71fe7f84fab3655aeab07f01c")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/beer/\(beerID)?key=b824de9a71437591a999e1e022ae7761")
         
         //print(url!)
         
@@ -200,7 +208,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             {
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
                 
-                //print(localBrew["data"]!)
+                print(localBrew["data"]!)
                 
                 let beerObject:LikedBeer = LikedBeer(dict: localBrew["data"] as! NSDictionary)
                 self.likedBeersArray.addObject(beerObject)

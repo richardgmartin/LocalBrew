@@ -17,13 +17,35 @@ class LikedBrewery: NSObject {
     var status:String!
     var statusDisplayed:String!
     var website:String!
-    var isOrganic:String!    
+    var isOrganic:String!
+    var iconImage:UIImage?
     
     init(dictionary:NSDictionary)
     {
         
         name = dictionary["name"] as! String
         breweryID = dictionary["id"] as! String
+        
+        if let imageDictionary = dictionary["images"]
+        {
+            if let icon = imageDictionary["icon"] as? String
+            {
+                if let url = NSURL(string: icon)
+                {
+                    if let data = NSData(contentsOfURL: url)
+                    {
+                        self.iconImage = UIImage(data: data)!
+                    }
+                    
+                }
+                
+            }
+        }
+        else
+        {
+            self.iconImage = UIImage(named: "Beer")
+        }
+        
         
         
         if let brewDescription = dictionary["description"]

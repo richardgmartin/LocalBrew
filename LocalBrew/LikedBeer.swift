@@ -12,6 +12,7 @@ class LikedBeer: NSObject {
     
     var name:String!
     var isOrganic:String?
+    var iconImage:UIImage?
     
     
     init(dict: NSDictionary)
@@ -22,6 +23,29 @@ class LikedBeer: NSObject {
         {
             isOrganic = organic as! String
         }
+        
+        
+        if let labelDictionary = dict["labels"]
+        {
+            if let string = labelDictionary["icon"] as? String
+            {
+                if let url = NSURL(string: string)
+                {
+                    if let data = NSData(contentsOfURL: url)
+                    {
+                        self.iconImage = UIImage(data: data)
+                    }
+                }
+            }
+        }
+        else
+        {
+            self.iconImage = UIImage(named: "Beer")
+        }
+        
+        
+        
+        
     }
     
     

@@ -18,7 +18,7 @@ class LikedBreweryViewController: UIViewController
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print(brewery.name)
+        //print(brewery.name)
         
         self.navigationItem.title = brewery.name
     }
