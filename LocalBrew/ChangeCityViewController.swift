@@ -80,7 +80,6 @@ class ChangeCityViewController: UIViewController, MKMapViewDelegate {
         self.changeCityMapView.setRegion(region, animated: true)
 
         
-        
 
         
     }
@@ -96,11 +95,16 @@ class ChangeCityViewController: UIViewController, MKMapViewDelegate {
         // 3. implement method/action
 
         
-        if let delegate = self.delegate {
-            delegate.changeLocation(self, didChangeCity: city!, didChangeRegion:region!, didChangeCountry: country!)
-        }
-
+       
+            delegate?.changeLocation(self, didChangeCity: city!, didChangeRegion:region!, didChangeCountry: country!)
+        performSegueWithIdentifier("update", sender: UIButton())
+        
     }
     
+    @IBAction func onCancelButtonTapped(sender: AnyObject) {
+        
+        performSegueWithIdentifier("cancel", sender: UIButton())
+
+    }
     
 }

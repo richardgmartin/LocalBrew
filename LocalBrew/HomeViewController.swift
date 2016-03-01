@@ -272,7 +272,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         // MARK: logic to import breweryDB data
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=6f75023f91495f22253de067b9136d1d")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=b824de9a71437591a999e1e022ae7761")
         
         let session = NSURLSession.sharedSession()
         
@@ -355,8 +355,32 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func unwindToHomeViewController(segue: UIStoryboardSegue)
     {
-
         self.navigationController?.navigationBarHidden = false
+    
+        if segue.identifier == "cancel" {
+            
+            if self.countryName == "texas" {
+                
+                self.navigationController?.navigationBarHidden = true
+                
+                let alertController = UIAlertController(title: "Oops. There was a problem.", message: "There was something wrong with the city information you provided. Try again or change the selected city.", preferredStyle: .Alert)
+                
+                
+                let OKAction = UIAlertAction(title: "Try Again", style: .Default) { (action) in
+                    
+                    // redirect user back to ChangeCityViewController to choose another city
+
+                    
+                }
+                alertController.addAction(OKAction)
+                
+                self.presentViewController(alertController, animated: true) {
+                    
+                }
+            }
+            
+        }
+        
     }
     
     
@@ -364,7 +388,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: change user location delegate method
     
     func changeLocation(controller: ChangeCityViewController, didChangeCity: String, didChangeRegion: String, didChangeCountry: String) {
-        
+        print("Change Location")
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             
             
