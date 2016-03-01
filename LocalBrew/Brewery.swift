@@ -17,13 +17,13 @@ class Brewery {
     var breweryID: String
     var firebaseID: String?
     var streetAddress: String?
-    var locality: String              // city or town
-    var region: String                // state or province
+    var locality: String?             // city or town
+    var region: String?                // state or province
     var postalCode: String            // zip or postal code
-    var countryName: String           // country
+    var countryName: String?           // country
     var website: String?
-    var latitude: Double
-    var longitude: Double
+    var latitude: Double?
+    var longitude: Double?
     var breweryDescription: String
     var isOrganic: String           // 'N' or 'Y'
     var breweryImageIcon: UIImage?
@@ -40,24 +40,25 @@ class Brewery {
     
    
     
-    init(dataDictionary: NSDictionary, userLocation:CLLocation?) {
+    init(dataDictionary: NSDictionary, userLocation:CLLocation?)
+    {
         
         let breweryDictionary = dataDictionary["brewery"]
         let locationDictionary = dataDictionary["country"]
         //let imageDictionary = breweryDictionary!["images"]
         name = breweryDictionary!["name"] as! String
         breweryID = breweryDictionary!["id"] as! String
-        locality = dataDictionary["locality"] as! String
-        region = dataDictionary["region"] as! String
-        countryName = locationDictionary!["displayName"] as! String
-        latitude = dataDictionary["latitude"] as! Double
-        longitude = dataDictionary["longitude"]as! Double
+        locality = dataDictionary["locality"] as? String
+        region = dataDictionary["region"] as? String
+        countryName = locationDictionary!["displayName"] as? String
+        latitude = dataDictionary["latitude"] as? Double
+        longitude = dataDictionary["longitude"]as? Double
         isOrganic = breweryDictionary!["isOrganic"] as! String
         
         
         if(userLocation != nil)
         {
-            distance = userLocation!.distanceFromLocation(CLLocation(latitude: self.latitude, longitude: self.longitude))
+            distance = userLocation!.distanceFromLocation(CLLocation(latitude: self.latitude!, longitude: self.longitude!))
         }
         //print(self.distance)
         
@@ -154,12 +155,37 @@ class Brewery {
     {
         name = dictionary["name"] as! String
         breweryID = dictionary["id"] as! String
-        locality = dictionary["locality"] as! String
-        region = dictionary["region"] as! String
-        countryName = dictionary["displayName"] as! String
-        latitude = dictionary["latitude"] as! Double
-        longitude = dictionary["longitude"]as! Double
+       
+        latitude = dictionary["latitude"] as? Double
         isOrganic = dictionary["isOrganic"] as! String
+        
+        
+        if let realLocality = dictionary["locality"]
+        {
+            locality = realLocality as? String
+        }
+        
+        if let realRegion = dictionary["region"]
+        {
+            region = realRegion as? String
+        }
+        
+        if let realCountryName = dictionary["displayName"]
+        {
+            countryName = realCountryName as? String
+        }
+        
+        if let realLongitude = dictionary["longitude"]
+        {
+            longitude = realLongitude as? Double
+        }
+        
+        if let realLatitude = dictionary["latitude"]
+        {
+            latitude = realLatitude as? Double
+        }
+        
+        
         
         if let streetAddress = dictionary["streetAddress"] as? String
         {

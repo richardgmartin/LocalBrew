@@ -335,14 +335,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    
-    func sortArray(withCompletionHandler:()->Void)
-    {
-        self.breweryObjects.sortInPlace{ $0.distance < $1.distance }
-        withCompletionHandler()
-    }
-    
-    
     func setCurrentUser()
     {
         FirebaseConnection.firebaseConnection.CURRENT_USER_REF.observeSingleEventOfType(.Value, withBlock: { snapshot in
@@ -560,8 +552,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 
                 self.dropPinForLocation(brewery)
                 
-                self.averageLatitude = self.averageLatitude + brewery.latitude
-                self.averageLongitude = self.averageLongitude + brewery.longitude
+                self.averageLatitude = self.averageLatitude + brewery.latitude!
+                self.averageLongitude = self.averageLongitude + brewery.longitude!
             }
             self.averageLatitude = self.averageLatitude / Double(self.breweryObjects.count)
             self.averageLongitude = self.averageLongitude / Double(self.breweryObjects.count)
@@ -600,7 +592,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func dropPinForLocation(brewery: Brewery)
     {
         let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2DMake(brewery.latitude, brewery.longitude)
+        annotation.coordinate = CLLocationCoordinate2DMake(brewery.latitude!, brewery.longitude!)
         annotation.title = brewery.name
         self.mapView.addAnnotation(annotation)
         self.annotations.append(annotation)
@@ -628,7 +620,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         for brewery in breweryObjects
         {
             if brewery.name == ((view.annotation?.title)!) {
-                let breweryCoordinates = CLLocationCoordinate2DMake(brewery.latitude, brewery.longitude)
+                let breweryCoordinates = CLLocationCoordinate2DMake(brewery.latitude!, brewery.longitude!)
                 openMapForPlace(brewery, breweryCoordinates: breweryCoordinates)
             }
         }

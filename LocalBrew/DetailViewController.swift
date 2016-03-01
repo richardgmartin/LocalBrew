@@ -66,6 +66,45 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         self.sorryNoBeerLabel.hidden = true
         
         
+        
+        
+        // 1. set brewery region
+        
+        let breweryLatitude:CLLocationDegrees = self.breweryDetail.latitude!
+        let breweryLongitude:CLLocationDegrees = self.breweryDetail.longitude!
+        let breweryLatDelta:CLLocationDegrees = 0.08
+        let breweryLongDelta:CLLocationDegrees = 0.08
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(breweryLatDelta, breweryLongDelta)
+        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(breweryLatitude, breweryLongitude)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+        self.mapView.setRegion(region, animated: true)
+        
+        // 2. set brewery pin info
+        
+        breweryAnnotation.coordinate = CLLocationCoordinate2DMake(self.breweryDetail.latitude!, self.breweryDetail.longitude!)
+        breweryAnnotation.title = self.breweryDetail.name
+        mapView.addAnnotation(breweryAnnotation)
+        
+        accessDBBeerList()
+        
+        self.view.addSubview(progressHUD)
+        
+        self.longPress.addTarget(self, action: "showBeerComments:")
+        self.longPress.minimumPressDuration = 0.5
+        
+        self.tap.addTarget(self, action: "handleTap:")
+        
+        self.tableView.addGestureRecognizer(self.longPress)
+        self.tableView.addGestureRecognizer(self.tap)
+        
+
+        
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         let likedBreweryRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbreweries")
         
         likedBreweryRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
@@ -84,41 +123,9 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                     }
                 })
             }
-        
+            
         })
-        
-        
-        // 1. set brewery region
-        
-        let breweryLatitude:CLLocationDegrees = self.breweryDetail.latitude
-        let breweryLongitude:CLLocationDegrees = self.breweryDetail.longitude
-        let breweryLatDelta:CLLocationDegrees = 0.08
-        let breweryLongDelta:CLLocationDegrees = 0.08
-        let span:MKCoordinateSpan = MKCoordinateSpanMake(breweryLatDelta, breweryLongDelta)
-        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(breweryLatitude, breweryLongitude)
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
-        self.mapView.setRegion(region, animated: true)
-        
-        // 2. set brewery pin info
-        
-        breweryAnnotation.coordinate = CLLocationCoordinate2DMake(self.breweryDetail.latitude, self.breweryDetail.longitude)
-        breweryAnnotation.title = self.breweryDetail.name
-        mapView.addAnnotation(breweryAnnotation)
-        
-        accessDBBeerList()
-        
-        self.view.addSubview(progressHUD)
-        
-        self.longPress.addTarget(self, action: "showBeerComments:")
-        self.longPress.minimumPressDuration = 0.5
-        
-        self.tap.addTarget(self, action: "handleTap:")
-        
-        self.tableView.addGestureRecognizer(self.longPress)
-        self.tableView.addGestureRecognizer(self.tap)
-        
 
-        
     }
 
 

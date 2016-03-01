@@ -25,6 +25,8 @@
 		DB90A5D71C7985FA003BE2A2 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB90A5D61C7985FA003BE2A2 /* CommentViewController.swift */; };
 		DB9D2EA71C712F30007E7228 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D2EA61C712F30007E7228 /* LoginViewController.swift */; };
 		DB9D2EAB1C71533F007E7228 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D2EAA1C71533F007E7228 /* CreateUserViewController.swift */; };
+		DBB282941C84A22A00B7C064 /* LikedBreweryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB282931C84A22A00B7C064 /* LikedBreweryViewController.swift */; };
+		DBB282961C84A24D00B7C064 /* LikedBeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB282951C84A24D00B7C064 /* LikedBeerViewController.swift */; };
 		E50758241C77AD1F008CA35A /* UIColor+LocalBrew.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50758231C77AD1F008CA35A /* UIColor+LocalBrew.swift */; };
 		E50758261C77BA72008CA35A /* tabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50758251C77BA72008CA35A /* tabBarViewController.swift */; };
 		E5218ED31C750DD8008DF84F /* BeerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5218ED21C750DD8008DF84F /* BeerCell.swift */; };
@@ -61,6 +63,8 @@
 		DB90A5D61C7985FA003BE2A2 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		DB9D2EA61C712F30007E7228 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DB9D2EAA1C71533F007E7228 /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
+		DBB282931C84A22A00B7C064 /* LikedBreweryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedBreweryViewController.swift; sourceTree = "<group>"; };
+		DBB282951C84A24D00B7C064 /* LikedBeerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedBeerViewController.swift; sourceTree = "<group>"; };
 		E50758231C77AD1F008CA35A /* UIColor+LocalBrew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+LocalBrew.swift"; sourceTree = "<group>"; };
 		E50758251C77BA72008CA35A /* tabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabBarViewController.swift; sourceTree = "<group>"; };
 		E5218ED21C750DD8008DF84F /* BeerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerCell.swift; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 				DB90A5D61C7985FA003BE2A2 /* CommentViewController.swift */,
 				E5ACAB3C1C7232D70013468E /* ChangeCityViewController.swift */,
 				E597B6201C6FDEFE007B8134 /* ProfileViewController.swift */,
+				DBB282951C84A24D00B7C064 /* LikedBeerViewController.swift */,
+				DBB282931C84A22A00B7C064 /* LikedBreweryViewController.swift */,
 				E5ACAB3E1C7241540013468E /* DetailViewController.swift */,
 				DB2FE0461C7FA4C7007B9AFC /* BeerDescriptionViewController.swift */,
 				E5218EF41C7629B7008DF84F /* WebsiteViewController.swift */,
@@ -315,11 +321,13 @@
 				DB2FE0471C7FA4C7007B9AFC /* BeerDescriptionViewController.swift in Sources */,
 				E5ACAB3D1C7232D70013468E /* ChangeCityViewController.swift in Sources */,
 				DB05AA231C78548100D6F9BB /* Comment.swift in Sources */,
+				DBB282961C84A24D00B7C064 /* LikedBeerViewController.swift in Sources */,
 				E50758241C77AD1F008CA35A /* UIColor+LocalBrew.swift in Sources */,
 				DB70F10C1C814E1E00C788E9 /* LikedBeer.swift in Sources */,
 				A37600C61C7507C90045A169 /* Beer.swift in Sources */,
 				A3025F261C6F7E7D004617DB /* HomeViewController.swift in Sources */,
 				E573040B1C7B718800032D7D /* mapViewController.swift in Sources */,
+				DBB282941C84A22A00B7C064 /* LikedBreweryViewController.swift in Sources */,
 				E52D37FF1C77817700184B4E /* CustomActivityIndicator.swift in Sources */,
 				DB9D2EAB1C71533F007E7228 /* CreateUserViewController.swift in Sources */,
 				E597B6211C6FDEFE007B8134 /* ProfileViewController.swift in Sources */,
