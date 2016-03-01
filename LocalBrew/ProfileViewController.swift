@@ -12,7 +12,9 @@ import CoreLocation
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
+    @IBOutlet weak var yourLikedBreweries: UILabel!
 
+    @IBOutlet weak var yourLikedBeers: UILabel!
 
     @IBOutlet weak var likedBreweriesTableView: UITableView!
     @IBOutlet weak var likedBeersTableView: UITableView!
@@ -35,7 +37,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         self.navigationController?.navigationBar.tintColor = UIColor.fromHexString("#FAFAFF", alpha: 1.0)
         self.navigationController?.navigationBar.translucent = false
-        self.automaticallyAdjustsScrollViewInsets = false
+//        self.automaticallyAdjustsScrollViewInsets = false
+        self.likedBeersTableView.backgroundColor = UIColor.clearColor()
+        self.likedBreweriesTableView.backgroundColor = UIColor.clearColor()
+        self.yourLikedBeers.font = UIFont.boldSystemFontOfSize(20.0)
+        self.yourLikedBreweries.font = UIFont.boldSystemFontOfSize(20.0)
+
+        
         
 
         getLikedBreweries()
