@@ -163,7 +163,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("Calling API")
         self.likedBreweriesArray = []
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(breweryID)?key=6f75023f91495f22253de067b9136d1d")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/brewery/\(breweryID)?key=bf670c4b0636d4565fbb0feb6eb6bf8c")
         
         //print(url!)
         
@@ -203,7 +203,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         //print("Calling API")
         self.likedBeersArray = []
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/beer/\(beerID)?key=6f75023f91495f22253de067b9136d1d")
+        let url = NSURL(string: "http://api.brewerydb.com/v2/beer/\(beerID)?key=bf670c4b0636d4565fbb0feb6eb6bf8c")
         
         //print(url!)
         
