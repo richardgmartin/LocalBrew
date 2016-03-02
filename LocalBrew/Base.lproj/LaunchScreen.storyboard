@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beer1024" translatesAutoresizingMaskIntoConstraints="NO" id="9aH-8C-lRY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="localBrewSplashBlackFont" translatesAutoresizingMaskIntoConstraints="NO" id="9aH-8C-lRY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                         </subviews>
@@ -36,6 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="beer1024" width="1024" height="1024"/>
+        <image name="localBrewSplashBlackFont" width="640" height="767"/>
     </resources>
 </document>

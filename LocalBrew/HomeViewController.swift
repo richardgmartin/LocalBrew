@@ -20,7 +20,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     @IBOutlet weak var changeCityButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var backgroundImageView: UIImageView!
     
     var breweries = [NSDictionary]()
     var breweryObjects = [Brewery]()
@@ -545,8 +544,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.view.addGestureRecognizer(tap)
             
             //  self.mapView.removeAnnotations(mapView.annotations)
-            self.backgroundImageView.hidden = false
-            
+
         } else if (self.mapSegmentControl.selectedSegmentIndex == 1) {
             // add annotations to mapView by looping through the array
             for brewery in self.breweryObjects
@@ -564,7 +562,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             self.mapView.hidden = false
             self.tableView.hidden = true
-            self.backgroundImageView.hidden = true
             
             self.view.removeGestureRecognizer(tap)
         }
