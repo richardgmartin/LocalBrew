@@ -43,6 +43,13 @@ class BeerDescriptionViewController: UIViewController {
         self.breweryNameBold.font = UIFont.boldSystemFontOfSize(17.0)
         self.beerDescriptionTextView.backgroundColor = UIColor.clearColor()
         
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 2000))
+        titleLabel.text = self.navigationItem.title
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.textColor = UIColor.whiteColor()
+        
+        self.navigationItem.titleView = titleLabel
+        
         let likedBeerRef = FirebaseConnection.firebaseConnection.CURRENT_USER_REF.childByAppendingPath("likedbeers")
         
         likedBeerRef.observeSingleEventOfType(.Value, withBlock: { snapshot in

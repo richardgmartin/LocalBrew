@@ -26,11 +26,14 @@ class BreweryCell: UITableViewCell {
     func configureCell(brewery: Brewery) {
         self.brewery = brewery
         self.breweryNameLabel!.text = brewery.name
+        self.breweryNameLabel.numberOfLines = 0
         self.breweryAddressLabel.text = brewery.streetAddress
-        self.breweryDistanceLabel.text = "0.4 miles"
+        self.breweryAddressLabel.sizeToFit()
+        //self.breweryDistanceLabel.text = "0.4 miles"
         //self.breweryLikeLabel.text = "15 Likes"
         self.breweryImageView.image = brewery.breweryImageIcon
         self.breweryNameLabel.font = UIFont.boldSystemFontOfSize(15.0)
+        self.breweryNameLabel.sizeToFit()
 
         
         if brewery.firebaseID == nil
@@ -48,6 +51,7 @@ class BreweryCell: UITableViewCell {
         let distance = brewery.distance! * 0.00062137
         
         self.breweryDistanceLabel.text = String(format: "%.2f miles", arguments: [distance])
+        self.breweryDistanceLabel.sizeToFit()
         
     }
 }

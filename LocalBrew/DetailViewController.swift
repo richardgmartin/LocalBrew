@@ -65,6 +65,14 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.hidden = true
         self.sorryNoBeerLabel.hidden = true
         
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 2000))
+        titleLabel.text = self.navigationItem.title
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.textColor = UIColor.whiteColor()
+        
+        self.navigationItem.titleView = titleLabel
+        
+        
         
         
         
