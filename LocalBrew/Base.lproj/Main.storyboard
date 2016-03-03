@@ -823,7 +823,7 @@
             </objects>
             <point key="canvasLocation" x="2311.5" y="337"/>
         </scene>
-        <!--Comments-->
+        <!--Comment View Controller-->
         <scene sceneID="Abk-q2-pdK">
             <objects>
                 <viewController storyboardIdentifier="CommentsView" id="Vu9-Bc-Tr4" customClass="CommentViewController" customModule="LocalBrew" customModuleProvider="target" sceneMemberID="viewController">
@@ -835,25 +835,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dn9-5d-jw2">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem width="325" style="plain" id="6vN-st-2P2">
-                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="tWs-mw-ykB">
-                                            <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="Vu9-Bc-Tr4" id="f6V-R4-5TZ"/>
-                                            </connections>
-                                        </textField>
-                                    </barButtonItem>
-                                </items>
-                                <connections>
-                                    <outlet property="delegate" destination="Vu9-Bc-Tr4" id="qdw-Z2-nj6"/>
-                                </connections>
-                            </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KlY-bF-Y1U">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -894,53 +875,95 @@
                                     <outlet property="delegate" destination="Vu9-Bc-Tr4" id="YTC-rk-gSx"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XzY-Cg-oCc">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a comment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Tw-Pv-6WK">
+                                        <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Vu9-Bc-Tr4" id="OUU-tv-Mj1"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="4Tw-Pv-6WK" firstAttribute="leading" secondItem="XzY-Cg-oCc" secondAttribute="leading" constant="8" id="8jn-Ic-dOW"/>
+                                    <constraint firstAttribute="trailing" secondItem="4Tw-Pv-6WK" secondAttribute="trailing" constant="8" id="Gwh-3q-RyR"/>
+                                    <constraint firstAttribute="bottom" secondItem="4Tw-Pv-6WK" secondAttribute="bottom" constant="8" id="ebo-rn-YdV"/>
+                                    <constraint firstItem="4Tw-Pv-6WK" firstAttribute="top" secondItem="XzY-Cg-oCc" secondAttribute="top" constant="6" id="fWb-ta-LZG"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="4Tw-Pv-6WK"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="8jn-Ic-dOW"/>
+                                        <exclude reference="Gwh-3q-RyR"/>
+                                        <exclude reference="ebo-rn-YdV"/>
+                                        <exclude reference="fWb-ta-LZG"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="4Tw-Pv-6WK"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="8jn-Ic-dOW"/>
+                                        <include reference="Gwh-3q-RyR"/>
+                                        <include reference="ebo-rn-YdV"/>
+                                        <include reference="fWb-ta-LZG"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dn9-5d-jw2" firstAttribute="top" secondItem="KlY-bF-Y1U" secondAttribute="bottom" id="09c-AU-qjI"/>
-                            <constraint firstItem="dn9-5d-jw2" firstAttribute="leading" secondItem="Gcn-Vj-epY" secondAttribute="leadingMargin" constant="-20" id="7Ks-yK-4w0"/>
-                            <constraint firstItem="6pe-22-rLv" firstAttribute="top" secondItem="dn9-5d-jw2" secondAttribute="bottom" id="9mi-Cb-hPA"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="dn9-5d-jw2" secondAttribute="trailing" constant="-20" id="Bji-xX-FU1"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="KlY-bF-Y1U" secondAttribute="trailing" constant="-20" id="P6B-s0-0iK"/>
-                            <constraint firstItem="KlY-bF-Y1U" firstAttribute="top" secondItem="Gcn-Vj-epY" secondAttribute="topMargin" id="XSQ-aH-7yJ"/>
-                            <constraint firstItem="KlY-bF-Y1U" firstAttribute="leading" secondItem="Gcn-Vj-epY" secondAttribute="leadingMargin" constant="-20" id="m7s-hr-Fjc"/>
+                            <constraint firstAttribute="trailing" secondItem="XzY-Cg-oCc" secondAttribute="trailing" id="GfS-Mj-FFY"/>
+                            <constraint firstItem="KlY-bF-Y1U" firstAttribute="leading" secondItem="Gcn-Vj-epY" secondAttribute="leading" id="MnR-ak-Zbi"/>
+                            <constraint firstItem="KlY-bF-Y1U" firstAttribute="top" secondItem="Gcn-Vj-epY" secondAttribute="top" id="cqX-eJ-gIi"/>
+                            <constraint firstItem="XzY-Cg-oCc" firstAttribute="leading" secondItem="Gcn-Vj-epY" secondAttribute="leading" id="dKC-aL-Zix"/>
+                            <constraint firstItem="6pe-22-rLv" firstAttribute="top" secondItem="XzY-Cg-oCc" secondAttribute="bottom" id="gNp-pg-ILu"/>
+                            <constraint firstItem="XzY-Cg-oCc" firstAttribute="top" secondItem="KlY-bF-Y1U" secondAttribute="bottom" id="mQn-YI-prb"/>
+                            <constraint firstAttribute="trailing" secondItem="KlY-bF-Y1U" secondAttribute="trailing" id="pzP-ia-x0k"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="dn9-5d-jw2"/>
                                 <exclude reference="KlY-bF-Y1U"/>
+                                <exclude reference="XzY-Cg-oCc"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="P6B-s0-0iK"/>
-                                <exclude reference="XSQ-aH-7yJ"/>
-                                <exclude reference="m7s-hr-Fjc"/>
-                                <exclude reference="09c-AU-qjI"/>
-                                <exclude reference="7Ks-yK-4w0"/>
-                                <exclude reference="Bji-xX-FU1"/>
-                                <exclude reference="9mi-Cb-hPA"/>
+                                <exclude reference="MnR-ak-Zbi"/>
+                                <exclude reference="cqX-eJ-gIi"/>
+                                <exclude reference="pzP-ia-x0k"/>
+                                <exclude reference="GfS-Mj-FFY"/>
+                                <exclude reference="dKC-aL-Zix"/>
+                                <exclude reference="mQn-YI-prb"/>
+                                <exclude reference="gNp-pg-ILu"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="dn9-5d-jw2"/>
                                 <include reference="KlY-bF-Y1U"/>
+                                <include reference="XzY-Cg-oCc"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="P6B-s0-0iK"/>
-                                <include reference="XSQ-aH-7yJ"/>
-                                <include reference="m7s-hr-Fjc"/>
-                                <include reference="09c-AU-qjI"/>
-                                <include reference="7Ks-yK-4w0"/>
-                                <include reference="Bji-xX-FU1"/>
-                                <include reference="9mi-Cb-hPA"/>
+                                <include reference="MnR-ak-Zbi"/>
+                                <include reference="cqX-eJ-gIi"/>
+                                <include reference="pzP-ia-x0k"/>
+                                <include reference="GfS-Mj-FFY"/>
+                                <include reference="dKC-aL-Zix"/>
+                                <include reference="mQn-YI-prb"/>
+                                <include reference="gNp-pg-ILu"/>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Comments" id="nQx-jJ-qIb"/>
+                    <navigationItem key="navigationItem" id="nQx-jJ-qIb"/>
                     <connections>
                         <outlet property="commentsTableView" destination="KlY-bF-Y1U" id="pgu-Xl-a7G"/>
-                        <outlet property="textfieldComment" destination="tWs-mw-ykB" id="Bus-RT-hw4"/>
-                        <outlet property="toolbarBottomLayout" destination="9mi-Cb-hPA" id="pI3-8G-a7k"/>
+                        <outlet property="textFieldComment" destination="4Tw-Pv-6WK" id="x3p-jm-XJg"/>
+                        <outlet property="textFieldViewBottomLayout" destination="gNp-pg-ILu" id="Fs9-kk-nHA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzQ-j7-3aP" userLabel="First Responder" sceneMemberID="firstResponder"/>
