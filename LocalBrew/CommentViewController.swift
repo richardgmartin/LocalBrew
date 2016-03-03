@@ -135,7 +135,7 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue()
         {
             
-            self.textFieldViewBottomLayout.constant = keyboardSize.height - self.tabBarController!.tabBar.bounds.height
+            self.textFieldViewBottomLayout.constant = keyboardSize.height - 49
         }
         
     }
