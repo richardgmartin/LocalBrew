@@ -17,6 +17,8 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
     let username = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String
     @IBOutlet weak var commentsTableView: UITableView!
 
+    @IBOutlet weak var toolbarBottomLayout: NSLayoutConstraint!
+    @IBOutlet weak var textfieldComment: UITextField!
     
     
     override func viewWillAppear(animated: Bool) {
@@ -33,6 +35,8 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+        self.commentsTableView.userInteractionEnabled = true
+        self.view.layoutIfNeeded()
         
     }
     
@@ -89,38 +93,55 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        let commentRef:Firebase!
-        
-        if self.beer == nil
+        if (textField.text != "")
         {
-            commentRef =  FirebaseConnection.firebaseConnection.COMMENT_REF.childByAppendingPath(brewery.firebaseID)
+            let commentRef:Firebase!
+            
+            if self.beer == nil
+            {
+                commentRef =  FirebaseConnection.firebaseConnection.COMMENT_REF.childByAppendingPath(brewery.firebaseID)
+            }
+            else
+            {
+                commentRef = FirebaseConnection.firebaseConnection.COMMENT_REF.childByAppendingPath(beer.firebaseID)
+            }
+            
+            commentRef.childByAutoId().setValue(["text":textField.text!, "username":username!])
+            
+            textField.text = ""
+            
+            self.loadComments()
         }
-        else
-        {
-            commentRef = FirebaseConnection.firebaseConnection.COMMENT_REF.childByAppendingPath(beer.firebaseID)
-        }
-        
-       commentRef.childByAutoId().setValue(["text":textField.text!, "username":username!])
-        
-        textField.text = ""
-        
-        self.loadComments()
         
         return textField.resignFirstResponder()
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        self.resignFirstResponder()
     }
     
     
     func keyboardWillShow(notification: NSNotification) {
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            self.view.frame.origin.y -= keyboardSize.height
+            
+            self.toolbarBottomLayout.constant = keyboardSize.height - self.tabBarController!.tabBar.bounds.height
         }
         
     }
     
-    func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            self.view.frame.origin.y += keyboardSize.height
+    func keyboardWillHide(notification: NSNotification)
+    {
+        self.toolbarBottomLayout.constant = 0
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
+    {
+        super.touchesBegan(touches, withEvent: event!)
+        
+        for _ :AnyObject in touches
+        {
+            self.textfieldComment.resignFirstResponder()
         }
     }
     

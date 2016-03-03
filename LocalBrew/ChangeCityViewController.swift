@@ -17,7 +17,7 @@ protocol ChangeCityViewControllerDelegate {
     func changeLocation(controller: ChangeCityViewController, didChangeCity: String, didChangeRegion: String, didChangeCountry: String)
     
 }
-class ChangeCityViewController: UIViewController, MKMapViewDelegate {
+class ChangeCityViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
@@ -106,5 +106,15 @@ class ChangeCityViewController: UIViewController, MKMapViewDelegate {
         performSegueWithIdentifier("cancel", sender: UIButton())
 
     }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        self.resignFirstResponder()
+    }
+    
+    
     
 }
