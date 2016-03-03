@@ -35,7 +35,7 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
-        self.commentsTableView.userInteractionEnabled = true
+        self.commentsTableView.userInteractionEnabled = false
         self.view.userInteractionEnabled = true
         self.view.layoutIfNeeded()
         
@@ -148,7 +148,7 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
         self.view.endEditing(true)
-        //super.touchesBegan(touches, withEvent: event)
+        super.touchesBegan(touches, withEvent: event)
     }
     
     
