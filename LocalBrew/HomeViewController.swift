@@ -577,6 +577,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             FirebaseConnection.firebaseConnection.CURRENT_USER_REF.unauth()
             self.userDefaults.setValue(nil, forKey: "uid")
+            self.userDefaults.setValue(nil, forKey: "username")
             // Return to login screen
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("login")
             self.presentViewController(vc!, animated: true, completion: nil)

@@ -75,6 +75,7 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate
                     let user = ["provider":authData.provider!, "email":self.createEmailTextField.text!, "username":self.createUsernameTextField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()), "uid":authData.uid!, "name":self.createNameTextField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())]
                     FirebaseConnection.firebaseConnection.createNewAccount(authData.uid, user: user)
                     self.userDefaults.setValue(authData.uid, forKey: "uid")
+                    self.userDefaults.setValue(self.createUsernameTextField.text, forKey: "username")
 
                     
                     self.performSegueWithIdentifier("fromCreateUser", sender: nil)
