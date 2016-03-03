@@ -124,7 +124,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     //print(snapshot.value.allObjects[3] as! String)
                     //print(snapshot.value.count)
                     
-                    if snapshot.value.count > 3
+                    if snapshot.value is NSNull
+                    {
+                        return
+                    }
+                    else if snapshot.value.count > 3
                     {
                         self.getBreweriesFromAPI(snapshot.value.allObjects[3] as! String)
                     }
