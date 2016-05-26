@@ -181,9 +181,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.view.backgroundColor = UIColor.blackColor()
         
-        self.longPress.addTarget(self, action: "showBreweryComments:")
+        self.longPress.addTarget(self, action: #selector(HomeViewController.showBreweryComments(_:)))
         self.longPress.minimumPressDuration = 0.5
-        self.tap.addTarget(self, action: "handleTap:")
+        self.tap.addTarget(self, action: #selector(HomeViewController.handleTap(_:)))
         
         self.view.addGestureRecognizer(self.longPress)
         self.view.addGestureRecognizer(self.tap)
