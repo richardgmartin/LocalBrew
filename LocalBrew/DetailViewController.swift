@@ -97,10 +97,10 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
         self.view.addSubview(progressHUD)
         
-        self.longPress.addTarget(self, action: "showBeerComments:")
+        self.longPress.addTarget(self, action: #selector(DetailViewController.showBeerComments(_:)))
         self.longPress.minimumPressDuration = 0.5
         
-        self.tap.addTarget(self, action: "handleTap:")
+        self.tap.addTarget(self, action: #selector(DetailViewController.handleTap(_:)))
         
         self.tableView.addGestureRecognizer(self.longPress)
         self.tableView.addGestureRecognizer(self.tap)

@@ -94,8 +94,6 @@ class ChangeCityViewController: UIViewController, MKMapViewDelegate, UITextField
         
         // 3. implement method/action
 
-        
-       
             delegate?.changeLocation(self, didChangeCity: city!, didChangeRegion:region!, didChangeCountry: country!)
         performSegueWithIdentifier("update", sender: UIButton())
         

@@ -181,9 +181,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.view.backgroundColor = UIColor.blackColor()
         
-        self.longPress.addTarget(self, action: "showBreweryComments:")
+        self.longPress.addTarget(self, action: #selector(HomeViewController.showBreweryComments(_:)))
         self.longPress.minimumPressDuration = 0.5
-        self.tap.addTarget(self, action: "handleTap:")
+        self.tap.addTarget(self, action: #selector(HomeViewController.handleTap(_:)))
         
         self.view.addGestureRecognizer(self.longPress)
         self.view.addGestureRecognizer(self.tap)
@@ -233,9 +233,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             _ = "\(placemark!.locality!) \(placemark!.administrativeArea!) \(placemark!.country!)"
             
             
-            self.locality = String(UTF8String: (placemark?.locality)!)!
-            let placemarkRegion = String(UTF8String: placemark!.administrativeArea!)!
-            let placemarkCountry = String(UTF8String: (placemark?.country)!)
+            self.locality = placemark!.locality
+            let placemarkRegion = placemark!.administrativeArea
+            let placemarkCountry = placemark!.country
             
             if placemarkCountry == "United States" {
                 self.countryName = "us"
@@ -253,7 +253,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     //print(value)
                 }
             }
-            self.navigationItem.title = self.locality?.capitalizedString
+            self.navigationItem.title = self.locality
             
             if(!self.hasCalledAPI)
             {
@@ -272,11 +272,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         // MARK: logic to import breweryDB data
         
-        let url = NSURL(string: "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=bf670c4b0636d4565fbb0feb6eb6bf8c")
+        let url:String = "http://api.brewerydb.com/v2/locations?locality=\(self.locality!)&region=\(self.region!)&countryIsoCode=\(self.countryName!)&key=bf670c4b0636d4565fbb0feb6eb6bf8c"
+        
+        
+        let urlString:String = url.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())!
+        
+        print(urlString)
+        
+        let searchUrl = NSURL(string: urlString)!
+        
         
         let session = NSURLSession.sharedSession()
         
-        let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
+        let task = session.dataTaskWithURL(searchUrl) { (data, response, error) -> Void in
             do{
                 
                 let localBrew = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
@@ -452,7 +460,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func changeCity()
     {
         self.performSegueWithIdentifier("changeCity", sender: self.view)
-        
     }
     
     @IBAction func handleTap(recognizer:UIGestureRecognizer)
